@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ASAP WORKPLAN — Suivi</title>
+<title>ASAP WORKPLAN | Suivi</title>
 <meta name="description" content="Suivi des activités de vos projets : avancement, échéances, retards et comptes rendus, sur ordinateur et téléphone.">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="manifest" href="manifest.webmanifest">
@@ -13,8 +13,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ASAP Suivi">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
+html{font-size:17px}
 :root{
   --bg:#0a0a0a; --panel:#141414; --panel2:#1a1a1a; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
   --text:#f5f2ee; --muted:#8a8a8a; --muted2:rgba(245,242,238,.6);
@@ -23,19 +24,19 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 a{color:var(--accent2)}
-.mono{font-family:'Space Mono',monospace}
+.mono{font-family: 'EB Garamond', Garamond, Georgia, serif}
 .hidden{display:none!important}
 :focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 
 /* Logo */
 .logo{display:flex;align-items:center;gap:.65rem;text-decoration:none}
 .logo svg{width:32px;height:32px;flex-shrink:0}
-.logo b{display:block;font-family:'Syne';font-weight:800;font-size:1rem;color:var(--text);line-height:1}
-.logo i{display:block;font-style:normal;font-family:'Space Mono';font-weight:700;font-size:.52rem;letter-spacing:.26em;color:var(--accent);margin-top:3px}
+.logo b{display:block;font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:800;font-size:1rem;color:var(--text);line-height:1}
+.logo i{display:block;font-style:normal;font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:700;font-size:.52rem;letter-spacing:.26em;color:var(--accent);margin-top:3px}
 
 /* Boutons et champs */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border:1px solid var(--line2);background:transparent;padding:.6rem 1rem;border-radius:var(--r);font-size:.88rem;font-weight:500;transition:background .15s,border-color .15s;white-space:nowrap}
@@ -49,7 +50,7 @@ a{color:var(--accent2)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 label.f{display:block;margin-bottom:.9rem}
-label.f>span{display:block;font-family:'Space Mono';font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+label.f>span{display:block;font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
 input.i,select.i,textarea.i{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:var(--r);padding:.7rem .8rem;font-size:.95rem;transition:border-color .15s}
 textarea.i{min-height:90px;resize:vertical}
 input.i:focus,select.i:focus,textarea.i:focus{outline:none;border-color:var(--accent2)}
@@ -61,7 +62,7 @@ input.i:focus,select.i:focus,textarea.i:focus{outline:none;border-color:var(--ac
 .auth{min-height:100%;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;background:radial-gradient(ellipse 60% 50% at 80% 10%,rgba(255,77,28,.1),transparent 70%),radial-gradient(ellipse 50% 40% at 10% 90%,rgba(0,229,160,.06),transparent 60%)}
 .auth-box{width:100%;max-width:400px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:2rem;position:relative;overflow:hidden}
 .auth-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.auth h1{font-family:'Syne';font-weight:800;font-size:1.5rem;margin:1.5rem 0 .3rem}
+.auth h1{font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:800;font-size:1.5rem;margin:1.5rem 0 .3rem}
 .auth p.sub{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem}
 .auth .switch{text-align:center;margin-top:1rem;font-size:.85rem;color:var(--muted)}
 .auth .switch button{background:none;border:none;color:var(--accent2);text-decoration:underline;text-underline-offset:3px}
@@ -80,8 +81,8 @@ input.i:focus,select.i:focus,textarea.i:focus{outline:none;border-color:var(--ac
 .side-foot .me{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 main{min-width:0;padding:1.6rem 2rem 3rem}
 .top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.top h2{font-family:'Syne';font-weight:800;font-size:1.6rem;letter-spacing:-.02em;line-height:1.15}
-.top .crumb{font-family:'Space Mono';font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.top h2{font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:800;font-size:1.6rem;letter-spacing:-.02em;line-height:1.15}
+.top .crumb{font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
 .top .crumb button{background:none;border:none;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;text-decoration:underline;text-underline-offset:3px}
 .actions{display:flex;gap:.5rem;flex-wrap:wrap}
 .mobile-top,.tabbar{display:none}
@@ -93,14 +94,14 @@ main{min-width:0;padding:1.6rem 2rem 3rem}
 /* Cartes et KPI */
 .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;margin-bottom:1.5rem}
 .kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem}
-.kpi .v{font-family:'Syne';font-weight:800;font-size:1.8rem;line-height:1.1}
-.kpi .l{font-family:'Space Mono';font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+.kpi .v{font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:800;font-size:1.8rem;line-height:1.1}
+.kpi .l{font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
 .kpi.red .v{color:var(--red)} .kpi.green .v{color:var(--accent2)} .kpi.orange .v{color:var(--accent)}
 .kpis.k4{grid-template-columns:repeat(4,1fr)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .grid2>*{min-width:0}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem}
-.card h3{font-family:'Syne';font-weight:700;font-size:1rem;margin-bottom:.9rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.card h3{font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:700;font-size:1rem;margin-bottom:.9rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
 .card h3 .mono{font-size:.62rem;color:var(--muted);font-weight:400;letter-spacing:.08em}
 .empty{color:var(--muted);font-size:.88rem;padding:1.4rem;text-align:center;border:1px dashed var(--line2);border-radius:var(--r)}
 .bar{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
@@ -108,19 +109,19 @@ main{min-width:0;padding:1.6rem 2rem 3rem}
 .prow{display:grid;grid-template-columns:1fr 140px 44px;gap:.8rem;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--line);font-size:.88rem;cursor:pointer}
 .prow:last-child{border-bottom:none}
 .prow:hover .pn{color:var(--accent2)}
-.prow .pct{font-family:'Space Mono';font-size:.75rem;color:var(--muted);text-align:right}
+.prow .pct{font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.75rem;color:var(--muted);text-align:right}
 
 /* Projets */
 .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
 .pcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem;cursor:pointer;transition:border-color .15s,transform .15s;position:relative;overflow:hidden;text-align:left;width:100%}
 .pcard:hover{border-color:rgba(0,229,160,.35);transform:translateY(-2px)}
 .pcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--pc,var(--accent))}
-.pcard h4{font-family:'Syne';font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
+.pcard h4{font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
 .pcard p{color:var(--muted);font-size:.83rem;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.5em}
-.pmeta{display:flex;justify-content:space-between;font-family:'Space Mono';font-size:.64rem;color:var(--muted);margin-top:.6rem;gap:.5rem;flex-wrap:wrap}
+.pmeta{display:flex;justify-content:space-between;font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.64rem;color:var(--muted);margin-top:.6rem;gap:.5rem;flex-wrap:wrap}
 
 /* Pastilles */
-.pill{display:inline-flex;align-items:center;gap:.35rem;font-family:'Space Mono';font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .5rem;border-radius:3px;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:.35rem;font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .5rem;border-radius:3px;white-space:nowrap}
 .pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
 .s-a_faire{color:var(--muted2);background:rgba(255,255,255,.06)}
 .s-en_cours{color:var(--blue);background:rgba(79,195,247,.1)}
@@ -128,14 +129,14 @@ main{min-width:0;padding:1.6rem 2rem 3rem}
 .s-termine{color:var(--accent2);background:rgba(0,229,160,.1)}
 .p-haute{color:var(--accent)} .p-normale{color:var(--muted2)} .p-basse{color:var(--muted)}
 .late{color:var(--red)!important}
-.tag{font-family:'Space Mono';font-size:.6rem;padding:.15rem .45rem;border:1px solid var(--line2);border-radius:3px;color:var(--muted2)}
+.tag{font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.6rem;padding:.15rem .45rem;border:1px solid var(--line2);border-radius:3px;color:var(--muted2)}
 
 /* Tableau Kanban */
 .board{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:.8rem;overflow-x:auto;padding-bottom:.5rem}
 .col{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:.8rem;min-height:140px;display:flex;flex-direction:column;gap:.6rem}
 .col.drop{border-color:var(--accent2);background:rgba(0,229,160,.04)}
 .col-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:.2rem}
-.col-h .n{font-family:'Space Mono';font-size:.7rem;color:var(--muted)}
+.col-h .n{font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.7rem;color:var(--muted)}
 .acard{background:var(--panel2);border:1px solid var(--line);border-radius:var(--r);padding:.8rem;cursor:pointer;text-align:left;width:100%;transition:border-color .15s}
 .acard:hover{border-color:rgba(255,255,255,.22)}
 .acard[draggable=true]{cursor:grab}
@@ -151,7 +152,7 @@ main{min-width:0;padding:1.6rem 2rem 3rem}
 .filters input.i{flex:1;min-width:180px}
 .tbl-wrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:760px}
-th{text-align:left;font-family:'Space Mono';font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:.75rem .9rem;border-bottom:1px solid var(--line);white-space:nowrap}
+th{text-align:left;font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:.75rem .9rem;border-bottom:1px solid var(--line);white-space:nowrap}
 td{padding:.7rem .9rem;border-bottom:1px solid var(--line);vertical-align:middle}
 tr.click{cursor:pointer}
 tr.click:hover td{background:rgba(255,255,255,.025)}
@@ -164,7 +165,7 @@ td .bar{width:80px;display:inline-block;vertical-align:middle;margin-right:.4rem
 /* Équipe */
 .mrow{display:flex;align-items:center;gap:.8rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
 .mrow:last-child{border-bottom:none}
-.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne';font-weight:800;font-size:.85rem;color:#0a0a0a;flex-shrink:0}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:800;font-size:.85rem;color:#0a0a0a;flex-shrink:0}
 .mrow .who{flex:1;min-width:0}
 .mrow .who div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mrow .who small{color:var(--muted);font-size:.78rem}
@@ -173,14 +174,14 @@ td .bar{width:80px;display:inline-block;vertical-align:middle;margin-right:.4rem
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(5px);z-index:50;display:flex;align-items:center;justify-content:center;padding:1rem}
 .mbox{background:var(--panel);border:1px solid var(--line2);border-radius:10px;width:100%;max-width:560px;max-height:92vh;overflow:auto;padding:1.6rem;position:relative}
 .mbox.wide{max-width:720px}
-.mbox h3{font-family:'Syne';font-weight:800;font-size:1.25rem;margin-bottom:1.2rem;padding-right:2rem}
+.mbox h3{font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:800;font-size:1.25rem;margin-bottom:1.2rem;padding-right:2rem}
 .mclose{position:absolute;top:.8rem;right:.8rem;background:none;border:none;color:var(--muted);font-size:1.6rem;width:36px;height:36px;line-height:1}
 .mclose:hover{color:var(--text)}
 .mfoot{display:flex;justify-content:space-between;gap:.6rem;margin-top:1.2rem;flex-wrap:wrap}
 .mfoot .r{display:flex;gap:.6rem;margin-left:auto}
 .range{display:flex;align-items:center;gap:.8rem}
 .range input{flex:1;accent-color:var(--accent2)}
-.range output{font-family:'Space Mono';font-size:.85rem;width:3.2em;text-align:right}
+.range output{font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.85rem;width:3.2em;text-align:right}
 .timeline{border-left:1px solid var(--line2);margin:.6rem 0 0 .4rem;padding-left:1rem;display:flex;flex-direction:column;gap:.9rem}
 .tl{position:relative;font-size:.86rem}
 .tl::before{content:'';position:absolute;left:-1.33rem;top:.45rem;width:9px;height:9px;border-radius:50%;background:var(--accent2)}
@@ -189,9 +190,50 @@ td .bar{width:80px;display:inline-block;vertical-align:middle;margin-right:.4rem
 .sep{height:1px;background:var(--line);margin:1.3rem 0}
 .toast{position:fixed;left:50%;bottom:calc(1.2rem + var(--safe-b));transform:translateX(-50%);background:var(--panel2);border:1px solid var(--line2);padding:.7rem 1.1rem;border-radius:var(--r);font-size:.88rem;z-index:80;box-shadow:0 10px 30px rgba(0,0,0,.5);max-width:90vw}
 .toast.e{border-color:rgba(255,90,90,.5);color:var(--red)}
-.loading{display:flex;align-items:center;justify-content:center;min-height:100%;color:var(--muted);font-family:'Space Mono';font-size:.75rem;letter-spacing:.12em;flex-direction:column;gap:1rem}
+.loading{display:flex;align-items:center;justify-content:center;min-height:100%;color:var(--muted);font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.75rem;letter-spacing:.12em;flex-direction:column;gap:1rem}
 .spin{width:28px;height:28px;border:2px solid var(--line2);border-top-color:var(--accent);border-radius:50%;animation:sp 0.8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
+
+
+/* Indicateurs */
+.kpis.k5{grid-template-columns:repeat(5,1fr)}
+.kgroup{margin-bottom:2rem}
+.kg-h{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.9rem;flex-wrap:wrap}
+.kg-h h3{font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:700;font-size:1.15rem}
+.kg-dot{width:10px;height:10px;border-radius:50%;align-self:center}
+.kg-d{color:var(--muted);font-size:.85rem}
+.kg-n{margin-left:auto;color:var(--muted);font-size:.75rem}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem}
+.ktile{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1.1rem 1.1rem 1rem;cursor:pointer;position:relative;overflow:hidden;transition:border-color .15s,transform .15s;display:flex;flex-direction:column;gap:.45rem}
+.ktile::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:var(--kc)}
+.ktile:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px)}
+.kt-top{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.kt-cat{font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--kc)}
+.kpill{font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.3rem;white-space:nowrap}
+.kpill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor}
+.ktile h4{font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:700;font-size:1rem;line-height:1.3}
+.kt-proj{font-size:.78rem;color:var(--muted);margin-top:-.3rem}
+.kt-val{display:flex;align-items:baseline;gap:.45rem;flex-wrap:wrap}
+.kt-val b{font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:800;font-size:1.55rem;line-height:1.1}
+.kt-val span{color:var(--muted);font-size:.82rem}
+.kt-chart{height:64px;margin-top:.2rem}
+.kchart{width:100%;height:100%;display:block}
+.kt-foot{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font-size:.75rem;color:var(--muted);margin-top:.2rem}
+.khint{color:var(--muted);font-size:.78rem;margin-top:.5rem}
+.kintro p{color:var(--muted2);font-size:.92rem;margin-bottom:1rem;max-width:760px}
+.kex{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1.2rem}
+.kex div{border:1px solid var(--line);border-radius:var(--r);padding:.8rem;font-size:.82rem;color:var(--muted2)}
+.kex b{display:block;font-family: 'EB Garamond', Garamond, Georgia, serif;color:var(--text);margin-bottom:.2rem}
+.fhint{color:var(--muted);font-size:.8rem;margin:-.4rem 0 .9rem}
+.kdesc{color:var(--muted2);font-size:.88rem;margin:-.6rem 0 .9rem;white-space:pre-wrap}
+.kmeta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.kmeta span{font-family: 'EB Garamond', Garamond, Georgia, serif;font-size:.62rem;padding:.25rem .55rem;border:1px solid var(--line2);border-radius:3px;color:var(--muted2)}
+.kd-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1rem}
+.kd-stat div{background:var(--panel2);border:1px solid var(--line);border-radius:var(--r);padding:.8rem}
+.kd-stat b{display:block;font-family: 'EB Garamond', Garamond, Georgia, serif;font-weight:800;font-size:1.35rem;line-height:1.2}
+.kd-stat small{font-size:.72rem;color:var(--muted)}
+.kd-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.6rem}
+.kd-chart{height:220px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--r);padding:.4rem}
 
 /* ===== Mobile ===== */
 @media (max-width:860px){
@@ -200,13 +242,18 @@ td .bar{width:80px;display:inline-block;vertical-align:middle;margin-right:.4rem
   .mobile-top{display:flex;position:sticky;top:0;z-index:20;background:rgba(10,10,10,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:.7rem 1rem;padding-top:calc(.7rem + env(safe-area-inset-top,0px));align-items:center;gap:.7rem}
   .mobile-top .ws-pick{flex:1;min-width:0;padding:.45rem .6rem;font-size:.85rem}
   main{padding:1.1rem 1rem calc(5.5rem + var(--safe-b))}
-  .tabbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;left:0;right:0;z-index:20;background:rgba(14,14,14,.98);border-top:1px solid var(--line);padding-bottom:var(--safe-b)}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;bottom:0;left:0;right:0;z-index:20;background:rgba(14,14,14,.98);border-top:1px solid var(--line);padding-bottom:var(--safe-b)}
   .tabbar button{background:none;border:none;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.6rem 0 .55rem;font-size:.66rem}
   .tabbar svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
   .tabbar button.on{color:var(--accent)}
   .top h2{font-size:1.3rem}
   .kpis{grid-template-columns:repeat(2,1fr)}
   .kpis .kpi:first-child{grid-column:1/-1}
+  .kpis.k5{grid-template-columns:repeat(2,1fr)}
+  .kex{grid-template-columns:1fr}
+  .kd-stat{grid-template-columns:1fr 1fr}
+  .kd-chart{height:180px}
+  .tabbar button{font-size:.6rem}
   .kpis.k4{grid-template-columns:repeat(2,1fr)}
   .kpis.k4 .kpi:first-child{grid-column:auto}
   .dnd-tip{display:none}
@@ -233,7 +280,7 @@ td .bar{width:80px;display:inline-block;vertical-align:middle;margin-right:.4rem
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* =====================================================================
-   CONFIGURATION — renseignée lors du branchement de la base Supabase
+   CONFIGURATION : renseignée lors du branchement de la base Supabase
    ===================================================================== */
 const SUPABASE_URL = "https://bfqloiprndsvcebffqgw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_NLC5e7PMfwrDmvl2MhGwrA_u8NqglIh";
@@ -251,6 +298,7 @@ const IC = {
   dl: '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
   inst: '<svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 7v7M9 11l3 3 3-3"/></svg>',
   out: '<svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',
+  kpi: '<svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>',
   edit: '<svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>'
 };
 const STATUS = { a_faire: 'À faire', en_cours: 'En cours', bloque: 'Bloqué', termine: 'Terminé' };
@@ -264,7 +312,7 @@ const $ = s => document.querySelector(s);
 const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const today = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
 const pd = s => s ? new Date(s + 'T00:00:00') : null;
-const fd = s => s ? pd(s).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+const fd = s => s ? pd(s).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }) : '-';
 const fdt = s => new Date(s).toLocaleString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
 const isLate = a => a.status !== 'termine' && a.due_date && pd(a.due_date) < today();
 const daysTo = s => Math.round((pd(s) - today()) / 86400000);
@@ -274,6 +322,7 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 };
 function toast(msg, isErr) {
+  document.querySelectorAll('.toast').forEach(x => x.remove());
   const t = document.createElement('div'); t.className = 'toast' + (isErr ? ' e' : ''); t.setAttribute('role', 'status'); t.textContent = msg;
   document.body.appendChild(t); setTimeout(() => t.remove(), isErr ? 5000 : 2800);
 }
@@ -293,7 +342,8 @@ function frErr(e) {
 /* ---------- État ---------- */
 const S = {
   user: null, workspaces: [], ws: null, role: null,
-  projects: [], activities: [], members: [], invitations: [],
+  projects: [], activities: [], members: [], invitations: [], kpis: [], kpiValues: [],
+  kf: { project: '', cat: '', gran: store.get('asap-gran', 'mois') },
   view: store.get('asap-view', 'dash'), projectId: null, boardMode: store.get('asap-board', 'board'),
   f: { q: '', project: '', status: '', resp: '', late: false },
   online: navigator.onLine, channel: null
@@ -422,19 +472,21 @@ async function loadData() {
   const q = [
     sb.from('projects').select('*').eq('workspace_id', wid).order('created_at'),
     sb.from('activities').select('*').eq('workspace_id', wid).order('position').order('created_at'),
-    sb.from('workspace_members').select('*').eq('workspace_id', wid).order('joined_at')
+    sb.from('workspace_members').select('*').eq('workspace_id', wid).order('joined_at'),
+    sb.from('kpis').select('*').eq('workspace_id', wid).order('position').order('created_at'),
+    sb.from('kpi_values').select('*').eq('workspace_id', wid).order('period_start')
   ];
   if (['owner', 'admin'].includes(S.role)) q.push(sb.from('invitations').select('*').eq('workspace_id', wid).is('accepted_at', null).order('created_at'));
   const res = await Promise.all(q);
   const errRes = res.find(r => r.error); if (errRes) throw errRes.error;
-  S.projects = res[0].data; S.activities = res[1].data; S.members = res[2].data; S.invitations = res[3] ? res[3].data : [];
-  store.set('asap-cache', { user: S.user.id, email: S.user.email, workspaces: S.workspaces, ws: S.ws, projects: S.projects, activities: S.activities, members: S.members, at: Date.now() });
+  S.projects = res[0].data; S.activities = res[1].data; S.members = res[2].data; S.kpis = res[3].data || []; S.kpiValues = res[4].data || []; S.invitations = res[5] ? res[5].data : [];
+  store.set('asap-cache', { user: S.user.id, email: S.user.email, workspaces: S.workspaces, ws: S.ws, projects: S.projects, activities: S.activities, members: S.members, kpis: S.kpis, kpiValues: S.kpiValues, at: Date.now() });
 }
 
 function useCache(c) {
   S.user = S.user || { id: c.user, email: c.email };
   S.workspaces = c.workspaces; S.ws = c.ws; S.role = c.ws.role;
-  S.projects = c.projects; S.activities = c.activities; S.members = c.members; S.invitations = [];
+  S.projects = c.projects; S.activities = c.activities; S.members = c.members; S.kpis = c.kpis || []; S.kpiValues = c.kpiValues || []; S.invitations = [];
   S.online = false; S.cachedAt = c.at;
   render();
 }
@@ -447,7 +499,8 @@ function subscribe() {
   S.channel = sb.channel('ws-' + S.ws.id)
     .on('postgres_changes', { event: '*', schema: 'public', table: 'activities', filter: f }, again)
     .on('postgres_changes', { event: '*', schema: 'public', table: 'projects', filter: f }, again)
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'activity_updates', filter: f }, () => {})
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'kpis', filter: f }, again)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'kpi_values', filter: f }, again)
     .subscribe();
 }
 
@@ -487,7 +540,7 @@ const avg = arr => arr.length ? Math.round(arr.reduce((s, a) => s + (a.status ==
 const responsibles = () => [...new Set(S.activities.map(a => (a.responsible || '').trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'fr'));
 
 function navBtns(cls) {
-  const items = [['dash', 'Tableau de bord', IC.dash], ['projects', 'Projets', IC.proj], ['acts', 'Activités', IC.acts], ['team', 'Équipe', IC.team]];
+  const items = [['dash', 'Tableau de bord', IC.dash], ['projects', 'Projets', IC.proj], ['acts', 'Activités', IC.acts], ['kpis', 'Indicateurs', IC.kpi], ['team', 'Équipe', IC.team]];
   return items.map(([k, l, i]) => '<button data-v="' + k + '" class="' + (S.view === k || (k === 'projects' && S.view === 'project') ? 'on' : '') + '">' + i + '<span>' + (cls === 'tab' && k === 'dash' ? 'Accueil' : l) + '</span></button>').join('');
 }
 function wsSelect() {
@@ -527,7 +580,7 @@ function go(v, pid) {
 
 function banners() {
   let h = '';
-  if (!S.online) h += '<div class="banner off">Hors connexion — affichage des données du ' + (S.cachedAt ? fdt(S.cachedAt) : 'dernier chargement') + '. Les modifications reprendront au retour du réseau.</div>';
+  if (!S.online) h += '<div class="banner off">Hors connexion : affichage des données du ' + (S.cachedAt ? fdt(S.cachedAt) : 'dernier chargement') + '. Les modifications reprendront au retour du réseau.</div>';
   if (isIOS() && !isStandalone() && !store.get('asap-ios-hide', false)) h += '<div class="banner inst"><span>' + IC.inst.replace('<svg', '<svg style="width:18px;height:18px;stroke:var(--accent2);fill:none;stroke-width:1.8"') + '</span><span><strong>Installer sur iPhone :</strong> touchez <strong>Partager</strong> puis <strong>« Sur l\'écran d\'accueil »</strong>.</span><button class="btn ghost sm" id="iosHide">OK</button></div>';
   return h;
 }
@@ -535,7 +588,7 @@ function banners() {
 function renderMain() {
   const m = $('#main');
   const v = S.view;
-  m.innerHTML = banners() + (v === 'dash' ? viewDash() : v === 'projects' ? viewProjects() : v === 'project' ? viewProject() : v === 'acts' ? viewActs() : viewTeam());
+  m.innerHTML = banners() + (v === 'dash' ? viewDash() : v === 'projects' ? viewProjects() : v === 'project' ? viewProject() : v === 'acts' ? viewActs() : v === 'kpis' ? viewKpis() : viewTeam());
   const ih = $('#iosHide'); if (ih) ih.onclick = () => { store.set('asap-ios-hide', true); renderMain(); };
   bindMain();
 }
@@ -546,7 +599,7 @@ function viewDash() {
   const soon = A.filter(a => a.status !== 'termine' && a.due_date && daysTo(a.due_date) >= 0 && daysTo(a.due_date) <= 7).sort((a, b) => a.due_date.localeCompare(b.due_date));
   const blocked = A.filter(a => a.status === 'bloque');
   const active = S.projects.filter(p => p.status === 'actif');
-  const line = a => '<tr class="click" data-act="' + a.id + '"><td>' + esc(a.title) + '<br><small style="color:var(--muted)">' + esc((projOf(a.project_id) || {}).name || '') + '</small></td><td>' + esc(a.responsible || '—') + '</td><td class="' + (isLate(a) ? 'late' : '') + '" style="white-space:nowrap">' + fd(a.due_date) + (isLate(a) ? '<br><small>' + (-daysTo(a.due_date)) + ' j de retard</small>' : '') + '</td></tr>';
+  const line = a => '<tr class="click" data-act="' + a.id + '"><td>' + esc(a.title) + '<br><small style="color:var(--muted)">' + esc((projOf(a.project_id) || {}).name || '') + '</small></td><td>' + esc(a.responsible || '-') + '</td><td class="' + (isLate(a) ? 'late' : '') + '" style="white-space:nowrap">' + fd(a.due_date) + (isLate(a) ? '<br><small>' + (-daysTo(a.due_date)) + ' j de retard</small>' : '') + '</td></tr>';
   const mini = (arr, empty) => arr.length ? '<div style="overflow-x:auto"><table style="min-width:0">' + arr.slice(0, 8).map(line).join('') + '</table></div>' : '<div class="empty">' + empty + '</div>';
   return '<div class="top"><div><div class="crumb">' + esc(S.ws.name) + '</div><h2>Tableau de bord</h2></div>' +
     '<div class="actions">' + (canEdit() ? '<button class="btn primary" data-new-act>' + IC.plus + 'Activité</button>' : '') + '</div></div>' +
@@ -581,7 +634,7 @@ function viewProjects() {
       '<div class="pmeta"><span>' + fd(p.start_date) + ' → ' + fd(p.end_date) + '</span></div></button>'; };
   return '<div class="top"><div><div class="crumb">' + esc(S.ws.name) + '</div><h2>Projets</h2></div><div class="actions">' + (canEdit() ? '<button class="btn primary" data-new-proj>' + IC.plus + 'Nouveau projet</button>' : '') + '</div></div>' +
     (list.length ? '<div class="projects">' + list.map(card).join('') + '</div>' : '<div class="empty">Aucun projet pour le moment.' + (canEdit() ? ' Créez le premier avec « Nouveau projet ».' : '') + '</div>') +
-    (arch.length ? '<h3 style="font-family:Syne;margin:2rem 0 1rem;color:var(--muted)">Archivés</h3><div class="projects">' + arch.map(card).join('') + '</div>' : '');
+    (arch.length ? '<h3 style="margin:2rem 0 1rem;color:var(--muted)">Archivés</h3><div class="projects">' + arch.map(card).join('') + '</div>' : '');
 }
 
 function viewProject() {
@@ -591,6 +644,7 @@ function viewProject() {
   const head = '<div class="top"><div><div class="crumb"><button data-v2="projects">Projets</button> / ' + esc(PSTATUS[p.status]) + '</div><h2>' + esc(p.name) + '</h2>' +
     '<p style="color:var(--muted);font-size:.88rem;margin-top:.3rem;max-width:640px">' + esc(p.description || '') + '</p></div>' +
     '<div class="actions"><div class="view-toggle"><button data-bm="board" class="' + (S.boardMode === 'board' ? 'on' : '') + '">Tableau</button><button data-bm="list" class="' + (S.boardMode === 'list' ? 'on' : '') + '">Liste</button></div>' +
+    '<button class="btn" data-kpis-of="' + p.id + '">' + IC.kpi + 'Indicateurs (' + S.kpis.filter(k => k.project_id === p.id).length + ')</button>' +
     (canEdit() ? '<button class="btn" data-edit-proj="' + p.id + '">' + IC.edit + 'Modifier</button><button class="btn primary" data-new-act="' + p.id + '">' + IC.plus + 'Activité</button>' : '') + '</div></div>' +
     '<div class="kpis k4">' +
       '<div class="kpi orange"><div class="v">' + v + '%</div><div class="l">Avancement</div></div>' +
@@ -623,9 +677,9 @@ function filteredActs() {
   ).sort((a, b) => (a.status === 'termine') - (b.status === 'termine') || (a.due_date || '9999').localeCompare(b.due_date || '9999'));
 }
 function actsTable(list) {
-  if (!list.length) return '<div class="empty">Aucune activité' + (canEdit() ? ' — ajoutez-en une avec le bouton « Activité ».' : '.') + '</div>';
+  if (!list.length) return '<div class="empty">Aucune activité' + (canEdit() ? '. Ajoutez-en une avec le bouton « Activité ».' : '.') + '</div>';
   return '<div class="tbl-wrap acts"><table><thead><tr><th>Activité</th><th>Projet</th><th>Responsable</th><th>Statut</th><th>Avancement</th><th>Échéance</th><th>Priorité</th></tr></thead><tbody>' +
-    list.map(a => '<tr class="click" data-act="' + a.id + '"><td>' + esc(a.title) + (a.phase ? ' <span class="tag">' + esc(a.phase) + '</span>' : '') + '</td><td>' + esc((projOf(a.project_id) || {}).name || '') + '</td><td>' + esc(a.responsible || '—') + '</td>' +
+    list.map(a => '<tr class="click" data-act="' + a.id + '"><td>' + esc(a.title) + (a.phase ? ' <span class="tag">' + esc(a.phase) + '</span>' : '') + '</td><td>' + esc((projOf(a.project_id) || {}).name || '') + '</td><td>' + esc(a.responsible || '-') + '</td>' +
       '<td><span class="pill s-' + a.status + '">' + STATUS[a.status] + '</span></td><td style="white-space:nowrap"><span class="bar"><i style="width:' + (a.status === 'termine' ? 100 : a.progress) + '%"></i></span><span class="mono" style="font-size:.72rem">' + (a.status === 'termine' ? 100 : a.progress) + '%</span></td>' +
       '<td class="' + (isLate(a) ? 'late' : '') + '" style="white-space:nowrap">' + fd(a.due_date) + '</td><td><span class="p-' + a.priority + '">' + PRIO[a.priority] + '</span></td></tr>').join('') +
     '</tbody></table></div><div class="alist">' + list.map(a => actCard(a).replace('<div class="t"', '<div style="display:flex;justify-content:space-between;gap:.5rem;margin-top:.3rem"><span class="pill s-' + a.status + '">' + STATUS[a.status] + '</span><span style="font-size:.72rem;color:var(--muted)">' + esc((projOf(a.project_id) || {}).name || '') + '</span></div><div class="t"')).join('') + '</div>';
@@ -652,7 +706,7 @@ function viewTeam() {
           : '<span class="tag">' + ROLES[m.role] + '</span>') + '</div>').join('') +
     '</div>' +
     (isAdmin() ? '<div class="card"><h3>Inviter un membre</h3><form id="invForm"><label class="f"><span>E-mail</span><input class="i" name="email" type="email" required placeholder="prenom.nom@entreprise.com"></label>' +
-      '<label class="f"><span>Rôle</span><select class="i" name="role"><option value="member">Membre — peut modifier</option><option value="viewer">Lecture seule</option><option value="admin">Administrateur — gère l\'équipe</option></select></label>' +
+      '<label class="f"><span>Rôle</span><select class="i" name="role"><option value="member">Membre (peut modifier)</option><option value="viewer">Lecture seule</option><option value="admin">Administrateur (gère l\'équipe)</option></select></label>' +
       '<button class="btn primary" type="submit">Inviter</button></form>' +
       '<p style="color:var(--muted);font-size:.8rem;margin-top:.9rem">La personne crée son compte avec cette adresse e-mail et rejoint automatiquement l\'espace. Utilisez « Copier l\'invitation » pour lui envoyer le lien.</p>' +
       (S.invitations.length ? '<div class="sep"></div><h3>Invitations en attente <span class="mono">' + S.invitations.length + '</span></h3>' + S.invitations.map(i => '<div class="mrow"><div class="av" style="background:var(--panel2);color:var(--muted)">' + esc(initials(i.email)) + '</div><div class="who"><div>' + esc(i.email) + '</div><small>' + ROLES[i.role] + ' · invité le ' + fdt(i.created_at) + '</small></div><button class="btn sm" data-copy="' + esc(i.email) + '">Copier l\'invitation</button><button class="btn ghost sm" data-uninv="' + i.id + '" aria-label="Annuler">✕</button></div>').join('') : '') +
@@ -666,7 +720,7 @@ function viewTeam() {
 function bindMain() {
   const m = $('#main');
   m.onclick = e => {
-    const t = e.target.closest('[data-act],[data-proj],[data-new-act],[data-new-proj],[data-edit-proj],[data-v2],[data-bm],[data-copy],[data-uninv],[data-rm]');
+    const t = e.target.closest('[data-act],[data-proj],[data-new-act],[data-new-proj],[data-edit-proj],[data-v2],[data-bm],[data-copy],[data-uninv],[data-rm],[data-kval],[data-kpi],[data-new-kpi],[data-kpis-of],[data-gran]');
     if (!t) return;
     if (t.dataset.act) return activityModal(S.activities.find(a => a.id === t.dataset.act));
     if (t.dataset.proj) return go('project', t.dataset.proj);
@@ -678,7 +732,12 @@ function bindMain() {
     if (t.dataset.copy) return copyInvite(t.dataset.copy);
     if (t.dataset.uninv) return cancelInvite(t.dataset.uninv);
     if (t.dataset.rm) return removeMember(t.dataset.rm);
+    if (t.dataset.kval) return kpiDetail(S.kpis.find(k => k.id === t.dataset.kval), true);
+    if (t.dataset.kpi) return kpiDetail(S.kpis.find(k => k.id === t.dataset.kpi));
+    if (t.hasAttribute('data-new-kpi')) return kpiModal(null, S.kf.project);
+    if (t.dataset.kpisOf) { S.kf.project = t.dataset.kpisOf; return go('kpis'); }
   };
+  bindKpis(m);
   // Filtres
   const upd = () => { $('#actsOut').innerHTML = actsTable(filteredActs()); };
   const fq = $('#fq'); if (fq) {
@@ -896,6 +955,375 @@ async function removeMember(uid) {
   const { error } = await sb.from('workspace_members').delete().eq('workspace_id', S.ws.id).eq('user_id', uid);
   if (error) return toast(frErr(error), true);
   S.members = S.members.filter(x => x.user_id !== uid); renderMain(); toast('Membre retiré.');
+}
+
+
+/* =====================================================================
+   INDICATEURS (KPI)
+   ===================================================================== */
+const KCAT = {
+  intrant:   { l: 'Intrants',   d: 'Ressources mobilisées : budget, personnel, matériel', c: '#4FC3F7' },
+  processus: { l: 'Processus',  d: 'Mise en œuvre des activités prévues', c: '#b388ff' },
+  extrant:   { l: 'Extrants',   d: 'Produits directs : formations, livrables, services', c: '#ff4d1c' },
+  resultat:  { l: 'Résultats',  d: 'Effets à court et moyen terme sur les bénéficiaires', c: '#00e5a0' },
+  impact:    { l: 'Impact',     d: 'Changements durables à long terme', c: '#f5a623' }
+};
+const KTYPE = { nombre: 'Nombre', pourcentage: 'Pourcentage', montant: 'Montant', duree: 'Durée' };
+const KFREQ = { hebdomadaire: 'Hebdomadaire', mensuel: 'Mensuelle', annuel: 'Annuelle' };
+const KAGG = { somme: 'Somme (cumul)', moyenne: 'Moyenne', dernier: 'Dernière valeur' };
+const KAGG_HINT = { somme: 'Les valeurs s\'additionnent (ex. : personnes formées, dépenses).', moyenne: 'On fait la moyenne des valeurs (ex. : taux de satisfaction).', dernier: 'Seule la valeur la plus récente compte (ex. : stock, effectif).' };
+const GRAN = { semaine: 'Semaine', mois: 'Mois', annee: 'Année' };
+const GRAN_N = { semaine: 12, mois: 12, annee: 5 };
+const FREQ2GRAN = { hebdomadaire: 'semaine', mensuel: 'mois', annuel: 'annee' };
+const GRAN_ORDER = { semaine: 0, mois: 1, annee: 2 };
+const MOIS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+const MOIS_L = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
+/* ---------- Périodes ---------- */
+const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+function periodStart(dateStr, gran) {
+  const d = typeof dateStr === 'string' ? pd(dateStr) : new Date(dateStr.getFullYear(), dateStr.getMonth(), dateStr.getDate());
+  if (gran === 'semaine') { const w = (d.getDay() + 6) % 7; d.setDate(d.getDate() - w); return ymd(d); }
+  if (gran === 'mois') return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-01';
+  return d.getFullYear() + '-01-01';
+}
+function isoWeek(s) {
+  const d = pd(s); const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = t.getUTCDay() || 7; t.setUTCDate(t.getUTCDate() + 4 - day);
+  const y0 = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+  return Math.ceil(((t - y0) / 86400000 + 1) / 7);
+}
+function periodLabel(s, gran, long) {
+  const d = pd(s);
+  if (gran === 'semaine') return long ? 'Semaine ' + isoWeek(s) + ' (du ' + d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear() + ')' : 'S' + isoWeek(s);
+  if (gran === 'mois') return long ? MOIS_L[d.getMonth()] + ' ' + d.getFullYear() : MOIS[d.getMonth()] + (d.getMonth() === 0 ? ' ' + String(d.getFullYear()).slice(2) : '');
+  return String(d.getFullYear());
+}
+function lastPeriods(gran, n) {
+  const out = []; const d = today();
+  let cur = pd(periodStart(d, gran));
+  for (let i = 0; i < n; i++) {
+    out.unshift(ymd(cur));
+    if (gran === 'semaine') cur.setDate(cur.getDate() - 7);
+    else if (gran === 'mois') cur = new Date(cur.getFullYear(), cur.getMonth() - 1, 1);
+    else cur = new Date(cur.getFullYear() - 1, 0, 1);
+  }
+  return out;
+}
+
+/* ---------- Calculs ---------- */
+const valsOf = kid => S.kpiValues.filter(v => v.kpi_id === kid).sort((a, b) => a.period_start.localeCompare(b.period_start));
+const num = v => v == null || v === '' ? null : Number(v);
+function combine(k, list) {
+  if (!list.length) return null;
+  if (k.aggregation === 'somme') return list.reduce((s, v) => s + Number(v.value), 0);
+  if (k.aggregation === 'moyenne') return list.reduce((s, v) => s + Number(v.value), 0) / list.length;
+  return Number(list.reduce((a, b) => (a.period_start >= b.period_start ? a : b)).value);
+}
+function series(k, gran, n) {
+  const vals = valsOf(k.id), keys = lastPeriods(gran, n), map = {};
+  vals.forEach(v => { const key = periodStart(v.period_start, gran); (map[key] = map[key] || []).push(v); });
+  let run = k.aggregation === 'somme' ? vals.filter(v => periodStart(v.period_start, gran) < keys[0]).reduce((s, v) => s + Number(v.value), 0) : null;
+  return keys.map(key => {
+    const val = map[key] ? combine(k, map[key]) : null;
+    if (run != null && val != null) run += val;
+    return { key, val, cum: run != null ? run : null };
+  });
+}
+function kpiCurrent(k) {
+  const vals = valsOf(k.id);
+  if (!vals.length) return null;
+  if (k.aggregation === 'somme') return vals.reduce((s, v) => s + Number(v.value), 0);
+  if (k.aggregation === 'moyenne') {
+    const g = FREQ2GRAN[k.frequency]; const lastKey = periodStart(vals[vals.length - 1].period_start, g);
+    return combine(k, vals.filter(v => periodStart(v.period_start, g) === lastKey));
+  }
+  return Number(vals[vals.length - 1].value);
+}
+function kpiProgress(k, cur) {
+  const t = num(k.target), b = num(k.baseline);
+  if (cur == null || t == null) return null;
+  let p;
+  if (k.direction === 'baisse') {
+    if (b != null && b !== t) p = (b - cur) / (b - t); else p = cur <= t ? 1 : t / cur;
+  } else {
+    if (b != null && b !== t) p = (cur - b) / (t - b); else p = t ? cur / t : 0;
+  }
+  return Math.max(0, Math.min(p, 1.5));
+}
+function expectedProgress(k) {
+  const p = projOf(k.project_id);
+  if (!p || !p.start_date || !p.end_date || k.aggregation !== 'somme') return null;
+  const s = pd(p.start_date), e = pd(p.end_date), t = today();
+  if (e <= s) return null;
+  return Math.max(0, Math.min((t - s) / (e - s), 1));
+}
+function kpiStatus(k) {
+  const cur = kpiCurrent(k), pr = kpiProgress(k, cur);
+  if (cur == null) return { key: 'vide', l: 'Aucune donnée', c: 'var(--muted)', pr: null, cur };
+  if (pr == null) return { key: 'suivi', l: 'Sans cible', c: 'var(--blue)', pr: null, cur };
+  if (pr >= 1) return { key: 'atteint', l: 'Cible atteinte', c: 'var(--accent2)', pr, cur };
+  const exp = expectedProgress(k);
+  const gap = exp != null ? pr - exp : null;
+  if (gap != null ? gap >= -0.05 : pr >= 0.7) return { key: 'ok', l: 'En bonne voie', c: 'var(--blue)', pr, cur };
+  if (gap != null ? gap >= -0.2 : pr >= 0.4) return { key: 'risque', l: 'À surveiller', c: 'var(--warn)', pr, cur };
+  return { key: 'retard', l: 'En retard', c: 'var(--red)', pr, cur };
+}
+function missingCurrent(k) {
+  const g = FREQ2GRAN[k.frequency];
+  const prev = lastPeriods(g, 2)[0];             // la période qui vient de se terminer
+  return !valsOf(k.id).some(v => periodStart(v.period_start, g) >= prev);
+}
+function fmtNum(v, k, short) {
+  if (v == null || isNaN(v)) return '-';
+  const dec = k.value_type === 'pourcentage' || k.aggregation === 'moyenne' ? 1 : (Math.abs(v) < 10 && v % 1 ? 2 : 0);
+  let s;
+  if (short && Math.abs(v) >= 1e6) s = (v / 1e6).toLocaleString('fr-FR', { maximumFractionDigits: 1 }) + ' M';
+  else if (short && Math.abs(v) >= 1e4) s = (v / 1e3).toLocaleString('fr-FR', { maximumFractionDigits: 1 }) + ' k';
+  else s = v.toLocaleString('fr-FR', { maximumFractionDigits: dec });
+  const u = k.value_type === 'pourcentage' ? '%' : (k.unit || '');
+  return s + (u ? (u === '%' ? ' %' : ' ' + u) : '');
+}
+
+/* ---------- Graphique SVG ---------- */
+function kpiChart(k, gran, opts) {
+  opts = opts || {};
+  const n = GRAN_N[gran], data = series(k, gran, n);
+  const cum = opts.cum && k.aggregation === 'somme';
+  const vals = data.map(d => cum ? d.cum : d.val);
+  const t = num(k.target), showT = t != null && (cum || k.aggregation !== 'somme');
+  const max = Math.max(1, ...vals.filter(v => v != null), showT ? t : 0) * 1.12;
+  const W = opts.w || 320, H = opts.h || 90, pl = opts.axis ? 44 : 2, pb = opts.axis ? 22 : 2, pt = 6;
+  const iw = W - pl - 4, ih = H - pb - pt, bw = iw / n;
+  const y = v => pt + ih - (v / max) * ih;
+  const cat = KCAT[k.category] || KCAT.extrant;
+  let g = '';
+  if (opts.axis) {
+    [0, 0.5, 1].forEach(f => { const v = max / 1.12 * f, yy = y(v);
+      g += '<line x1="' + pl + '" x2="' + (W - 4) + '" y1="' + yy + '" y2="' + yy + '" stroke="rgba(255,255,255,.07)"/><text x="' + (pl - 6) + '" y="' + (yy + 3) + '" text-anchor="end" font-size="10" fill="#8a8a8a">' + esc(fmtNum(v, Object.assign({}, k, { unit: '' }), true)) + '</text>'; });
+  }
+  if (cum) {
+    const pts = data.map((d, i) => d.cum != null ? (pl + i * bw + bw / 2) + ',' + y(d.cum) : null).filter(Boolean);
+    if (pts.length) g += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="' + cat.c + '" stroke-width="2.2" stroke-linejoin="round"/>' + data.map((d, i) => d.cum != null ? '<circle cx="' + (pl + i * bw + bw / 2) + '" cy="' + y(d.cum) + '" r="3" fill="' + cat.c + '"><title>' + esc(periodLabel(d.key, gran, true) + ' : ' + fmtNum(d.cum, k)) + '</title></circle>' : '').join('');
+  } else {
+    data.forEach((d, i) => {
+      if (d.val == null) { g += '<rect x="' + (pl + i * bw + bw * .18) + '" y="' + (pt + ih - 2) + '" width="' + bw * .64 + '" height="2" fill="rgba(255,255,255,.08)" rx="1"/>'; return; }
+      const h = Math.max(2, (d.val / max) * ih);
+      g += '<rect x="' + (pl + i * bw + bw * .18) + '" y="' + (pt + ih - h) + '" width="' + bw * .64 + '" height="' + h + '" fill="' + cat.c + '" opacity="' + (i === n - 1 ? 1 : .75) + '" rx="2"><title>' + esc(periodLabel(d.key, gran, true) + ' : ' + fmtNum(d.val, k)) + '</title></rect>';
+    });
+  }
+  if (showT) g += '<line x1="' + pl + '" x2="' + (W - 4) + '" y1="' + y(t) + '" y2="' + y(t) + '" stroke="#f5f2ee" stroke-dasharray="4 4" opacity=".55"/>' + (opts.axis ? '<text x="' + (W - 6) + '" y="' + (y(t) - 5) + '" text-anchor="end" font-size="10" fill="#f5f2ee" opacity=".8">Cible ' + esc(fmtNum(t, k, true)) + '</text>' : '');
+  if (opts.axis) data.forEach((d, i) => { if (n <= 12 || i % 2 === 0) g += '<text x="' + (pl + i * bw + bw / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="10" fill="#8a8a8a">' + esc(periodLabel(d.key, gran)) + '</text>'; });
+  return '<svg class="kchart" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="Évolution de ' + esc(k.name) + '">' + g + '</svg>';
+}
+
+/* ---------- Vue Indicateurs ---------- */
+function kpisFiltered() {
+  return S.kpis.filter(k => (!S.kf.project || k.project_id === S.kf.project) && (!S.kf.cat || k.category === S.kf.cat));
+}
+function kpiTile(k) {
+  const st = kpiStatus(k), cat = KCAT[k.category];
+  const last = valsOf(k.id).slice(-1)[0];
+  const miss = canEdit() && missingCurrent(k);
+  return '<div class="ktile" data-kpi="' + k.id + '" tabindex="0" role="button" style="--kc:' + cat.c + '">' +
+    '<div class="kt-top"><span class="kt-cat">' + esc(cat.l) + '</span><span class="kpill" style="color:' + st.c + '">' + esc(st.l) + '</span></div>' +
+    '<h4>' + esc(k.name) + '</h4>' +
+    (S.kf.project ? '' : '<div class="kt-proj">' + esc((projOf(k.project_id) || {}).name || '') + '</div>') +
+    '<div class="kt-val"><b>' + esc(fmtNum(st.cur, k)) + '</b>' + (num(k.target) != null ? '<span>/ cible ' + esc(fmtNum(num(k.target), k)) + '</span>' : '') + '</div>' +
+    '<div class="bar"><i style="width:' + Math.min(100, Math.round((st.pr || 0) * 100)) + '%;background:' + st.c + '"></i></div>' +
+    '<div class="kt-chart">' + kpiChart(k, S.kf.gran) + '</div>' +
+    '<div class="kt-foot"><span>' + (last ? 'Dernière saisie : ' + esc(periodLabel(last.period_start, FREQ2GRAN[k.frequency], true)) : 'Aucune valeur saisie') + '</span>' +
+    (canEdit() ? '<button class="btn sm' + (miss ? ' primary' : '') + '" data-kval="' + k.id + '">' + (miss ? 'À saisir' : 'Saisir') + '</button>' : '') + '</div></div>';
+}
+function viewKpis() {
+  const list = kpisFiltered();
+  const sts = list.map(k => kpiStatus(k).key);
+  const cnt = s => sts.filter(x => x === s).length;
+  const toSeize = canEdit() ? list.filter(missingCurrent).length : 0;
+  const head = '<div class="top"><div><div class="crumb">' + esc(S.ws.name) + '</div><h2>Indicateurs</h2></div><div class="actions">' +
+    (S.kpis.length ? '<button class="btn" id="kcsv">' + IC.dl + 'Exporter</button>' : '') +
+    (canEdit() && S.projects.length ? '<button class="btn primary" data-new-kpi>' + IC.plus + 'Indicateur</button>' : '') + '</div></div>';
+  const filters = '<div class="filters"><select class="i" id="kfp" aria-label="Projet"><option value="">Tous les projets</option>' + S.projects.map(p => '<option value="' + p.id + '"' + (S.kf.project === p.id ? ' selected' : '') + '>' + esc(p.name) + '</option>').join('') + '</select>' +
+    '<select class="i" id="kfc" aria-label="Type d\'indicateur"><option value="">Tous les types d\'indicateurs</option>' + Object.entries(KCAT).map(([k, c]) => '<option value="' + k + '"' + (S.kf.cat === k ? ' selected' : '') + '>' + c.l + '</option>').join('') + '</select>' +
+    '<div class="view-toggle" role="group" aria-label="Période">' + Object.entries(GRAN).map(([g, l]) => '<button data-gran="' + g + '" class="' + (S.kf.gran === g ? 'on' : '') + '">' + l + '</button>').join('') + '</div></div>';
+  if (!S.projects.length) return head + '<div class="empty">Créez d\'abord un projet, puis ajoutez-lui ses indicateurs.</div>';
+  if (!S.kpis.length) return head + '<div class="card kintro"><h3>Suivez les indicateurs de vos projets</h3><p>Définissez pour chaque projet ses indicateurs de performance : intrants, processus, extrants, résultats et impact. Saisissez les valeurs chaque semaine, chaque mois ou chaque année, et suivez l\'évolution par rapport à la cible dans un tableau de bord généré automatiquement.</p>' +
+    '<div class="kex"><div><b>Extrant</b><span>Nombre de personnes formées · somme · mensuel · cible 500</span></div><div><b>Résultat</b><span>Taux d\'adoption des outils · moyenne · mensuel · cible 80 %</span></div><div><b>Intrant</b><span>Budget dépensé · somme · mensuel · cible 25 000 000 FCFA</span></div></div>' +
+    (canEdit() ? '<button class="btn primary" data-new-kpi>' + IC.plus + 'Créer le premier indicateur</button>' : '') + '</div>';
+  const sum = '<div class="kpis k5"><div class="kpi"><div class="v">' + list.length + '</div><div class="l">Indicateurs suivis</div></div>' +
+    '<div class="kpi green"><div class="v">' + cnt('atteint') + '</div><div class="l">Cible atteinte</div></div>' +
+    '<div class="kpi"><div class="v" style="color:var(--blue)">' + cnt('ok') + '</div><div class="l">En bonne voie</div></div>' +
+    '<div class="kpi red"><div class="v">' + (cnt('risque') + cnt('retard')) + '</div><div class="l">À surveiller ou en retard</div></div>' +
+    '<div class="kpi orange"><div class="v">' + toSeize + '</div><div class="l">Valeurs à saisir</div></div></div>';
+  const groups = Object.keys(KCAT).map(cat => {
+    const ks = list.filter(k => k.category === cat);
+    if (!ks.length) return '';
+    return '<section class="kgroup"><div class="kg-h"><span class="kg-dot" style="background:' + KCAT[cat].c + '"></span><h3>' + KCAT[cat].l + '</h3><span class="kg-d">' + esc(KCAT[cat].d) + '</span><span class="mono kg-n">' + ks.length + '</span></div>' +
+      '<div class="kgrid">' + ks.map(kpiTile).join('') + '</div></section>';
+  }).join('');
+  return head + filters + sum + (groups || '<div class="empty">Aucun indicateur pour ce filtre.</div>') +
+    '<p class="khint">Graphiques : ' + GRAN_N[S.kf.gran] + ' dernières périodes, regroupées par ' + GRAN[S.kf.gran].toLowerCase() + '. Survolez une barre pour voir sa valeur. La ligne pointillée indique la cible.</p>';
+}
+
+/* ---------- Fenêtre : définir un indicateur ---------- */
+function kpiModal(k, projectId) {
+  const ed = !!k;
+  k = k || { project_id: projectId || S.kf.project || (S.projects[0] || {}).id, name: '', description: '', category: 'extrant', value_type: 'nombre', unit: '', frequency: 'mensuel', aggregation: 'somme', direction: 'hausse', baseline: null, target: null, responsible: '' };
+  const sel = (name, obj, cur) => '<select class="i" name="' + name + '">' + Object.entries(obj).map(([v, l]) => '<option value="' + v + '"' + (cur === v ? ' selected' : '') + '>' + (typeof l === 'object' ? l.l : l) + '</option>').join('') + '</select>';
+  const { el, close } = modal('<h3>' + (ed ? 'Modifier l\'indicateur' : 'Nouvel indicateur') + '</h3><form id="kf">' +
+    '<label class="f"><span>Nom de l\'indicateur *</span><input class="i" name="name" required maxlength="160" value="' + esc(k.name) + '" placeholder="Ex. : Nombre de personnes formées"></label>' +
+    '<div class="row"><label class="f"><span>Projet</span><select class="i" name="project_id">' + S.projects.map(p => '<option value="' + p.id + '"' + (k.project_id === p.id ? ' selected' : '') + '>' + esc(p.name) + '</option>').join('') + '</select></label>' +
+    '<label class="f"><span>Type d\'indicateur</span>' + sel('category', KCAT, k.category) + '</label></div>' +
+    '<p class="fhint" id="kcatd"></p>' +
+    '<div class="row"><label class="f"><span>Nature de la valeur</span>' + sel('value_type', KTYPE, k.value_type) + '</label>' +
+    '<label class="f"><span>Unité</span><input class="i" name="unit" maxlength="30" value="' + esc(k.unit || '') + '" placeholder="personnes, FCFA, jours…"></label></div>' +
+    '<div class="row"><label class="f"><span>Fréquence de collecte</span>' + sel('frequency', KFREQ, k.frequency) + '</label>' +
+    '<label class="f"><span>Mode de calcul</span>' + sel('aggregation', KAGG, k.aggregation) + '</label></div>' +
+    '<p class="fhint" id="kaggd"></p>' +
+    '<div class="row"><label class="f"><span>Valeur de référence (départ)</span><input class="i" name="baseline" type="number" step="any" value="' + (k.baseline ?? '') + '"></label>' +
+    '<label class="f"><span>Cible</span><input class="i" name="target" type="number" step="any" value="' + (k.target ?? '') + '"></label></div>' +
+    '<div class="row"><label class="f"><span>Objectif</span><select class="i" name="direction"><option value="hausse"' + (k.direction === 'hausse' ? ' selected' : '') + '>Augmenter (plus c\'est haut, mieux c\'est)</option><option value="baisse"' + (k.direction === 'baisse' ? ' selected' : '') + '>Diminuer (plus c\'est bas, mieux c\'est)</option></select></label>' +
+    '<label class="f"><span>Responsable de la collecte</span><input class="i" name="responsible" maxlength="120" list="kresps" value="' + esc(k.responsible || '') + '"><datalist id="kresps">' + [...new Set(responsibles().concat(S.members.map(m => m.display_name || m.email).filter(Boolean)))].map(x => '<option value="' + esc(x) + '">').join('') + '</datalist></label></div>' +
+    '<label class="f"><span>Définition / mode de calcul détaillé</span><textarea class="i" name="description" maxlength="2000" placeholder="Source des données, méthode de calcul, précisions…">' + esc(k.description || '') + '</textarea></label>' +
+    '<p class="err" id="kfErr"></p><div class="mfoot">' + (ed ? '<button type="button" class="btn danger" id="kDel">Supprimer</button>' : '') +
+    '<div class="r"><button type="button" class="btn" id="kCancel">Annuler</button><button class="btn primary" type="submit">' + (ed ? 'Enregistrer' : 'Créer l\'indicateur') + '</button></div></div></form>', true);
+  const f = el.querySelector('#kf');
+  const hints = () => { el.querySelector('#kcatd').textContent = KCAT[f.category.value].d + '.'; el.querySelector('#kaggd').textContent = KAGG_HINT[f.aggregation.value]; };
+  f.category.onchange = hints; f.aggregation.onchange = hints; hints();
+  f.value_type.onchange = () => { if (f.value_type.value === 'pourcentage') { f.unit.value = '%'; if (f.aggregation.value === 'somme') { f.aggregation.value = 'moyenne'; hints(); } } else if (f.unit.value === '%') f.unit.value = ''; };
+  el.querySelector('#kCancel').onclick = close;
+  f.onsubmit = async e => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(f)); d.name = d.name.trim();
+    if (d.name.length < 2) return el.querySelector('#kfErr').textContent = 'Le nom doit contenir au moins 2 caractères.';
+    d.baseline = d.baseline === '' ? null : Number(d.baseline); d.target = d.target === '' ? null : Number(d.target);
+    const btn = f.querySelector('[type=submit]'); btn.disabled = true;
+    const r = ed ? await sb.from('kpis').update(d).eq('id', k.id).select().single()
+                 : await sb.from('kpis').insert(Object.assign(d, { workspace_id: S.ws.id, position: S.kpis.length })).select().single();
+    btn.disabled = false;
+    if (r.error) return el.querySelector('#kfErr').textContent = frErr(r.error);
+    if (ed) Object.assign(k, r.data); else S.kpis.push(r.data);
+    close(); toast(ed ? 'Indicateur enregistré.' : 'Indicateur créé. Saisissez maintenant ses premières valeurs.');
+    if (S.view !== 'kpis') go('kpis'); else renderMain();
+    if (!ed) kpiDetail(r.data);
+  };
+  const del = el.querySelector('#kDel'); if (del) del.onclick = async () => {
+    if (!confirm('Supprimer l\'indicateur « ' + k.name + ' » et ses ' + valsOf(k.id).length + ' valeurs ? Cette action est définitive.')) return;
+    const { error } = await sb.from('kpis').delete().eq('id', k.id);
+    if (error) return toast(frErr(error), true);
+    S.kpis = S.kpis.filter(x => x.id !== k.id); S.kpiValues = S.kpiValues.filter(v => v.kpi_id !== k.id);
+    close(); toast('Indicateur supprimé.'); renderMain();
+  };
+}
+
+/* ---------- Fenêtre : détail d'un indicateur + saisie ---------- */
+function periodInput(k, cur) {
+  const d = cur ? pd(cur) : today(), y = d.getFullYear();
+  if (k.frequency === 'hebdomadaire') return '<label class="f"><span>Semaine (choisissez un jour)</span><input class="i" type="date" name="pdate" value="' + ymd(d) + '" required></label>';
+  if (k.frequency === 'mensuel') return '<div class="row"><label class="f"><span>Mois</span><select class="i" name="pmonth">' + MOIS_L.map((m, i) => '<option value="' + i + '"' + (i === d.getMonth() ? ' selected' : '') + '>' + m + '</option>').join('') + '</select></label><label class="f"><span>Année</span><input class="i" type="number" name="pyear" min="2000" max="2100" value="' + y + '" required></label></div>';
+  return '<label class="f"><span>Année</span><input class="i" type="number" name="pyear" min="2000" max="2100" value="' + y + '" required></label>';
+}
+function readPeriod(k, f) {
+  if (k.frequency === 'hebdomadaire') return f.pdate.value ? periodStart(f.pdate.value, 'semaine') : null;
+  const y = parseInt(f.pyear.value, 10); if (!(y >= 2000 && y <= 2100)) return null;
+  if (k.frequency === 'mensuel') return y + '-' + String(+f.pmonth.value + 1).padStart(2, '0') + '-01';
+  return y + '-01-01';
+}
+function kpiDetail(k, focusValue) {
+  const g0 = FREQ2GRAN[k.frequency];
+  let gran = GRAN_ORDER[S.kf.gran] >= GRAN_ORDER[g0] ? S.kf.gran : g0, cumMode = k.aggregation === 'somme';
+  const cat = KCAT[k.category], p = projOf(k.project_id);
+  const { el, close } = modal('<div class="cours-cat mono" style="color:' + cat.c + '">' + esc(cat.l) + ' · ' + esc(p ? p.name : '') + '</div><h3>' + esc(k.name) + '</h3>' +
+    (k.description ? '<p class="kdesc">' + esc(k.description) + '</p>' : '') +
+    '<div class="kmeta"><span>' + KTYPE[k.value_type] + (k.unit ? ' (' + esc(k.unit) + ')' : '') + '</span><span>Collecte ' + KFREQ[k.frequency].toLowerCase() + '</span><span>' + KAGG[k.aggregation] + '</span><span>' + (k.direction === 'baisse' ? 'À diminuer' : 'À augmenter') + '</span>' +
+      (num(k.baseline) != null ? '<span>Référence ' + esc(fmtNum(num(k.baseline), k)) + '</span>' : '') + (num(k.target) != null ? '<span>Cible ' + esc(fmtNum(num(k.target), k)) + '</span>' : '') + (k.responsible ? '<span>Collecte : ' + esc(k.responsible) + '</span>' : '') + '</div>' +
+    '<div id="kdStat"></div>' +
+    '<div class="kd-bar"><div class="view-toggle" id="kdGran">' + Object.entries(GRAN).filter(([g]) => GRAN_ORDER[g] >= GRAN_ORDER[g0]).map(([g, l]) => '<button data-g="' + g + '">' + l + '</button>').join('') + '</div>' +
+      (k.aggregation === 'somme' ? '<div class="view-toggle" id="kdMode"><button data-m="per">Par période</button><button data-m="cum">Cumul</button></div>' : '') + '</div>' +
+    '<div class="kd-chart" id="kdChart"></div>' +
+    (canEdit() ? '<div class="sep"></div><h3 style="font-size:1rem;margin-bottom:.8rem">Saisir une valeur</h3><form id="kvf">' + periodInput(k) +
+      '<div class="row"><label class="f"><span>Valeur' + (k.unit ? ' (' + esc(k.value_type === 'pourcentage' ? '%' : k.unit) + ')' : '') + ' *</span><input class="i" name="value" type="number" step="any" required></label>' +
+      '<label class="f"><span>Commentaire</span><input class="i" name="comment" maxlength="1000" placeholder="Source, remarque…"></label></div>' +
+      '<p class="fhint" id="kvHint"></p><p class="err" id="kvErr"></p><div style="display:flex;justify-content:flex-end"><button class="btn primary" type="submit">Enregistrer la valeur</button></div></form>' : '') +
+    '<div class="sep"></div><h3 style="font-size:1rem;margin-bottom:.6rem">Historique des valeurs</h3><div id="kdTable"></div>' +
+    (canEdit() ? '<div class="mfoot"><button class="btn" id="kdEdit">' + IC.edit + 'Modifier l\'indicateur</button></div>' : ''), true);
+
+  const draw = () => {
+    const st = kpiStatus(k);
+    el.querySelector('#kdStat').innerHTML = '<div class="kd-stat"><div><b>' + esc(fmtNum(st.cur, k)) + '</b><small>' + (k.aggregation === 'somme' ? 'Cumul à ce jour' : k.aggregation === 'moyenne' ? 'Moyenne de la dernière période' : 'Dernière valeur') + '</small></div>' +
+      (st.pr != null ? '<div><b style="color:' + st.c + '">' + Math.round(st.pr * 100) + '%</b><small>de la cible</small></div>' : '') + '<div><b style="color:' + st.c + ';font-size:1.05rem">' + esc(st.l) + '</b><small>' + (expectedProgress(k) != null ? 'Attendu à date : ' + Math.round(expectedProgress(k) * 100) + '%' : 'Statut') + '</small></div></div>';
+    el.querySelectorAll('#kdGran button').forEach(b => b.classList.toggle('on', b.dataset.g === gran));
+    el.querySelectorAll('#kdMode button').forEach(b => b.classList.toggle('on', (b.dataset.m === 'cum') === cumMode));
+    el.querySelector('#kdChart').innerHTML = kpiChart(k, gran, { axis: true, w: 640, h: 220, cum: cumMode });
+    const vals = valsOf(k.id).slice().reverse();
+    el.querySelector('#kdTable').innerHTML = vals.length ? '<div class="tbl-wrap"><table style="min-width:0"><thead><tr><th>Période</th><th>Valeur</th><th>Commentaire</th><th>Saisi par</th>' + (canEdit() ? '<th></th>' : '') + '</tr></thead><tbody>' +
+      vals.map(v => '<tr><td style="white-space:nowrap">' + esc(periodLabel(v.period_start, g0, true)) + '</td><td style="white-space:nowrap"><b>' + esc(fmtNum(Number(v.value), k)) + '</b></td><td style="color:var(--muted2)">' + esc(v.comment || '') + '</td><td style="color:var(--muted);font-size:.8rem">' + esc(v.author_name || '') + '</td>' +
+        (canEdit() ? '<td style="white-space:nowrap"><button class="btn ghost sm" data-vedit="' + v.id + '">Modifier</button><button class="btn ghost sm" data-vdel="' + v.id + '" aria-label="Supprimer">✕</button></td>' : '') + '</tr>').join('') + '</tbody></table></div>'
+      : '<div class="empty">Aucune valeur saisie pour l\'instant.</div>';
+  };
+  draw();
+  el.querySelectorAll('#kdGran button').forEach(b => b.onclick = () => { gran = b.dataset.g; draw(); });
+  el.querySelectorAll('#kdMode button').forEach(b => b.onclick = () => { cumMode = b.dataset.m === 'cum'; draw(); });
+  const ke = el.querySelector('#kdEdit'); if (ke) ke.onclick = () => { close(); kpiModal(k); };
+  const f = el.querySelector('#kvf');
+  if (f) {
+    const hint = () => { const ps = readPeriod(k, f); const ex = ps && S.kpiValues.find(v => v.kpi_id === k.id && v.period_start === ps);
+      el.querySelector('#kvHint').textContent = ps ? (ex ? 'Une valeur existe déjà pour ' + periodLabel(ps, g0, true) + ' (' + fmtNum(Number(ex.value), k) + ') : elle sera remplacée.' : 'Période : ' + periodLabel(ps, g0, true) + '.') : ''; };
+    f.oninput = hint; hint();
+    if (focusValue && window.innerWidth > 860) setTimeout(() => f.value.focus(), 50);
+    f.onsubmit = async e => {
+      e.preventDefault();
+      const ps = readPeriod(k, f), val = f.value.value;
+      if (!ps) return el.querySelector('#kvErr').textContent = 'Indiquez une période valide.';
+      if (val === '' || isNaN(Number(val))) return el.querySelector('#kvErr').textContent = 'Indiquez une valeur numérique.';
+      if (k.value_type === 'pourcentage' && (Number(val) < 0 || Number(val) > 1000)) return el.querySelector('#kvErr').textContent = 'Un pourcentage doit être compris entre 0 et 100 (ou plus si dépassement).';
+      el.querySelector('#kvErr').textContent = '';
+      const me = S.members.find(m => m.user_id === S.user.id);
+      const author = (S.user.user_metadata && S.user.user_metadata.full_name) || (me && me.display_name) || S.user.email;
+      const ex = S.kpiValues.find(v => v.kpi_id === k.id && v.period_start === ps);
+      const payload = { value: Number(val), comment: f.comment.value.trim(), author_name: author };
+      const btn = f.querySelector('[type=submit]'); btn.disabled = true;
+      const r = ex ? await sb.from('kpi_values').update(payload).eq('id', ex.id).select().single()
+                   : await sb.from('kpi_values').insert(Object.assign(payload, { kpi_id: k.id, workspace_id: S.ws.id, period_start: ps })).select().single();
+      btn.disabled = false;
+      if (r.error) return el.querySelector('#kvErr').textContent = frErr(r.error);
+      if (ex) Object.assign(ex, r.data); else S.kpiValues.push(r.data);
+      f.value.value = ''; f.comment.value = ''; hint(); draw(); renderMain(); toast('Valeur enregistrée.');
+    };
+    el.querySelector('#kdTable').onclick = async e => {
+      const ed = e.target.closest('[data-vedit]'), dl = e.target.closest('[data-vdel]');
+      if (ed) {
+        const v = S.kpiValues.find(x => x.id === ed.dataset.vedit), d = pd(v.period_start);
+        if (f.pdate) f.pdate.value = v.period_start; if (f.pmonth) f.pmonth.value = d.getMonth(); if (f.pyear) f.pyear.value = d.getFullYear();
+        f.value.value = v.value; f.comment.value = v.comment || ''; hint(); f.scrollIntoView({ behavior: 'smooth', block: 'center' }); f.value.focus();
+      }
+      if (dl) {
+        if (!confirm('Supprimer cette valeur ?')) return;
+        const { error } = await sb.from('kpi_values').delete().eq('id', dl.dataset.vdel);
+        if (error) return toast(frErr(error), true);
+        S.kpiValues = S.kpiValues.filter(x => x.id !== dl.dataset.vdel); draw(); renderMain(); toast('Valeur supprimée.');
+      }
+    };
+  }
+}
+
+function bindKpis(m) {
+  const fp = m.querySelector('#kfp'); if (fp) fp.onchange = () => { S.kf.project = fp.value; renderMain(); };
+  const fc = m.querySelector('#kfc'); if (fc) fc.onchange = () => { S.kf.cat = fc.value; renderMain(); };
+  m.querySelectorAll('[data-gran]').forEach(b => b.onclick = () => { S.kf.gran = b.dataset.gran; store.set('asap-gran', S.kf.gran); renderMain(); });
+  const kc = m.querySelector('#kcsv'); if (kc) kc.onclick = exportKpiCsv;
+  m.querySelectorAll('.ktile').forEach(t => t.onkeydown = e => { if (e.key === 'Enter') kpiDetail(S.kpis.find(k => k.id === t.dataset.kpi)); });
+}
+
+function exportKpiCsv() {
+  const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+  const head = ['Projet', 'Type d\'indicateur', 'Indicateur', 'Unité', 'Fréquence', 'Période', 'Début de période', 'Valeur', 'Cible', 'Commentaire', 'Saisi par'];
+  const rows = [];
+  kpisFiltered().forEach(k => valsOf(k.id).forEach(v => rows.push([(projOf(k.project_id) || {}).name, KCAT[k.category].l, k.name, k.value_type === 'pourcentage' ? '%' : k.unit, KFREQ[k.frequency], periodLabel(v.period_start, FREQ2GRAN[k.frequency], true), v.period_start, String(v.value).replace('.', ','), k.target == null ? '' : String(k.target).replace('.', ','), v.comment, v.author_name])));
+  const csv = '﻿' + head.map(q).join(';') + '\n' + rows.map(r => r.map(q).join(';')).join('\n');
+  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  const l = document.createElement('a'); l.href = url; l.download = 'indicateurs-' + S.ws.name.replace(/[^\w-]+/g, '_') + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+  document.body.appendChild(l); l.click(); l.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 /* ---------- Export ---------- */

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASAP WORKPLAN — Digitalisez vos plans de travail</title>
+<title>ASAP WORKPLAN | Digitalisez vos plans de travail</title>
 <meta name="description" content="ASAP WORKPLAN digitalise vos plans de travail dans les outils que vous utilisez déjà : Microsoft 365, SharePoint, Excel, Google Sheets, AppSheet. Accompagnement et formations.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80' fill='none' ><rect width='80' height='80' rx='16' fill='%23111'/><rect width='80' height='80' rx='16' fill='%23ff4d1c' opacity='0.1'/><rect x='14' y='18' width='52' height='6.5' rx='3.25' fill='%23ff4d1c'/><rect x='14' y='30' width='36' height='4.5' rx='2.25' fill='%23f5f2ee' opacity='0.42'/><rect x='14' y='39' width='28' height='4.5' rx='2.25' fill='%23f5f2ee' opacity='0.32'/><rect x='14' y='48' width='40' height='4.5' rx='2.25' fill='%23f5f2ee' opacity='0.24'/><circle cx='59' cy='61' r='13' fill='%2300e5a0' opacity='0.14'/><circle cx='59' cy='61' r='13' stroke='%2300e5a0' stroke-width='2'/><polyline points='53,61 58,66.5 66,54.5' stroke='%2300e5a0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --black: #ffffff;
@@ -19,8 +19,8 @@
     --text-muted: #5b6577;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+  html { scroll-behavior: smooth; font-size: 17.5px; }
+  body { background: var(--black); color: var(--white); font-family: 'EB Garamond', Garamond, Georgia, serif; overflow-x: hidden; }
 
   nav {
     position: sticky; top: 0;
@@ -31,7 +31,7 @@
     backdrop-filter: blur(20px);
     background: rgba(255,255,255,0.9);
   }
-  .nav-logo { font-family: 'Space Mono', monospace; font-size: 1rem; letter-spacing: 0.1em; color: var(--white); text-decoration: none; }
+  .nav-logo { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 1rem; letter-spacing: 0.1em; color: var(--white); text-decoration: none; }
   .nav-logo span { color: var(--accent); }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
@@ -53,15 +53,15 @@
     background-size: 80px 80px;
     mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 80%, transparent 100%);
   }
-  .hero-tag { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.2rem; animation: fadeUp 0.8s ease 0.2s both; }
-  .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 800; line-height: 0.92; letter-spacing: -0.03em; animation: fadeUp 0.9s ease 0.4s both; }
+  .hero-tag { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.2rem; animation: fadeUp 0.8s ease 0.2s both; }
+  .hero-title { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 800; line-height: 0.92; letter-spacing: -0.03em; animation: fadeUp 0.9s ease 0.4s both; }
   .hero-title .acc { color: var(--accent); }
   .hero-title .grn { color: var(--accent2); }
   .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-top: 3.5rem; animation: fadeUp 0.9s ease 0.7s both; }
   .hero-desc { max-width: 360px; font-size: 1rem; line-height: 1.7; color: rgba(15,23,42,0.75); font-weight: 300; }
   .hero-stats { display: flex; gap: 3rem; }
-  .hero-counter { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.1em; }
-  .hero-counter strong { color: var(--accent2); font-size: 1.6rem; display: block; font-family: 'Syne', sans-serif; font-weight: 800; }
+  .hero-counter { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.1em; }
+  .hero-counter strong { color: var(--accent2); font-size: 1.6rem; display: block; font-family: 'EB Garamond', Garamond, Georgia, serif; font-weight: 800; }
   .hero-actions { display: flex; gap: 1rem; align-items: center; }
 
   .btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 6px 16px rgba(232,70,15,0.22); padding: 0.9rem 2rem; text-decoration: none; font-size: 0.88rem; font-weight: 500; border-radius: 2px; transition: transform 0.2s, background 0.2s; display: inline-flex; align-items: center; }
@@ -71,12 +71,12 @@
 
   .marquee-wrapper { border-top: 1px solid rgba(15,23,42,0.06); border-bottom: 1px solid rgba(15,23,42,0.06); overflow: hidden; padding: 1rem 0; background: rgba(255,77,28,0.03); }
   .marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: marquee 25s linear infinite; }
-  .marquee-item { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase; display: flex; align-items: center; gap: 0.8rem; flex-shrink: 0; }
+  .marquee-item { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase; display: flex; align-items: center; gap: 0.8rem; flex-shrink: 0; }
   .mdot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
 
   section { padding: 6rem 3rem; }
-  .section-label { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
-  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+  .section-label { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
+  .section-title { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
 
   .features { background: var(--gray); border-top: 1px solid rgba(15,23,42,0.05); }
   .features-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 4rem; }
@@ -90,8 +90,8 @@
   .feature-icon svg { width: 26px; height: 26px; stroke: var(--accent); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .industry-icon { width: 48px; height: 48px; background: rgba(0,229,160,0.08); border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
   .industry-icon svg { width: 26px; height: 26px; stroke: var(--accent2); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .feature-num { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--text-muted); letter-spacing: 0.15em; margin-bottom: 0.8rem; }
-  .feature-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.7rem; }
+  .feature-num { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.62rem; color: var(--text-muted); letter-spacing: 0.15em; margin-bottom: 0.8rem; }
+  .feature-title { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.7rem; }
   .feature-desc { color: rgba(15,23,42,0.60); font-size: 0.85rem; line-height: 1.7; font-weight: 300; }
 
   .how { background: var(--black); }
@@ -99,14 +99,14 @@
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
   .steps::before { content: ''; position: absolute; top: 27px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent); }
   .step { text-align: center; padding: 0 1.5rem; }
-  .step-num { width: 54px; height: 54px; border: 1px solid rgba(255,77,28,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 0.82rem; color: var(--accent); margin: 0 auto 1.8rem; background: var(--black); position: relative; z-index: 1; transition: background 0.3s, border-color 0.3s; }
+  .step-num { width: 54px; height: 54px; border: 1px solid rgba(255,77,28,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.82rem; color: var(--accent); margin: 0 auto 1.8rem; background: var(--black); position: relative; z-index: 1; transition: background 0.3s, border-color 0.3s; }
   .step:hover .step-num { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-  .step-title { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .step-title { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; }
   .step-desc { color: rgba(15,23,42,0.60); font-size: 0.83rem; line-height: 1.7; }
 
   .stats { background: linear-gradient(120deg, #e8460f, #f0632e); color: #fff; padding: 4.5rem 3rem; }
   .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
-  .stat-num { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.4rem; }
+  .stat-num { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.4rem; }
   .stat-label { font-size: 0.82rem; opacity: 0.75; font-weight: 300; }
 
   .industries { background: var(--gray); }
@@ -114,7 +114,7 @@
   .industries-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
   .industry-card { border: 1px solid rgba(15,23,42,0.07); padding: 1.8rem; border-radius: 2px; transition: border-color 0.3s, transform 0.3s; background: rgba(15,23,42,0.02); cursor: pointer; }
   .industry-card:hover { border-color: rgba(0,229,160,0.35); transform: translateY(-4px); }
-  .industry-name { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .industry-name { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
   .industry-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
 
   .cta-section { background: var(--black); text-align: center; position: relative; overflow: hidden; padding: 8rem 3rem; }
@@ -122,7 +122,7 @@
   .cta-section .section-title { font-size: clamp(2rem, 5vw, 4rem); max-width: 650px; margin: 1.2rem auto 2rem; }
 
   footer { background: var(--gray); border-top: 1px solid rgba(15,23,42,0.05); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-  .footer-logo { font-family: 'Space Mono', monospace; font-size: 0.9rem; color: var(--white); letter-spacing: 0.1em; }
+  .footer-logo { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.9rem; color: var(--white); letter-spacing: 0.1em; }
   .footer-logo span { color: var(--accent); }
   .footer-links { display: flex; gap: 1.8rem; list-style: none; flex-wrap: wrap; }
   .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
@@ -153,7 +153,7 @@
   .zero-badge {
     display: inline-flex; align-items: center; gap: 0.6rem;
     background: rgba(0,229,160,0.1); border: 1px solid rgba(0,229,160,0.3);
-    color: var(--accent2); font-family: 'Space Mono', monospace; font-size: 0.68rem;
+    color: var(--accent2); font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.68rem;
     letter-spacing: 0.15em; text-transform: uppercase; padding: 0.5rem 1rem;
     border-radius: 2px; margin-bottom: 1.4rem;
   }
@@ -192,12 +192,12 @@
   }
   .tool-card:hover .tool-logo-wrap { transform: scale(1.08); }
   .tool-logo-wrap img { width: 44px; height: 44px; object-fit: contain; }
-  .tool-name { font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; line-height: 1.3; }
+  .tool-name { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; line-height: 1.3; }
   .tool-sub { font-size: 0.7rem; color: var(--text-muted); line-height: 1.5; }
   .tool-tag {
     display: inline-block; margin-top: 0.8rem;
     background: rgba(0,229,160,0.08); border: 1px solid rgba(0,229,160,0.2);
-    color: var(--accent2); font-family: 'Space Mono', monospace;
+    color: var(--accent2); font-family: 'EB Garamond', Garamond, Georgia, serif;
     font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase;
     padding: 0.22rem 0.55rem; border-radius: 2px;
   }
@@ -248,14 +248,14 @@
   .am-top span { width:9px; height:9px; border-radius:50%; background: rgba(15,23,42,0.15); }
   .am-kpis { display:grid; grid-template-columns: repeat(3,1fr); gap:0.6rem; margin-bottom:1rem; }
   .am-kpis div { background: var(--gray); border:1px solid rgba(15,23,42,0.06); border-radius:6px; padding:0.8rem; }
-  .am-kpis b { display:block; font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:800; }
-  .am-kpis i { font-style:normal; font-family:'Space Mono',monospace; font-size:0.55rem; letter-spacing:0.1em; text-transform:uppercase; color: var(--text-muted); }
+  .am-kpis b { display:block; font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:1.4rem; font-weight:800; }
+  .am-kpis i { font-style:normal; font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.55rem; letter-spacing:0.1em; text-transform:uppercase; color: var(--text-muted); }
   .am-row { display:grid; grid-template-columns: 1fr 110px; gap:1rem; align-items:center; padding:0.65rem 0; border-top:1px solid rgba(15,23,42,0.06); font-size:0.82rem; color: rgba(15,23,42,0.92); }
   .am-row em { height:5px; border-radius:3px; background: rgba(15,23,42,0.08); position:relative; overflow:hidden; }
   .am-row em::after { content:''; position:absolute; left:0; top:0; bottom:0; width: var(--w); background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius:3px; }
   .install { margin-top:1.5rem; border:1px solid rgba(15,23,42,0.08); border-radius:6px; padding:1.3rem 1.4rem; background: rgba(15,23,42,0.02); }
   .inst-row { display:grid; grid-template-columns: 95px 1fr; gap:0.8rem; padding:0.55rem 0; font-size:0.84rem; color: rgba(15,23,42,0.80); line-height:1.6; }
-  .inst-row b { font-family:'Syne',sans-serif; color: var(--white); font-size:0.85rem; }
+  .inst-row b { font-family: 'EB Garamond', Garamond, Georgia, serif; color: var(--white); font-size:0.85rem; }
   .inst-row em { font-style:normal; color: var(--accent2); }
   .nav-app { color: var(--accent2) !important; border:1px solid rgba(0,229,160,0.35); padding:0.45rem 0.9rem !important; border-radius:2px; }
   @media (max-width: 768px) { .app-grid { grid-template-columns:1fr; gap:2.5rem; } .inst-row { grid-template-columns:1fr; gap:0.1rem; } .nav-links li a.nav-app { text-align:center; margin-top:0.4rem; } }
@@ -269,7 +269,7 @@
   .formation-badge {
     display: inline-flex; align-items: center; gap: 0.6rem;
     background: rgba(255,77,28,0.1); border: 1px solid rgba(255,77,28,0.3);
-    color: var(--accent); font-family: 'Space Mono', monospace; font-size: 0.68rem;
+    color: var(--accent); font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.68rem;
     letter-spacing: 0.15em; text-transform: uppercase; padding: 0.5rem 1rem;
     border-radius: 2px; margin-bottom: 1.4rem;
   }
@@ -291,13 +291,13 @@
     margin-bottom: 1.2rem;
   }
   .expert-avatar svg { width: 36px; height: 36px; stroke: white; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .expert-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.3rem; }
-  .expert-title { color: var(--accent); font-size: 0.78rem; font-family: 'Space Mono', monospace; letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase; }
+  .expert-name { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.3rem; }
+  .expert-title { color: var(--accent); font-size: 0.78rem; font-family: 'EB Garamond', Garamond, Georgia, serif; letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase; }
   .expert-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
   .expert-tag {
     background: rgba(15,23,42,0.05); border: 1px solid rgba(15,23,42,0.1);
     color: rgba(15,23,42,0.90); font-size: 0.72rem; padding: 0.3rem 0.7rem; border-radius: 2px;
-    font-family: 'Space Mono', monospace; letter-spacing: 0.05em;
+    font-family: 'EB Garamond', Garamond, Georgia, serif; letter-spacing: 0.05em;
   }
 
   /* Parcours de formation */
@@ -309,7 +309,7 @@
   .parcours-card:hover { transform: translateY(-6px); border-color: rgba(255,77,28,0.3); }
   .parcours-header { padding: 2rem 2rem 1.5rem; position: relative; }
   .parcours-level {
-    font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em;
+    font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.62rem; letter-spacing: 0.15em;
     text-transform: uppercase; margin-bottom: 0.8rem;
   }
   .level-debutant { color: var(--accent2); }
@@ -317,14 +317,14 @@
   .level-avance { color: var(--accent); }
   .parcours-icon { width: 52px; height: 52px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
   .parcours-icon svg { width: 28px; height: 28px; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .parcours-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.25; }
+  .parcours-title { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 1.05rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.25; }
   .parcours-desc { color: rgba(15,23,42,0.65); font-size: 0.83rem; line-height: 1.65; font-weight: 300; }
   .parcours-footer { padding: 1.2rem 2rem; border-top: 1px solid rgba(15,23,42,0.06); display: flex; justify-content: space-between; align-items: center; }
-  .parcours-meta { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.08em; }
+  .parcours-meta { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.08em; }
   .parcours-btn {
     font-size: 0.75rem; color: var(--accent); border: 1px solid rgba(255,77,28,0.3);
     padding: 0.4rem 0.9rem; border-radius: 2px; text-decoration: none;
-    transition: background 0.2s, color 0.2s; font-family: 'Space Mono', monospace;
+    transition: background 0.2s, color 0.2s; font-family: 'EB Garamond', Garamond, Georgia, serif;
   }
   .parcours-btn:hover { background: var(--accent); color: white; }
 
@@ -334,7 +334,7 @@
 
   .cours-filters { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
   .filter-btn {
-    font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em;
+    font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.65rem; letter-spacing: 0.1em;
     text-transform: uppercase; padding: 0.45rem 1rem; border-radius: 2px; cursor: pointer;
     border: 1px solid rgba(15,23,42,0.12); background: transparent; color: var(--text-muted);
     transition: all 0.2s;
@@ -354,7 +354,7 @@
   .cours-thumb svg { width: 52px; height: 52px; opacity: 0.9; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
   .cours-thumb-label {
     position: absolute; top: 0.8rem; right: 0.8rem;
-    font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em;
+    font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.58rem; letter-spacing: 0.1em;
     text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px; font-weight: 700;
   }
   .label-new { background: var(--accent); color: white; }
@@ -362,23 +362,23 @@
   .label-free { background: #e2e8f0; color: #0f172a; }
 
   .cours-body { padding: 1.4rem; }
-  .cours-category { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .cours-category { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
   .cat-workplan { color: var(--accent); }
   .cat-r { color: #1d7fc4; }
   .cat-dashboard { color: var(--accent2); }
-  .cours-title { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+  .cours-title { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
   .cours-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
   .cours-footer-row { display: flex; justify-content: space-between; align-items: center; }
-  .cours-info { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--text-muted); }
+  .cours-info { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.6rem; color: var(--text-muted); }
   .cours-progress-wrap { margin: 0.8rem 0; }
-  .cours-progress-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--text-muted); margin-bottom: 0.3rem; display: flex; justify-content: space-between; }
+  .cours-progress-label { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 0.6rem; color: var(--text-muted); margin-bottom: 0.3rem; display: flex; justify-content: space-between; }
   .progress-bar { height: 3px; background: rgba(15,23,42,0.08); border-radius: 2px; overflow: hidden; }
   .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width 1s ease; }
   .cours-enroll {
     display: inline-flex; align-items: center; gap: 0.4rem;
     font-size: 0.72rem; color: var(--accent); border: 1px solid rgba(255,77,28,0.3);
     padding: 0.4rem 0.9rem; border-radius: 2px; text-decoration: none; cursor: pointer;
-    font-family: 'Space Mono', monospace; letter-spacing: 0.05em;
+    font-family: 'EB Garamond', Garamond, Georgia, serif; letter-spacing: 0.05em;
     transition: background 0.2s, color 0.2s; background: transparent;
   }
   .cours-enroll:hover { background: var(--accent); color: white; }
@@ -423,8 +423,8 @@
   .nav-logo, .footer-logo { display:inline-flex; align-items:center; gap:0.7rem; text-decoration:none; }
   .logo-icon { width:34px; height:34px; flex-shrink:0; }
   .logo-text { display:flex; flex-direction:column; line-height:1; }
-  .logo-text b { font-family:'Syne',sans-serif; font-weight:800; font-size:1.05rem; color:var(--white); letter-spacing:-0.01em; }
-  .logo-text i { font-style:normal; font-family:'Space Mono',monospace; font-weight:700; font-size:0.56rem; color:var(--accent); letter-spacing:0.28em; margin-top:3px; }
+  .logo-text b { font-family: 'EB Garamond', Garamond, Georgia, serif; font-weight:800; font-size:1.05rem; color:var(--white); letter-spacing:-0.01em; }
+  .logo-text i { font-style:normal; font-family: 'EB Garamond', Garamond, Georgia, serif; font-weight:700; font-size:0.56rem; color:var(--accent); letter-spacing:0.28em; margin-top:3px; }
   .nav-toggle { display:none; background:none; border:1px solid rgba(15,23,42,0.15); color:var(--white); width:42px; height:42px; border-radius:2px; cursor:pointer; align-items:center; justify-content:center; }
   .nav-toggle svg { width:20px; height:20px; stroke:currentColor; stroke-width:2; fill:none; stroke-linecap:round; }
   button.btn-primary, button.btn-secondary { font-family:inherit; cursor:pointer; border:none; }
@@ -433,13 +433,13 @@
 
   .contact-wrap { max-width:720px; margin:4rem auto 0; text-align:left; background:var(--gray); border:1px solid rgba(15,23,42,0.08); border-radius:4px; padding:2.5rem; position:relative; overflow:hidden; }
   .contact-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
-  .contact-wrap h3 { font-family:'Syne',sans-serif; font-weight:800; font-size:1.4rem; margin-bottom:0.4rem; }
+  .contact-wrap h3 { font-family: 'EB Garamond', Garamond, Georgia, serif; font-weight:800; font-size:1.4rem; margin-bottom:0.4rem; }
   .contact-wrap .sub { color:var(--text-muted); font-size:0.88rem; margin-bottom:1.8rem; line-height:1.6; }
   .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem 1.2rem; }
   .form-grid .full { grid-column:1 / -1; }
-  .field label { display:block; font-family:'Space Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.45rem; }
+  .field label { display:block; font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.45rem; }
   .field label .req { color:var(--accent); }
-  .field input, .field select, .field textarea { width:100%; background:var(--black); border:1px solid rgba(15,23,42,0.12); color:var(--white); font-family:'DM Sans',sans-serif; font-size:0.92rem; padding:0.8rem 0.9rem; border-radius:2px; transition:border-color 0.2s; }
+  .field input, .field select, .field textarea { width:100%; background:var(--black); border:1px solid rgba(15,23,42,0.12); color:var(--white); font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.92rem; padding:0.8rem 0.9rem; border-radius:2px; transition:border-color 0.2s; }
   .field textarea { min-height:110px; resize:vertical; }
   .field select { appearance:none; background-image:linear-gradient(45deg,transparent 50%,#888 50%),linear-gradient(135deg,#888 50%,transparent 50%); background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%; background-size:5px 5px; background-repeat:no-repeat; }
   .field input:focus, .field select:focus, .field textarea:focus { outline:none; border-color:var(--accent2); }
@@ -459,7 +459,7 @@
   .modal-box::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
   .modal-close { position:absolute; top:1rem; right:1rem; background:none; border:none; color:var(--text-muted); font-size:1.6rem; cursor:pointer; line-height:1; width:36px; height:36px; }
   .modal-close:hover { color:var(--white); }
-  .modal-box h3 { font-family:'Syne',sans-serif; font-weight:800; font-size:1.3rem; margin-bottom:0.4rem; padding-right:2rem; }
+  .modal-box h3 { font-family: 'EB Garamond', Garamond, Georgia, serif; font-weight:800; font-size:1.3rem; margin-bottom:0.4rem; padding-right:2rem; }
   .modal-box .sub { color:var(--text-muted); font-size:0.86rem; margin-bottom:1.5rem; line-height:1.6; }
   .modal-box p.legal { color:rgba(15,23,42,0.85); font-size:0.88rem; line-height:1.75; margin-bottom:1rem; }
   .modal-box p.legal strong { color:var(--white); }
@@ -470,22 +470,22 @@
   .filter-btn.small.active { background:rgba(0,229,160,0.12); border-color:rgba(0,229,160,0.4); color:var(--accent2); }
   .parcours-banner { display:none; margin-bottom:1.8rem; padding:1.2rem 1.4rem; border:1px solid rgba(15,23,42,0.08); border-left:3px solid var(--accent2); background:rgba(15,23,42,0.02); border-radius:2px; font-size:0.88rem; color:rgba(15,23,42,0.90); line-height:1.6; }
   .parcours-banner.show { display:block; }
-  .parcours-banner strong { color:var(--white); font-family:'Syne',sans-serif; }
+  .parcours-banner strong { color:var(--white); font-family: 'EB Garamond', Garamond, Georgia, serif; }
   .cours-card { display:flex; flex-direction:column; animation:fadeUp 0.4s ease both; }
   .cours-body { display:flex; flex-direction:column; flex:1; }
   .cours-desc { flex:1; }
-  .cours-num { position:absolute; left:0.8rem; top:0.8rem; font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; color:rgba(15,23,42,0.55); }
+  .cours-num { position:absolute; left:0.8rem; top:0.8rem; font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.6rem; letter-spacing:0.12em; color:rgba(15,23,42,0.55); }
   .cours-actions { display:flex; gap:0.5rem; align-items:center; }
-  .cours-prog { font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--text-muted); background:none; border:none; cursor:pointer; text-decoration:underline; text-underline-offset:3px; padding:0.4rem 0.2rem; }
+  .cours-prog { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.68rem; color:var(--text-muted); background:none; border:none; cursor:pointer; text-decoration:underline; text-underline-offset:3px; padding:0.4rem 0.2rem; }
   .cours-prog:hover { color:var(--white); }
   .cours-more { text-align:center; margin-top:2.5rem; }
   .cours-empty { grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted); border:1px dashed rgba(15,23,42,0.1); }
   .course-box { max-width:620px; }
   .course-meta { display:flex; gap:0.6rem; flex-wrap:wrap; }
-  .course-meta span { font-family:'Space Mono',monospace; font-size:0.62rem; letter-spacing:0.06em; padding:0.3rem 0.6rem; border:1px solid rgba(15,23,42,0.1); border-radius:2px; color:rgba(15,23,42,0.90); }
+  .course-meta span { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.62rem; letter-spacing:0.06em; padding:0.3rem 0.6rem; border:1px solid rgba(15,23,42,0.1); border-radius:2px; color:rgba(15,23,42,0.90); }
   .lesson-list { list-style:none; counter-reset:l; border-top:1px solid rgba(15,23,42,0.06); }
   .lesson-list li { counter-increment:l; display:flex; gap:0.9rem; padding:0.75rem 0; border-bottom:1px solid rgba(15,23,42,0.06); font-size:0.88rem; color:rgba(15,23,42,0.92); line-height:1.5; }
-  .lesson-list li::before { content:counter(l, decimal-leading-zero); font-family:'Space Mono',monospace; font-size:0.66rem; color:var(--accent); padding-top:0.15rem; flex-shrink:0; }
+  .lesson-list li::before { content:counter(l, decimal-leading-zero); font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.66rem; color:var(--accent); padding-top:0.15rem; flex-shrink:0; }
   .course-obj { margin-top:1.3rem; padding:1rem 1.2rem; background:rgba(0,229,160,0.06); border:1px solid rgba(0,229,160,0.18); border-radius:2px; font-size:0.85rem; line-height:1.6; color:rgba(15,23,42,0.92); }
   .course-obj strong { color:var(--accent2); font-weight:500; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
@@ -495,18 +495,18 @@
   .admin.show { display:block; }
   .admin-head { display:flex; justify-content:space-between; align-items:flex-end; gap:1rem; flex-wrap:wrap; margin-bottom:1.6rem; }
   .admin-kpis { display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:1.6rem; }
-  .admin-kpi { font-family:'Space Mono',monospace; font-size:0.64rem; color:var(--text-muted); letter-spacing:0.1em; text-transform:uppercase; }
-  .admin-kpi strong { display:block; font-family:'Syne',sans-serif; font-size:1.8rem; color:var(--accent2); letter-spacing:0; }
+  .admin-kpi { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.64rem; color:var(--text-muted); letter-spacing:0.1em; text-transform:uppercase; }
+  .admin-kpi strong { display:block; font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:1.8rem; color:var(--accent2); letter-spacing:0; }
   .admin-table-wrap { overflow-x:auto; border:1px solid rgba(15,23,42,0.07); border-radius:4px; }
   .admin table { width:100%; border-collapse:collapse; font-size:0.82rem; min-width:760px; }
-  .admin th { text-align:left; font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); padding:0.8rem 1rem; border-bottom:1px solid rgba(15,23,42,0.08); background:rgba(15,23,42,0.02); }
+  .admin th { text-align:left; font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); padding:0.8rem 1rem; border-bottom:1px solid rgba(15,23,42,0.08); background:rgba(15,23,42,0.02); }
   .admin td { padding:0.8rem 1rem; border-bottom:1px solid rgba(15,23,42,0.05); vertical-align:top; color:rgba(15,23,42,0.92); }
   .admin td.msg { max-width:280px; color:var(--text-muted); white-space:pre-wrap; }
-  .admin .pill { display:inline-block; font-family:'Space Mono',monospace; font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase; padding:0.2rem 0.5rem; border-radius:2px; background:rgba(255,77,28,0.12); color:var(--accent); white-space:nowrap; }
+  .admin .pill { display:inline-block; font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase; padding:0.2rem 0.5rem; border-radius:2px; background:rgba(255,77,28,0.12); color:var(--accent); white-space:nowrap; }
   .admin .pill.ins { background:rgba(0,229,160,0.1); color:var(--accent2); }
   .admin select.status { background:var(--black); color:var(--white); border:1px solid rgba(15,23,42,0.12); padding:0.3rem; font-size:0.76rem; border-radius:2px; }
   .admin-empty { padding:2rem; text-align:center; color:var(--text-muted); font-size:0.88rem; }
-  .small-btn { font-family:'Space Mono',monospace; font-size:0.68rem; letter-spacing:0.06em; color:var(--accent2); border:1px solid rgba(0,229,160,0.3); background:transparent; padding:0.5rem 1rem; border-radius:2px; cursor:pointer; }
+  .small-btn { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size:0.68rem; letter-spacing:0.06em; color:var(--accent2); border:1px solid rgba(0,229,160,0.3); background:transparent; padding:0.5rem 1rem; border-radius:2px; cursor:pointer; }
   .small-btn:hover { background:rgba(0,229,160,0.1); }
 
   :focus-visible { outline:2px solid var(--accent2); outline-offset:2px; }
@@ -528,7 +528,7 @@
 <body>
 
 <nav>
-  <a href="#top" class="nav-logo" aria-label="ASAP WORKPLAN — accueil"><svg class="logo-icon" viewBox="0 0 80 80" fill="none" aria-hidden="true"><rect width="80" height="80" rx="16" fill="#111"/><rect width="80" height="80" rx="16" fill="#ff4d1c" opacity="0.1"/><rect x="14" y="18" width="52" height="6.5" rx="3.25" fill="#ff4d1c"/><rect x="14" y="30" width="36" height="4.5" rx="2.25" fill="#f5f2ee" opacity="0.42"/><rect x="14" y="39" width="28" height="4.5" rx="2.25" fill="#f5f2ee" opacity="0.32"/><rect x="14" y="48" width="40" height="4.5" rx="2.25" fill="#f5f2ee" opacity="0.24"/><circle cx="59" cy="61" r="13" fill="#00e5a0" opacity="0.14"/><circle cx="59" cy="61" r="13" stroke="#00e5a0" stroke-width="2"/><polyline points="53,61 58,66.5 66,54.5" stroke="#00e5a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="logo-text"><b>ASAP</b><i>WORKPLAN</i></span></a>
+  <a href="#top" class="nav-logo" aria-label="ASAP WORKPLAN, accueil"><svg class="logo-icon" viewBox="0 0 80 80" fill="none" aria-hidden="true"><rect width="80" height="80" rx="16" fill="#111"/><rect width="80" height="80" rx="16" fill="#ff4d1c" opacity="0.1"/><rect x="14" y="18" width="52" height="6.5" rx="3.25" fill="#ff4d1c"/><rect x="14" y="30" width="36" height="4.5" rx="2.25" fill="#f5f2ee" opacity="0.42"/><rect x="14" y="39" width="28" height="4.5" rx="2.25" fill="#f5f2ee" opacity="0.32"/><rect x="14" y="48" width="40" height="4.5" rx="2.25" fill="#f5f2ee" opacity="0.24"/><circle cx="59" cy="61" r="13" fill="#00e5a0" opacity="0.14"/><circle cx="59" cy="61" r="13" stroke="#00e5a0" stroke-width="2"/><polyline points="53,61 58,66.5 66,54.5" stroke="#00e5a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="logo-text"><b>ASAP</b><i>WORKPLAN</i></span></a>
   <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks"><svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#tools">Vos outils</a></li>
@@ -544,7 +544,7 @@
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-tag">// Digitalisation des workplans — 2026</div>
+  <div class="hero-tag">// Digitalisation des workplans · 2026</div>
   <h1 class="hero-title">
     Vos plans<br>de travail,<br>
     <span class="acc">digitalisés.</span><br>
@@ -900,10 +900,10 @@
       <h2 class="section-title">Suivez vos projets<br>depuis votre <span style="color:var(--accent2);">ordinateur</span><br>et votre <span style="color:var(--accent);">téléphone.</span></h2>
       <p class="app-lead">Votre espace ASAP WORKPLAN réunit tous vos projets et leurs activités : avancement, responsables, échéances, retards et comptes rendus de terrain. Chaque client dispose de son espace privé, partagé uniquement avec son équipe.</p>
       <ul class="app-feats">
-        <li><b>Tableau de bord</b> — avancement global, retards et échéances de la semaine</li>
-        <li><b>Tableau des activités</b> — glissez une activité de « À faire » à « Terminé »</li>
-        <li><b>Comptes rendus</b> — l'équipe terrain met à jour l'avancement depuis son téléphone</li>
-        <li><b>Équipe et rôles</b> — invitez vos collaborateurs, en modification ou en lecture seule</li>
+        <li><b>Tableau de bord</b> : avancement global, retards et échéances de la semaine</li>
+        <li><b>Tableau des activités</b> : glissez une activité de « À faire » à « Terminé »</li>
+        <li><b>Comptes rendus</b> : l'équipe terrain met à jour l'avancement depuis son téléphone</li>
+        <li><b>Équipe et rôles</b> : invitez vos collaborateurs, en modification ou en lecture seule</li>
         <li><b>Export Excel</b> et fonctionnement hors connexion</li>
       </ul>
       <div class="app-cta">
@@ -1095,7 +1095,7 @@
 <!-- ====== ESPACE ADMIN (visible uniquement par le propriétaire) ====== -->
 <section class="admin" id="admin" aria-label="Demandes reçues">
   <div class="admin-head">
-    <div><p class="section-label">// Espace propriétaire — invisible pour les visiteurs</p><h2 class="section-title" style="font-size:1.8rem;">Demandes reçues</h2></div>
+    <div><p class="section-label">// Espace propriétaire, invisible pour les visiteurs</p><h2 class="section-title" style="font-size:1.8rem;">Demandes reçues</h2></div>
     <button class="small-btn" id="exportCsv" type="button">Exporter en CSV ↓</button>
   </div>
   <div class="admin-kpis" id="adminKpis"></div>
@@ -1170,7 +1170,7 @@
   <div class="modal-box">
     <button class="modal-close" data-close aria-label="Fermer">×</button>
     <h3 id="legalTitle">Mentions légales</h3>
-    <p class="legal"><strong>Éditeur :</strong> ASAP WORKPLAN — [forme juridique, capital, adresse du siège, n° SIREN/RCCM à compléter].</p>
+    <p class="legal"><strong>Éditeur :</strong> ASAP WORKPLAN, [forme juridique, capital, adresse du siège, n° SIREN/RCCM à compléter].</p>
     <p class="legal"><strong>Directeur de la publication :</strong> [nom à compléter].</p>
     <p class="legal"><strong>Contact :</strong> via le formulaire de contact de ce site.</p>
     <p class="legal"><strong>Hébergement :</strong> [hébergeur à compléter].</p>
@@ -1179,7 +1179,7 @@
 
 <script>
 /* =========================================================
-   CONFIGURATION — à compléter si vous hébergez le site ailleurs
+   CONFIGURATION : à compléter si vous hébergez le site ailleurs
    ---------------------------------------------------------
    Sur claude.ai, les demandes sont enregistrées automatiquement
    dans la base de la page (visible dans « Demandes reçues »).
@@ -1385,7 +1385,7 @@ const ICONS = {
 };
 
 const COURS = [
-  /* ===== Parcours 1 — Débutant : Digitaliser ses plans de travail (8h) ===== */
+  /* ===== Parcours 1 : Débutant : Digitaliser ses plans de travail (8h) ===== */
   { id: 'p1-01', p: 1, cat: 'workplan', icon: 'clipboard', tag: 'free', min: 60,
     titre: 'Les fondamentaux d\'un workplan digital',
     desc: 'Comprendre ce qu\'est un plan de travail digital, ses composants et comment passer du papier ou d\'Excel « à plat » à un suivi vivant.',
@@ -1417,7 +1417,7 @@ const COURS = [
     obj: 'Faire tourner trois flux utiles sans écrire une ligne de code.',
     lecons: ['Déclencheurs, actions et conditions : la logique d\'un flux', 'Rappel automatique avant échéance par e-mail ou Teams', 'Créer une tâche Planner depuis un formulaire', 'Surveiller, corriger et partager ses flux'] },
 
-  /* ===== Parcours 2 — Intermédiaire : Dashboards & Visualisation avec R (14h) ===== */
+  /* ===== Parcours 2 : Intermédiaire : Dashboards & Visualisation avec R (14h) ===== */
   { id: 'p2-01', p: 2, cat: 'r', icon: 'terminal', tag: 'free', min: 60,
     titre: 'Introduction à R pour les professionnels non-développeurs',
     desc: 'Les bases du langage R appliquées aux données métier : installation, RStudio, objets, premiers tableaux récapitulatifs.',
@@ -1459,7 +1459,7 @@ const COURS = [
     obj: 'Votre dashboard accessible par un simple lien, avec accès contrôlé.',
     lecons: ['Options d\'hébergement : shinyapps.io, Posit Connect, serveur interne', 'Publier en un clic depuis RStudio', 'Gérer les accès et les mises à jour'] },
 
-  /* ===== Parcours 3 — Avancé : Intégration de processus dans R (18h) ===== */
+  /* ===== Parcours 3 : Avancé : Intégration de processus dans R (18h) ===== */
   { id: 'p3-01', p: 3, cat: 'r', icon: 'code', tag: '', min: 90,
     titre: 'Programmer proprement en R : fonctions et scripts réutilisables',
     desc: 'Passer du script ponctuel à un outil fiable : fonctions, paramètres, organisation du code et versionnage.',
@@ -1565,7 +1565,7 @@ function renderCatalog() {
   if (fP !== 'all') {
     const pc = PARCOURS[fP];
     const tot = COURS.filter(c => String(c.p) === fP).reduce((a, c) => a + c.min, 0);
-    banner.innerHTML = '<span class="parcours-level ' + pc.cls + '" style="margin:0 0 0.3rem;">● Parcours ' + fP + ' — ' + pc.niveau + '</span><br><strong>' + pc.nom + '</strong> — ' + pc.info.replace(/\d+h/, fmtDur(tot)) + '. Suivez les modules dans l\'ordre pour obtenir le certificat du parcours.';
+    banner.innerHTML = '<span class="parcours-level ' + pc.cls + '" style="margin:0 0 0.3rem;">● Parcours ' + fP + ' · ' + pc.niveau + '</span><br><strong>' + pc.nom + '</strong> : ' + pc.info.replace(/\d+h/, fmtDur(tot)) + '. Suivez les modules dans l\'ordre pour obtenir le certificat du parcours.';
     banner.classList.add('show');
   } else banner.classList.remove('show');
 }
@@ -1588,7 +1588,7 @@ document.querySelectorAll('[data-parcours]').forEach(a => a.addEventListener('cl
 
 function openEnroll(c) {
   currentCourse = c;
-  document.getElementById('enrollSub').textContent = '« ' + c.titre + ' » — Parcours ' + c.p + ' · ' + PARCOURS[c.p].niveau + '. Nous vous envoyons les accès et le planning par e-mail.';
+  document.getElementById('enrollSub').textContent = '« ' + c.titre + ' », Parcours ' + c.p + ' · ' + PARCOURS[c.p].niveau + '. Nous vous envoyons les accès et le planning par e-mail.';
   document.querySelector('#enrollForm .form-status').textContent = '';
   openModal('enrollModal');
 }
@@ -1596,7 +1596,7 @@ function openProgram(c) {
   currentCourse = c;
   const t = THEMES[c.cat];
   const cat = document.getElementById('courseCat');
-  cat.className = 'cours-category ' + t.cls; cat.textContent = t.nom + ' · Parcours ' + c.p + ' — ' + PARCOURS[c.p].niveau;
+  cat.className = 'cours-category ' + t.cls; cat.textContent = t.nom + ' · Parcours ' + c.p + ' · ' + PARCOURS[c.p].niveau;
   document.getElementById('courseTitle').textContent = c.titre;
   document.getElementById('courseDesc').textContent = c.desc;
   document.getElementById('courseMeta').innerHTML = '<span>' + c.lecons.length + ' leçons</span><span>' + fmtDur(c.min) + '</span><span>En ligne</span><span>Module ' + c.id.slice(-2) + ' / ' + COURS.filter(x => x.p === c.p).length + '</span>' + (c.tag ? '<span>' + TAGS[c.tag][1] + '</span>' : '');
