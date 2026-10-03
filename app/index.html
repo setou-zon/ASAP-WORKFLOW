@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ASAP WORKPLAN — Suivi</title>
+<meta name="description" content="Suivi des activités de vos projets : avancement, échéances, retards et comptes rendus, sur ordinateur et téléphone.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ASAP Suivi">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a; --panel:#141414; --panel2:#1a1a1a; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --text:#f5f2ee; --muted:#8a8a8a; --muted2:rgba(245,242,238,.6);
+  --accent:#ff4d1c; --accent2:#00e5a0; --warn:#f5a623; --blue:#4FC3F7; --red:#ff5a5a;
+  --r:6px; --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent2)}
+.mono{font-family:'Space Mono',monospace}
+.hidden{display:none!important}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+
+/* Logo */
+.logo{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.logo svg{width:32px;height:32px;flex-shrink:0}
+.logo b{display:block;font-family:'Syne';font-weight:800;font-size:1rem;color:var(--text);line-height:1}
+.logo i{display:block;font-style:normal;font-family:'Space Mono';font-weight:700;font-size:.52rem;letter-spacing:.26em;color:var(--accent);margin-top:3px}
+
+/* Boutons et champs */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border:1px solid var(--line2);background:transparent;padding:.6rem 1rem;border-radius:var(--r);font-size:.88rem;font-weight:500;transition:background .15s,border-color .15s;white-space:nowrap}
+.btn:hover{border-color:rgba(255,255,255,.3)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#e83d0d}
+.btn.ghost{border-color:transparent;color:var(--muted2)}
+.btn.ghost:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.btn.danger{color:var(--red);border-color:rgba(255,90,90,.3)}
+.btn.sm{padding:.4rem .7rem;font-size:.8rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+label.f{display:block;margin-bottom:.9rem}
+label.f>span{display:block;font-family:'Space Mono';font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+input.i,select.i,textarea.i{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:var(--r);padding:.7rem .8rem;font-size:.95rem;transition:border-color .15s}
+textarea.i{min-height:90px;resize:vertical}
+input.i:focus,select.i:focus,textarea.i:focus{outline:none;border-color:var(--accent2)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:0 .9rem}
+.err{color:var(--red);font-size:.85rem;margin:.4rem 0}
+.ok{color:var(--accent2);font-size:.85rem;margin:.4rem 0}
+
+/* Écran de connexion */
+.auth{min-height:100%;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;background:radial-gradient(ellipse 60% 50% at 80% 10%,rgba(255,77,28,.1),transparent 70%),radial-gradient(ellipse 50% 40% at 10% 90%,rgba(0,229,160,.06),transparent 60%)}
+.auth-box{width:100%;max-width:400px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:2rem;position:relative;overflow:hidden}
+.auth-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.auth h1{font-family:'Syne';font-weight:800;font-size:1.5rem;margin:1.5rem 0 .3rem}
+.auth p.sub{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem}
+.auth .switch{text-align:center;margin-top:1rem;font-size:.85rem;color:var(--muted)}
+.auth .switch button{background:none;border:none;color:var(--accent2);text-decoration:underline;text-underline-offset:3px}
+
+/* Structure principale */
+.shell{display:grid;grid-template-columns:240px 1fr;min-height:100%}
+.side{background:var(--panel);border-right:1px solid var(--line);padding:1.2rem .9rem;display:flex;flex-direction:column;gap:1.2rem;position:sticky;top:0;height:100vh}
+.ws-pick{width:100%}
+.nav{display:flex;flex-direction:column;gap:.2rem}
+.nav button{display:flex;align-items:center;gap:.7rem;background:none;border:none;color:var(--muted2);padding:.65rem .75rem;border-radius:var(--r);text-align:left;font-size:.9rem}
+.nav button svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.nav button:hover{background:rgba(255,255,255,.04);color:var(--text)}
+.nav button.on{background:rgba(255,77,28,.12);color:var(--text)}
+.nav button.on svg{stroke:var(--accent)}
+.side-foot{margin-top:auto;display:flex;flex-direction:column;gap:.5rem;font-size:.8rem;color:var(--muted)}
+.side-foot .me{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+main{min-width:0;padding:1.6rem 2rem 3rem}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.top h2{font-family:'Syne';font-weight:800;font-size:1.6rem;letter-spacing:-.02em;line-height:1.15}
+.top .crumb{font-family:'Space Mono';font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.top .crumb button{background:none;border:none;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;text-decoration:underline;text-underline-offset:3px}
+.actions{display:flex;gap:.5rem;flex-wrap:wrap}
+.mobile-top,.tabbar{display:none}
+.banner{padding:.6rem 1rem;font-size:.84rem;border-radius:var(--r);margin-bottom:1rem;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+.banner.off{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);color:var(--warn)}
+.banner.inst{background:rgba(0,229,160,.07);border:1px solid rgba(0,229,160,.25);color:var(--muted2)}
+.banner.inst strong{color:var(--text)}
+
+/* Cartes et KPI */
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;margin-bottom:1.5rem}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem}
+.kpi .v{font-family:'Syne';font-weight:800;font-size:1.8rem;line-height:1.1}
+.kpi .l{font-family:'Space Mono';font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+.kpi.red .v{color:var(--red)} .kpi.green .v{color:var(--accent2)} .kpi.orange .v{color:var(--accent)}
+.kpis.k4{grid-template-columns:repeat(4,1fr)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.grid2>*{min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem}
+.card h3{font-family:'Syne';font-weight:700;font-size:1rem;margin-bottom:.9rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.card h3 .mono{font-size:.62rem;color:var(--muted);font-weight:400;letter-spacing:.08em}
+.empty{color:var(--muted);font-size:.88rem;padding:1.4rem;text-align:center;border:1px dashed var(--line2);border-radius:var(--r)}
+.bar{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px}
+.prow{display:grid;grid-template-columns:1fr 140px 44px;gap:.8rem;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--line);font-size:.88rem;cursor:pointer}
+.prow:last-child{border-bottom:none}
+.prow:hover .pn{color:var(--accent2)}
+.prow .pct{font-family:'Space Mono';font-size:.75rem;color:var(--muted);text-align:right}
+
+/* Projets */
+.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.pcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem;cursor:pointer;transition:border-color .15s,transform .15s;position:relative;overflow:hidden;text-align:left;width:100%}
+.pcard:hover{border-color:rgba(0,229,160,.35);transform:translateY(-2px)}
+.pcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--pc,var(--accent))}
+.pcard h4{font-family:'Syne';font-weight:700;font-size:1.05rem;margin-bottom:.3rem}
+.pcard p{color:var(--muted);font-size:.83rem;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.5em}
+.pmeta{display:flex;justify-content:space-between;font-family:'Space Mono';font-size:.64rem;color:var(--muted);margin-top:.6rem;gap:.5rem;flex-wrap:wrap}
+
+/* Pastilles */
+.pill{display:inline-flex;align-items:center;gap:.35rem;font-family:'Space Mono';font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .5rem;border-radius:3px;white-space:nowrap}
+.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.s-a_faire{color:var(--muted2);background:rgba(255,255,255,.06)}
+.s-en_cours{color:var(--blue);background:rgba(79,195,247,.1)}
+.s-bloque{color:var(--red);background:rgba(255,90,90,.1)}
+.s-termine{color:var(--accent2);background:rgba(0,229,160,.1)}
+.p-haute{color:var(--accent)} .p-normale{color:var(--muted2)} .p-basse{color:var(--muted)}
+.late{color:var(--red)!important}
+.tag{font-family:'Space Mono';font-size:.6rem;padding:.15rem .45rem;border:1px solid var(--line2);border-radius:3px;color:var(--muted2)}
+
+/* Tableau Kanban */
+.board{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:.8rem;overflow-x:auto;padding-bottom:.5rem}
+.col{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:.8rem;min-height:140px;display:flex;flex-direction:column;gap:.6rem}
+.col.drop{border-color:var(--accent2);background:rgba(0,229,160,.04)}
+.col-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:.2rem}
+.col-h .n{font-family:'Space Mono';font-size:.7rem;color:var(--muted)}
+.acard{background:var(--panel2);border:1px solid var(--line);border-radius:var(--r);padding:.8rem;cursor:pointer;text-align:left;width:100%;transition:border-color .15s}
+.acard:hover{border-color:rgba(255,255,255,.22)}
+.acard[draggable=true]{cursor:grab}
+.acard .t{font-weight:500;font-size:.9rem;margin-bottom:.4rem;line-height:1.35}
+.acard .m{display:flex;justify-content:space-between;align-items:center;gap:.4rem;font-size:.75rem;color:var(--muted);margin-top:.5rem;flex-wrap:wrap}
+.view-toggle{display:inline-flex;border:1px solid var(--line2);border-radius:var(--r);overflow:hidden}
+.view-toggle button{background:none;border:none;padding:.45rem .8rem;font-size:.8rem;color:var(--muted2)}
+.view-toggle button.on{background:rgba(255,255,255,.08);color:var(--text)}
+
+/* Tableau liste */
+.filters{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.filters .i{width:auto;min-width:150px;padding:.5rem .7rem;font-size:.85rem}
+.filters input.i{flex:1;min-width:180px}
+.tbl-wrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:760px}
+th{text-align:left;font-family:'Space Mono';font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:.75rem .9rem;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:.7rem .9rem;border-bottom:1px solid var(--line);vertical-align:middle}
+tr.click{cursor:pointer}
+tr.click:hover td{background:rgba(255,255,255,.025)}
+tr:last-child td{border-bottom:none}
+td .bar{width:80px;display:inline-block;vertical-align:middle;margin-right:.4rem}
+
+/* Liste mobile d'activités */
+.alist{display:none;flex-direction:column;gap:.6rem}
+
+/* Équipe */
+.mrow{display:flex;align-items:center;gap:.8rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.mrow:last-child{border-bottom:none}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne';font-weight:800;font-size:.85rem;color:#0a0a0a;flex-shrink:0}
+.mrow .who{flex:1;min-width:0}
+.mrow .who div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mrow .who small{color:var(--muted);font-size:.78rem}
+
+/* Fenêtres */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(5px);z-index:50;display:flex;align-items:center;justify-content:center;padding:1rem}
+.mbox{background:var(--panel);border:1px solid var(--line2);border-radius:10px;width:100%;max-width:560px;max-height:92vh;overflow:auto;padding:1.6rem;position:relative}
+.mbox.wide{max-width:720px}
+.mbox h3{font-family:'Syne';font-weight:800;font-size:1.25rem;margin-bottom:1.2rem;padding-right:2rem}
+.mclose{position:absolute;top:.8rem;right:.8rem;background:none;border:none;color:var(--muted);font-size:1.6rem;width:36px;height:36px;line-height:1}
+.mclose:hover{color:var(--text)}
+.mfoot{display:flex;justify-content:space-between;gap:.6rem;margin-top:1.2rem;flex-wrap:wrap}
+.mfoot .r{display:flex;gap:.6rem;margin-left:auto}
+.range{display:flex;align-items:center;gap:.8rem}
+.range input{flex:1;accent-color:var(--accent2)}
+.range output{font-family:'Space Mono';font-size:.85rem;width:3.2em;text-align:right}
+.timeline{border-left:1px solid var(--line2);margin:.6rem 0 0 .4rem;padding-left:1rem;display:flex;flex-direction:column;gap:.9rem}
+.tl{position:relative;font-size:.86rem}
+.tl::before{content:'';position:absolute;left:-1.33rem;top:.45rem;width:9px;height:9px;border-radius:50%;background:var(--accent2)}
+.tl small{display:block;color:var(--muted);font-size:.74rem;margin-bottom:.15rem}
+.tl p{white-space:pre-wrap;color:var(--muted2)}
+.sep{height:1px;background:var(--line);margin:1.3rem 0}
+.toast{position:fixed;left:50%;bottom:calc(1.2rem + var(--safe-b));transform:translateX(-50%);background:var(--panel2);border:1px solid var(--line2);padding:.7rem 1.1rem;border-radius:var(--r);font-size:.88rem;z-index:80;box-shadow:0 10px 30px rgba(0,0,0,.5);max-width:90vw}
+.toast.e{border-color:rgba(255,90,90,.5);color:var(--red)}
+.loading{display:flex;align-items:center;justify-content:center;min-height:100%;color:var(--muted);font-family:'Space Mono';font-size:.75rem;letter-spacing:.12em;flex-direction:column;gap:1rem}
+.spin{width:28px;height:28px;border:2px solid var(--line2);border-top-color:var(--accent);border-radius:50%;animation:sp 0.8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* ===== Mobile ===== */
+@media (max-width:860px){
+  .shell{grid-template-columns:1fr}
+  .side{display:none}
+  .mobile-top{display:flex;position:sticky;top:0;z-index:20;background:rgba(10,10,10,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:.7rem 1rem;padding-top:calc(.7rem + env(safe-area-inset-top,0px));align-items:center;gap:.7rem}
+  .mobile-top .ws-pick{flex:1;min-width:0;padding:.45rem .6rem;font-size:.85rem}
+  main{padding:1.1rem 1rem calc(5.5rem + var(--safe-b))}
+  .tabbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;left:0;right:0;z-index:20;background:rgba(14,14,14,.98);border-top:1px solid var(--line);padding-bottom:var(--safe-b)}
+  .tabbar button{background:none;border:none;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.6rem 0 .55rem;font-size:.66rem}
+  .tabbar svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .tabbar button.on{color:var(--accent)}
+  .top h2{font-size:1.3rem}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .kpis .kpi:first-child{grid-column:1/-1}
+  .kpis.k4{grid-template-columns:repeat(2,1fr)}
+  .kpis.k4 .kpi:first-child{grid-column:auto}
+  .dnd-tip{display:none}
+  .mrow{flex-wrap:wrap}
+  .mrow .who{flex-basis:calc(100% - 50px)}
+  .grid2{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .board{grid-template-columns:repeat(4,82vw);scroll-snap-type:x mandatory}
+  .col{scroll-snap-align:start}
+  .tbl-wrap.acts{display:none}
+  .alist{display:flex}
+  .filters .i{min-width:0;flex:1 1 45%}
+  .modal{align-items:flex-end;padding:0}
+  .mbox{max-height:94vh;border-radius:14px 14px 0 0;padding-bottom:calc(1.6rem + var(--safe-b))}
+  .prow{grid-template-columns:1fr 90px 40px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"><div class="loading"><div class="spin"></div>CHARGEMENT</div></div>
+<div id="modal-root"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* =====================================================================
+   CONFIGURATION — renseignée lors du branchement de la base Supabase
+   ===================================================================== */
+const SUPABASE_URL = "https://bfqloiprndsvcebffqgw.supabase.co";
+const SUPABASE_KEY = "sb_publishable_NLC5e7PMfwrDmvl2MhGwrA_u8NqglIh";
+const SITE_URL     = "../index.html";   // lien retour vers le site vitrine
+
+/* ===================================================================== */
+const LOGO = '<svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><rect width="80" height="80" rx="16" fill="#111"/><rect width="80" height="80" rx="16" fill="#ff4d1c" opacity=".1"/><rect x="14" y="18" width="52" height="6.5" rx="3.25" fill="#ff4d1c"/><rect x="14" y="30" width="36" height="4.5" rx="2.25" fill="#f5f2ee" opacity=".42"/><rect x="14" y="39" width="28" height="4.5" rx="2.25" fill="#f5f2ee" opacity=".32"/><rect x="14" y="48" width="40" height="4.5" rx="2.25" fill="#f5f2ee" opacity=".24"/><circle cx="59" cy="61" r="13" fill="#00e5a0" opacity=".14"/><circle cx="59" cy="61" r="13" stroke="#00e5a0" stroke-width="2"/><polyline points="53,61 58,66.5 66,54.5" stroke="#00e5a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const LOGO_FULL = '<span class="logo">' + LOGO + '<span><b>ASAP</b><i>WORKPLAN</i></span></span>';
+const IC = {
+  dash: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>',
+  proj: '<svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>',
+  acts: '<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  team: '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  plus: '<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>',
+  dl: '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+  inst: '<svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 7v7M9 11l3 3 3-3"/></svg>',
+  out: '<svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',
+  edit: '<svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>'
+};
+const STATUS = { a_faire: 'À faire', en_cours: 'En cours', bloque: 'Bloqué', termine: 'Terminé' };
+const PRIO = { haute: 'Haute', normale: 'Normale', basse: 'Basse' };
+const PSTATUS = { actif: 'Actif', en_pause: 'En pause', termine: 'Terminé', archive: 'Archivé' };
+const ROLES = { owner: 'Propriétaire', admin: 'Administrateur', member: 'Membre', viewer: 'Lecture seule' };
+const COLORS = ['#ff4d1c', '#00e5a0', '#4FC3F7', '#f5a623', '#b388ff', '#ff6b9d'];
+
+/* ---------- Utilitaires ---------- */
+const $ = s => document.querySelector(s);
+const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const today = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
+const pd = s => s ? new Date(s + 'T00:00:00') : null;
+const fd = s => s ? pd(s).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+const fdt = s => new Date(s).toLocaleString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+const isLate = a => a.status !== 'termine' && a.due_date && pd(a.due_date) < today();
+const daysTo = s => Math.round((pd(s) - today()) / 86400000);
+const initials = s => (s || '?').replace(/@.*/, '').split(/[\s._-]+/).filter(Boolean).slice(0, 2).map(x => x[0].toUpperCase()).join('') || '?';
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+function toast(msg, isErr) {
+  const t = document.createElement('div'); t.className = 'toast' + (isErr ? ' e' : ''); t.setAttribute('role', 'status'); t.textContent = msg;
+  document.body.appendChild(t); setTimeout(() => t.remove(), isErr ? 5000 : 2800);
+}
+function frErr(e) {
+  const m = (e && (e.message || e.error_description)) || String(e);
+  if (/Invalid login credentials/i.test(m)) return 'E-mail ou mot de passe incorrect.';
+  if (/Email not confirmed/i.test(m)) return 'Confirmez d\'abord votre adresse e-mail (lien reçu par e-mail).';
+  if (/User already registered/i.test(m)) return 'Un compte existe déjà avec cet e-mail. Connectez-vous.';
+  if (/Password should be at least/i.test(m)) return 'Le mot de passe doit contenir au moins 8 caractères.';
+  if (/rate limit/i.test(m)) return 'Trop de tentatives. Patientez quelques minutes.';
+  if (/Failed to fetch|NetworkError|network/i.test(m)) return 'Connexion impossible. Vérifiez votre réseau.';
+  if (/row-level security|permission denied/i.test(m)) return 'Vous n\'avez pas les droits pour cette action.';
+  if (/duplicate key.*invitations/i.test(m)) return 'Cette personne est déjà invitée.';
+  return m;
+}
+
+/* ---------- État ---------- */
+const S = {
+  user: null, workspaces: [], ws: null, role: null,
+  projects: [], activities: [], members: [], invitations: [],
+  view: store.get('asap-view', 'dash'), projectId: null, boardMode: store.get('asap-board', 'board'),
+  f: { q: '', project: '', status: '', resp: '', late: false },
+  online: navigator.onLine, channel: null
+};
+const canEdit = () => ['owner', 'admin', 'member'].includes(S.role) && S.online;
+const isAdmin = () => ['owner', 'admin'].includes(S.role) && S.online;
+
+/* ---------- Client Supabase ---------- */
+const CONFIGURED = !SUPABASE_URL.startsWith('__');
+const sb = CONFIGURED && window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+}) : null;
+
+/* =====================================================================
+   AUTHENTIFICATION
+   ===================================================================== */
+function renderAuth(mode, msg) {
+  mode = mode || 'login';
+  const T = {
+    login: ['Connexion', 'Accédez au suivi de vos projets.', 'Se connecter'],
+    signup: ['Créer un compte', 'Utilisez l\'e-mail auquel vous avez été invité, ou créez l\'espace de votre entreprise.', 'Créer mon compte'],
+    reset: ['Mot de passe oublié', 'Recevez un lien pour choisir un nouveau mot de passe.', 'Envoyer le lien'],
+    newpass: ['Nouveau mot de passe', 'Choisissez votre nouveau mot de passe.', 'Enregistrer']
+  }[mode];
+  $('#app').innerHTML = '<div class="auth"><form class="auth-box" id="authForm" novalidate>' + LOGO_FULL +
+    '<h1>' + T[0] + '</h1><p class="sub">' + T[1] + '</p>' +
+    (mode === 'signup' ? '<label class="f"><span>Nom complet</span><input class="i" name="name" autocomplete="name" required></label>' : '') +
+    (mode !== 'newpass' ? '<label class="f"><span>E-mail</span><input class="i" name="email" type="email" autocomplete="email" required></label>' : '') +
+    (mode !== 'reset' ? '<label class="f"><span>Mot de passe</span><input class="i" name="password" type="password" minlength="8" autocomplete="' + (mode === 'login' ? 'current-password' : 'new-password') + '" required></label>' : '') +
+    '<div id="authMsg">' + (msg ? '<p class="' + (msg.ok ? 'ok' : 'err') + '">' + esc(msg.t) + '</p>' : '') + '</div>' +
+    '<button class="btn primary" style="width:100%;margin-top:.4rem" type="submit">' + T[2] + '</button>' +
+    '<div class="switch">' +
+      (mode === 'login' ? 'Pas encore de compte ? <button type="button" data-m="signup">Créer un compte</button><br><button type="button" data-m="reset" style="margin-top:.5rem">Mot de passe oublié ?</button>' : '') +
+      (mode === 'signup' || mode === 'reset' ? 'Déjà un compte ? <button type="button" data-m="login">Se connecter</button>' : '') +
+    '</div>' +
+    '<div class="switch"><a href="' + SITE_URL + '" style="color:var(--muted)">← Retour au site</a></div>' +
+  '</form></div>';
+  document.querySelectorAll('[data-m]').forEach(b => b.onclick = () => renderAuth(b.dataset.m));
+  $('#authForm').onsubmit = async e => {
+    e.preventDefault();
+    const fd = Object.fromEntries(new FormData(e.target));
+    const box = $('#authMsg'), btn = e.target.querySelector('[type=submit]');
+    const show = (t, ok) => box.innerHTML = '<p class="' + (ok ? 'ok' : 'err') + '">' + esc(t) + '</p>';
+    if (fd.email !== undefined && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((fd.email || '').trim())) return show('Saisissez une adresse e-mail valide.');
+    if (fd.password !== undefined && (fd.password || '').length < 8) return show('Le mot de passe doit contenir au moins 8 caractères.');
+    if (mode === 'signup' && !(fd.name || '').trim()) return show('Indiquez votre nom.');
+    btn.disabled = true;
+    try {
+      const email = (fd.email || '').trim().toLowerCase();
+      if (mode === 'login') {
+        const { error } = await sb.auth.signInWithPassword({ email, password: fd.password });
+        if (error) throw error;
+      } else if (mode === 'signup') {
+        const { data, error } = await sb.auth.signUp({ email, password: fd.password,
+          options: { data: { full_name: fd.name.trim() }, emailRedirectTo: location.href.split('#')[0] } });
+        if (error) throw error;
+        if (!data.session) return renderAuth('login', { ok: true, t: 'Compte créé ! Cliquez sur le lien de confirmation reçu par e-mail, puis connectez-vous.' });
+      } else if (mode === 'reset') {
+        const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.href.split('#')[0] });
+        if (error) throw error;
+        show('Si un compte existe pour cet e-mail, un lien vient de vous être envoyé.', true);
+      } else if (mode === 'newpass') {
+        const { error } = await sb.auth.updateUser({ password: fd.password });
+        if (error) throw error;
+        toast('Mot de passe mis à jour.'); boot();
+      }
+    } catch (err) { show(frErr(err)); } finally { btn.disabled = false; }
+  };
+  const first = $('#authForm input'); if (first) first.focus();
+}
+
+/* =====================================================================
+   CHARGEMENT DES DONNÉES
+   ===================================================================== */
+async function boot() {
+  if (!CONFIGURED) {
+    $('#app').innerHTML = '<div class="auth"><div class="auth-box">' + LOGO_FULL + '<h1>Bientôt disponible</h1><p class="sub">L\'application de suivi est en cours de mise en service. Revenez très vite.</p><a class="btn" href="' + SITE_URL + '">← Retour au site</a></div></div>';
+    return;
+  }
+  if (!sb) { $('#app').innerHTML = '<div class="loading">Connexion impossible. Vérifiez votre réseau puis rechargez.</div>'; return; }
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) {
+    const cached = store.get('asap-cache', null);
+    if (!navigator.onLine && cached) return useCache(cached);
+    return renderAuth('login');
+  }
+  S.user = session.user;
+  await loadWorkspaces();
+}
+
+let wsLoading = null;
+function loadWorkspaces() { if (!wsLoading) wsLoading = _loadWorkspaces().finally(() => { wsLoading = null; }); return wsLoading; }
+async function _loadWorkspaces() {
+  try {
+    await sb.rpc('accept_invitations');
+    const { data, error } = await sb.from('workspace_members').select('role, workspace:workspaces(id,name)').eq('user_id', S.user.id);
+    if (error) throw error;
+    S.workspaces = (data || []).filter(r => r.workspace).map(r => ({ id: r.workspace.id, name: r.workspace.name, role: r.role }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+    if (!S.workspaces.length) return renderOnboarding();
+    const saved = store.get('asap-ws', null);
+    const ws = S.workspaces.find(w => w.id === saved) || S.workspaces[0];
+    await selectWorkspace(ws.id);
+  } catch (e) {
+    const cached = store.get('asap-cache', null);
+    if (cached && cached.user === S.user.id) return useCache(cached);
+    $('#app').innerHTML = '<div class="loading"><p>' + esc(frErr(e)) + '</p><button class="btn" onclick="location.reload()">Réessayer</button></div>';
+  }
+}
+
+async function selectWorkspace(id) {
+  const ws = S.workspaces.find(w => w.id === id);
+  S.ws = ws; S.role = ws.role; store.set('asap-ws', id);
+  await loadData();
+  subscribe();
+  render();
+}
+
+async function loadData() {
+  const wid = S.ws.id;
+  const q = [
+    sb.from('projects').select('*').eq('workspace_id', wid).order('created_at'),
+    sb.from('activities').select('*').eq('workspace_id', wid).order('position').order('created_at'),
+    sb.from('workspace_members').select('*').eq('workspace_id', wid).order('joined_at')
+  ];
+  if (['owner', 'admin'].includes(S.role)) q.push(sb.from('invitations').select('*').eq('workspace_id', wid).is('accepted_at', null).order('created_at'));
+  const res = await Promise.all(q);
+  const errRes = res.find(r => r.error); if (errRes) throw errRes.error;
+  S.projects = res[0].data; S.activities = res[1].data; S.members = res[2].data; S.invitations = res[3] ? res[3].data : [];
+  store.set('asap-cache', { user: S.user.id, email: S.user.email, workspaces: S.workspaces, ws: S.ws, projects: S.projects, activities: S.activities, members: S.members, at: Date.now() });
+}
+
+function useCache(c) {
+  S.user = S.user || { id: c.user, email: c.email };
+  S.workspaces = c.workspaces; S.ws = c.ws; S.role = c.ws.role;
+  S.projects = c.projects; S.activities = c.activities; S.members = c.members; S.invitations = [];
+  S.online = false; S.cachedAt = c.at;
+  render();
+}
+
+let reloadTimer = null;
+function subscribe() {
+  if (S.channel) sb.removeChannel(S.channel);
+  const f = 'workspace_id=eq.' + S.ws.id;
+  const again = () => { clearTimeout(reloadTimer); reloadTimer = setTimeout(async () => { try { await loadData(); render(true); } catch (e) {} }, 400); };
+  S.channel = sb.channel('ws-' + S.ws.id)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'activities', filter: f }, again)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'projects', filter: f }, again)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'activity_updates', filter: f }, () => {})
+    .subscribe();
+}
+
+/* ---------- Premier espace ---------- */
+function renderOnboarding() {
+  const name = (S.user.user_metadata && S.user.user_metadata.full_name) || '';
+  $('#app').innerHTML = '<div class="auth"><form class="auth-box" id="wsForm">' + LOGO_FULL +
+    '<h1>Bienvenue' + (name ? ', ' + esc(name.split(' ')[0]) : '') + ' !</h1>' +
+    '<p class="sub">Créez l\'espace de votre entreprise pour commencer à suivre vos projets. Si vous avez été invité, demandez à votre administrateur de vérifier l\'adresse utilisée (' + esc(S.user.email) + ').</p>' +
+    '<label class="f"><span>Nom de l\'entreprise ou de l\'organisation</span><input class="i" name="name" required minlength="2" maxlength="120"></label>' +
+    '<div id="wsMsg"></div><button class="btn primary" style="width:100%" type="submit">Créer mon espace →</button>' +
+    '<div class="switch"><button type="button" id="refreshInv">J\'ai été invité : actualiser</button> · <button type="button" id="lo">Se déconnecter</button></div></form></div>';
+  $('#lo').onclick = logout;
+  $('#refreshInv').onclick = loadWorkspaces;
+  $('#wsForm').onsubmit = async e => {
+    e.preventDefault();
+    const n = e.target.name.value.trim();
+    if (n.length < 2) return $('#wsMsg').innerHTML = '<p class="err">Indiquez un nom (2 caractères minimum).</p>';
+    const { error } = await sb.rpc('create_workspace', { ws_name: n });
+    if (error) return $('#wsMsg').innerHTML = '<p class="err">' + esc(frErr(error)) + '</p>';
+    loadWorkspaces();
+  };
+}
+
+async function logout() {
+  try { if (S.channel) sb.removeChannel(S.channel); await sb.auth.signOut(); } catch (e) {}
+  store.set('asap-cache', null);
+  location.reload();
+}
+
+/* =====================================================================
+   RENDU
+   ===================================================================== */
+const projOf = id => S.projects.find(p => p.id === id);
+const actsOf = pid => S.activities.filter(a => a.project_id === pid);
+const avg = arr => arr.length ? Math.round(arr.reduce((s, a) => s + (a.status === 'termine' ? 100 : a.progress), 0) / arr.length) : 0;
+const responsibles = () => [...new Set(S.activities.map(a => (a.responsible || '').trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'fr'));
+
+function navBtns(cls) {
+  const items = [['dash', 'Tableau de bord', IC.dash], ['projects', 'Projets', IC.proj], ['acts', 'Activités', IC.acts], ['team', 'Équipe', IC.team]];
+  return items.map(([k, l, i]) => '<button data-v="' + k + '" class="' + (S.view === k || (k === 'projects' && S.view === 'project') ? 'on' : '') + '">' + i + '<span>' + (cls === 'tab' && k === 'dash' ? 'Accueil' : l) + '</span></button>').join('');
+}
+function wsSelect() {
+  return '<select class="i ws-pick" id="wsPick" aria-label="Espace">' + S.workspaces.map(w => '<option value="' + w.id + '"' + (w.id === S.ws.id ? ' selected' : '') + '>' + esc(w.name) + '</option>').join('') +
+    (S.online ? '<option value="__new">+ Nouvel espace…</option>' : '') + '</select>';
+}
+
+function render(keepScroll) {
+  const y = window.scrollY;
+  const name = (S.user.user_metadata && S.user.user_metadata.full_name) || S.user.email;
+  $('#app').innerHTML =
+    '<div class="mobile-top">' + LOGO.replace('<svg', '<svg style="width:30px;height:30px;flex-shrink:0"') + wsSelect() + '<button class="btn ghost sm" id="moLogout" aria-label="Se déconnecter">' + IC.out + '</button></div>' +
+    '<div class="shell"><aside class="side">' + LOGO_FULL + wsSelect().replace('id="wsPick"', 'id="wsPick2"') +
+      '<nav class="nav">' + navBtns() + '</nav>' +
+      '<div class="side-foot"><button class="btn sm hidden" id="installBtn">' + IC.inst + 'Installer l\'application</button>' +
+      '<div class="me" title="' + esc(S.user.email) + '">' + esc(name) + '<br><span class="mono" style="font-size:.6rem;letter-spacing:.08em">' + esc(ROLES[S.role] || '') + '</span></div>' +
+      '<a href="' + SITE_URL + '" style="color:var(--muted)">← Site ASAP WORKPLAN</a>' +
+      '<button class="btn ghost sm" id="logout" style="justify-content:flex-start;padding-left:0">' + IC.out + 'Se déconnecter</button></div>' +
+    '</aside><main id="main"></main></div>' +
+    '<nav class="tabbar">' + navBtns('tab') + '</nav>';
+  document.querySelectorAll('[data-v]').forEach(b => b.onclick = () => go(b.dataset.v));
+  ['#wsPick', '#wsPick2'].forEach(id => $(id).onchange = e => {
+    if (e.target.value === '__new') { e.target.value = S.ws.id; return newWorkspaceModal(); }
+    selectWorkspace(e.target.value);
+  });
+  $('#logout').onclick = logout; $('#moLogout').onclick = logout;
+  setupInstall();
+  renderMain();
+  if (keepScroll) window.scrollTo(0, y);
+}
+
+function go(v, pid) {
+  S.view = v; if (pid) S.projectId = pid;
+  if (v !== 'project') store.set('asap-view', v);
+  render(); window.scrollTo(0, 0);
+}
+
+function banners() {
+  let h = '';
+  if (!S.online) h += '<div class="banner off">Hors connexion — affichage des données du ' + (S.cachedAt ? fdt(S.cachedAt) : 'dernier chargement') + '. Les modifications reprendront au retour du réseau.</div>';
+  if (isIOS() && !isStandalone() && !store.get('asap-ios-hide', false)) h += '<div class="banner inst"><span>' + IC.inst.replace('<svg', '<svg style="width:18px;height:18px;stroke:var(--accent2);fill:none;stroke-width:1.8"') + '</span><span><strong>Installer sur iPhone :</strong> touchez <strong>Partager</strong> puis <strong>« Sur l\'écran d\'accueil »</strong>.</span><button class="btn ghost sm" id="iosHide">OK</button></div>';
+  return h;
+}
+
+function renderMain() {
+  const m = $('#main');
+  const v = S.view;
+  m.innerHTML = banners() + (v === 'dash' ? viewDash() : v === 'projects' ? viewProjects() : v === 'project' ? viewProject() : v === 'acts' ? viewActs() : viewTeam());
+  const ih = $('#iosHide'); if (ih) ih.onclick = () => { store.set('asap-ios-hide', true); renderMain(); };
+  bindMain();
+}
+
+/* ---------- Tableau de bord ---------- */
+function viewDash() {
+  const A = S.activities, late = A.filter(isLate), done = A.filter(a => a.status === 'termine');
+  const soon = A.filter(a => a.status !== 'termine' && a.due_date && daysTo(a.due_date) >= 0 && daysTo(a.due_date) <= 7).sort((a, b) => a.due_date.localeCompare(b.due_date));
+  const blocked = A.filter(a => a.status === 'bloque');
+  const active = S.projects.filter(p => p.status === 'actif');
+  const line = a => '<tr class="click" data-act="' + a.id + '"><td>' + esc(a.title) + '<br><small style="color:var(--muted)">' + esc((projOf(a.project_id) || {}).name || '') + '</small></td><td>' + esc(a.responsible || '—') + '</td><td class="' + (isLate(a) ? 'late' : '') + '" style="white-space:nowrap">' + fd(a.due_date) + (isLate(a) ? '<br><small>' + (-daysTo(a.due_date)) + ' j de retard</small>' : '') + '</td></tr>';
+  const mini = (arr, empty) => arr.length ? '<div style="overflow-x:auto"><table style="min-width:0">' + arr.slice(0, 8).map(line).join('') + '</table></div>' : '<div class="empty">' + empty + '</div>';
+  return '<div class="top"><div><div class="crumb">' + esc(S.ws.name) + '</div><h2>Tableau de bord</h2></div>' +
+    '<div class="actions">' + (canEdit() ? '<button class="btn primary" data-new-act>' + IC.plus + 'Activité</button>' : '') + '</div></div>' +
+    (!S.projects.length ? onboardingCard() : '') +
+    '<div class="kpis">' +
+      '<div class="kpi orange"><div class="v">' + avg(A) + '%</div><div class="l">Avancement global</div></div>' +
+      '<div class="kpi"><div class="v">' + active.length + '</div><div class="l">Projets actifs</div></div>' +
+      '<div class="kpi"><div class="v">' + (A.length - done.length) + '</div><div class="l">Activités ouvertes</div></div>' +
+      '<div class="kpi red"><div class="v">' + late.length + '</div><div class="l">En retard</div></div>' +
+      '<div class="kpi green"><div class="v">' + done.length + '</div><div class="l">Terminées</div></div>' +
+    '</div>' +
+    '<div class="grid2">' +
+      '<div class="card"><h3>En retard <span class="mono">' + late.length + '</span></h3>' + mini(late.sort((a, b) => a.due_date.localeCompare(b.due_date)), 'Aucune activité en retard. 👏') + '</div>' +
+      '<div class="card"><h3>Échéances des 7 prochains jours <span class="mono">' + soon.length + '</span></h3>' + mini(soon, 'Rien d\'urgent cette semaine.') + '</div>' +
+      '<div class="card"><h3>Avancement par projet</h3>' + (S.projects.length ? S.projects.filter(p => p.status !== 'archive').map(p => { const v = avg(actsOf(p.id)); return '<div class="prow" data-proj="' + p.id + '"><span class="pn">' + esc(p.name) + '</span><div class="bar"><i style="width:' + v + '%"></i></div><span class="pct">' + v + '%</span></div>'; }).join('') : '<div class="empty">Aucun projet.</div>') + '</div>' +
+      '<div class="card"><h3>Bloquées <span class="mono">' + blocked.length + '</span></h3>' + mini(blocked, 'Aucun blocage signalé.') + '</div>' +
+    '</div>';
+}
+function onboardingCard() {
+  return '<div class="card" style="margin-bottom:1.2rem;border-color:rgba(0,229,160,.3)"><h3>Pour démarrer</h3><p style="color:var(--muted2);font-size:.9rem;margin-bottom:1rem">1. Créez votre premier projet. 2. Ajoutez ses activités (responsable, échéance). 3. Invitez votre équipe dans l\'onglet « Équipe ». Chacun met à jour l\'avancement depuis son ordinateur ou son téléphone.</p>' +
+    (canEdit() ? '<button class="btn primary" data-new-proj>' + IC.plus + 'Créer un projet</button>' : '') + '</div>';
+}
+
+/* ---------- Projets ---------- */
+function viewProjects() {
+  const list = S.projects.filter(p => p.status !== 'archive');
+  const arch = S.projects.filter(p => p.status === 'archive');
+  const card = p => { const acts = actsOf(p.id), v = avg(acts), late = acts.filter(isLate).length;
+    return '<button class="pcard" style="--pc:' + esc(p.color || '#ff4d1c') + '" data-proj="' + p.id + '"><h4>' + esc(p.name) + '</h4><p>' + esc(p.description || 'Aucune description') + '</p>' +
+      '<div class="bar"><i style="width:' + v + '%"></i></div>' +
+      '<div class="pmeta"><span>' + v + '% · ' + acts.length + ' activité' + (acts.length > 1 ? 's' : '') + '</span>' + (late ? '<span class="late">' + late + ' en retard</span>' : '<span>' + esc(PSTATUS[p.status]) + '</span>') + '</div>' +
+      '<div class="pmeta"><span>' + fd(p.start_date) + ' → ' + fd(p.end_date) + '</span></div></button>'; };
+  return '<div class="top"><div><div class="crumb">' + esc(S.ws.name) + '</div><h2>Projets</h2></div><div class="actions">' + (canEdit() ? '<button class="btn primary" data-new-proj>' + IC.plus + 'Nouveau projet</button>' : '') + '</div></div>' +
+    (list.length ? '<div class="projects">' + list.map(card).join('') + '</div>' : '<div class="empty">Aucun projet pour le moment.' + (canEdit() ? ' Créez le premier avec « Nouveau projet ».' : '') + '</div>') +
+    (arch.length ? '<h3 style="font-family:Syne;margin:2rem 0 1rem;color:var(--muted)">Archivés</h3><div class="projects">' + arch.map(card).join('') + '</div>' : '');
+}
+
+function viewProject() {
+  const p = projOf(S.projectId);
+  if (!p) { S.view = 'projects'; return viewProjects(); }
+  const acts = actsOf(p.id), v = avg(acts);
+  const head = '<div class="top"><div><div class="crumb"><button data-v2="projects">Projets</button> / ' + esc(PSTATUS[p.status]) + '</div><h2>' + esc(p.name) + '</h2>' +
+    '<p style="color:var(--muted);font-size:.88rem;margin-top:.3rem;max-width:640px">' + esc(p.description || '') + '</p></div>' +
+    '<div class="actions"><div class="view-toggle"><button data-bm="board" class="' + (S.boardMode === 'board' ? 'on' : '') + '">Tableau</button><button data-bm="list" class="' + (S.boardMode === 'list' ? 'on' : '') + '">Liste</button></div>' +
+    (canEdit() ? '<button class="btn" data-edit-proj="' + p.id + '">' + IC.edit + 'Modifier</button><button class="btn primary" data-new-act="' + p.id + '">' + IC.plus + 'Activité</button>' : '') + '</div></div>' +
+    '<div class="kpis k4">' +
+      '<div class="kpi orange"><div class="v">' + v + '%</div><div class="l">Avancement</div></div>' +
+      '<div class="kpi"><div class="v">' + acts.filter(a => a.status !== 'termine').length + '</div><div class="l">Ouvertes</div></div>' +
+      '<div class="kpi red"><div class="v">' + acts.filter(isLate).length + '</div><div class="l">En retard</div></div>' +
+      '<div class="kpi"><div class="v" style="font-size:1.05rem;padding-top:.5rem">' + fd(p.end_date) + '</div><div class="l">Échéance projet</div></div></div>';
+  if (S.boardMode === 'list') return head + actsTable(acts);
+  return head + '<div class="board">' + Object.keys(STATUS).map(st => {
+    const col = acts.filter(a => a.status === st);
+    return '<div class="col" data-col="' + st + '"><div class="col-h"><span class="pill s-' + st + '">' + STATUS[st] + '</span><span class="n">' + col.length + '</span></div>' +
+      col.map(actCard).join('') + (canEdit() && st === 'a_faire' ? '<button class="btn ghost sm" data-new-act="' + p.id + '" style="justify-content:flex-start">' + IC.plus + 'Ajouter</button>' : '') + '</div>';
+  }).join('') + '</div>' + (canEdit() ? '<p class="dnd-tip" style="color:var(--muted);font-size:.78rem;margin-top:.6rem">Astuce : glissez une carte d\'une colonne à l\'autre pour changer son statut.</p>' : '');
+}
+
+function actCard(a) {
+  return '<button class="acard" data-act="' + a.id + '"' + (canEdit() ? ' draggable="true"' : '') + '>' +
+    (a.phase ? '<span class="tag">' + esc(a.phase) + '</span> ' : '') + (a.priority === 'haute' ? '<span class="pill p-haute" style="padding:0">Haute</span>' : '') +
+    '<div class="t" style="margin-top:.35rem">' + esc(a.title) + '</div>' +
+    '<div class="bar"><i style="width:' + (a.status === 'termine' ? 100 : a.progress) + '%"></i></div>' +
+    '<div class="m"><span>' + esc(a.responsible || 'Non assigné') + '</span><span class="' + (isLate(a) ? 'late' : '') + '">' + (a.due_date ? fd(a.due_date) : '') + '</span></div></button>';
+}
+
+/* ---------- Activités ---------- */
+function filteredActs() {
+  const f = S.f, q = f.q.toLowerCase();
+  return S.activities.filter(a =>
+    (!f.project || a.project_id === f.project) && (!f.status || a.status === f.status) &&
+    (!f.resp || (a.responsible || '').trim() === f.resp) && (!f.late || isLate(a)) &&
+    (!q || (a.title + ' ' + a.description + ' ' + a.responsible + ' ' + a.phase).toLowerCase().includes(q))
+  ).sort((a, b) => (a.status === 'termine') - (b.status === 'termine') || (a.due_date || '9999').localeCompare(b.due_date || '9999'));
+}
+function actsTable(list) {
+  if (!list.length) return '<div class="empty">Aucune activité' + (canEdit() ? ' — ajoutez-en une avec le bouton « Activité ».' : '.') + '</div>';
+  return '<div class="tbl-wrap acts"><table><thead><tr><th>Activité</th><th>Projet</th><th>Responsable</th><th>Statut</th><th>Avancement</th><th>Échéance</th><th>Priorité</th></tr></thead><tbody>' +
+    list.map(a => '<tr class="click" data-act="' + a.id + '"><td>' + esc(a.title) + (a.phase ? ' <span class="tag">' + esc(a.phase) + '</span>' : '') + '</td><td>' + esc((projOf(a.project_id) || {}).name || '') + '</td><td>' + esc(a.responsible || '—') + '</td>' +
+      '<td><span class="pill s-' + a.status + '">' + STATUS[a.status] + '</span></td><td style="white-space:nowrap"><span class="bar"><i style="width:' + (a.status === 'termine' ? 100 : a.progress) + '%"></i></span><span class="mono" style="font-size:.72rem">' + (a.status === 'termine' ? 100 : a.progress) + '%</span></td>' +
+      '<td class="' + (isLate(a) ? 'late' : '') + '" style="white-space:nowrap">' + fd(a.due_date) + '</td><td><span class="p-' + a.priority + '">' + PRIO[a.priority] + '</span></td></tr>').join('') +
+    '</tbody></table></div><div class="alist">' + list.map(a => actCard(a).replace('<div class="t"', '<div style="display:flex;justify-content:space-between;gap:.5rem;margin-top:.3rem"><span class="pill s-' + a.status + '">' + STATUS[a.status] + '</span><span style="font-size:.72rem;color:var(--muted)">' + esc((projOf(a.project_id) || {}).name || '') + '</span></div><div class="t"')).join('') + '</div>';
+}
+function viewActs() {
+  const f = S.f;
+  return '<div class="top"><div><div class="crumb">' + esc(S.ws.name) + '</div><h2>Activités</h2></div><div class="actions"><button class="btn" id="csv">' + IC.dl + 'Exporter</button>' + (canEdit() ? '<button class="btn primary" data-new-act>' + IC.plus + 'Activité</button>' : '') + '</div></div>' +
+    '<div class="filters"><input class="i" id="fq" type="search" placeholder="Rechercher…" value="' + esc(f.q) + '" aria-label="Rechercher">' +
+      '<select class="i" id="fp" aria-label="Projet"><option value="">Tous les projets</option>' + S.projects.map(p => '<option value="' + p.id + '"' + (f.project === p.id ? ' selected' : '') + '>' + esc(p.name) + '</option>').join('') + '</select>' +
+      '<select class="i" id="fs" aria-label="Statut"><option value="">Tous les statuts</option>' + Object.entries(STATUS).map(([k, l]) => '<option value="' + k + '"' + (f.status === k ? ' selected' : '') + '>' + l + '</option>').join('') + '</select>' +
+      '<select class="i" id="fr" aria-label="Responsable"><option value="">Tous les responsables</option>' + responsibles().map(r => '<option' + (f.resp === r ? ' selected' : '') + '>' + esc(r) + '</option>').join('') + '</select>' +
+      '<label class="btn sm" style="gap:.4rem"><input type="checkbox" id="fl"' + (f.late ? ' checked' : '') + ' style="accent-color:var(--accent)"> En retard</label></div>' +
+    '<div id="actsOut">' + actsTable(filteredActs()) + '</div>';
+}
+
+/* ---------- Équipe ---------- */
+function viewTeam() {
+  const me = S.user.id;
+  return '<div class="top"><div><div class="crumb">' + esc(S.ws.name) + '</div><h2>Équipe</h2></div></div>' +
+    '<div class="grid2"><div class="card"><h3>Membres <span class="mono">' + S.members.length + '</span></h3>' +
+      S.members.map(m => '<div class="mrow"><div class="av">' + esc(initials(m.display_name || m.email)) + '</div><div class="who"><div>' + esc(m.display_name || m.email || 'Membre') + (m.user_id === me ? ' <small>(vous)</small>' : '') + '</div><small>' + esc(m.email || '') + '</small></div>' +
+        (isAdmin() && m.role !== 'owner' && m.user_id !== me
+          ? '<select class="i" style="width:auto;padding:.35rem .5rem;font-size:.8rem" data-role="' + m.user_id + '">' + ['admin', 'member', 'viewer'].map(r => '<option value="' + r + '"' + (m.role === r ? ' selected' : '') + '>' + ROLES[r] + '</option>').join('') + '</select><button class="btn ghost sm" data-rm="' + m.user_id + '" aria-label="Retirer">✕</button>'
+          : '<span class="tag">' + ROLES[m.role] + '</span>') + '</div>').join('') +
+    '</div>' +
+    (isAdmin() ? '<div class="card"><h3>Inviter un membre</h3><form id="invForm"><label class="f"><span>E-mail</span><input class="i" name="email" type="email" required placeholder="prenom.nom@entreprise.com"></label>' +
+      '<label class="f"><span>Rôle</span><select class="i" name="role"><option value="member">Membre — peut modifier</option><option value="viewer">Lecture seule</option><option value="admin">Administrateur — gère l\'équipe</option></select></label>' +
+      '<button class="btn primary" type="submit">Inviter</button></form>' +
+      '<p style="color:var(--muted);font-size:.8rem;margin-top:.9rem">La personne crée son compte avec cette adresse e-mail et rejoint automatiquement l\'espace. Utilisez « Copier l\'invitation » pour lui envoyer le lien.</p>' +
+      (S.invitations.length ? '<div class="sep"></div><h3>Invitations en attente <span class="mono">' + S.invitations.length + '</span></h3>' + S.invitations.map(i => '<div class="mrow"><div class="av" style="background:var(--panel2);color:var(--muted)">' + esc(initials(i.email)) + '</div><div class="who"><div>' + esc(i.email) + '</div><small>' + ROLES[i.role] + ' · invité le ' + fdt(i.created_at) + '</small></div><button class="btn sm" data-copy="' + esc(i.email) + '">Copier l\'invitation</button><button class="btn ghost sm" data-uninv="' + i.id + '" aria-label="Annuler">✕</button></div>').join('') : '') +
+    '</div>' : '<div class="card"><h3>Votre rôle</h3><p style="color:var(--muted2)">' + ROLES[S.role] + '. Pour inviter quelqu\'un, contactez un administrateur de l\'espace.</p></div>') +
+    '</div>' +
+    (S.role === 'owner' ? '<div class="card" style="margin-top:1rem"><h3>Espace</h3><form id="wsRename" style="display:flex;gap:.6rem;flex-wrap:wrap"><input class="i" name="name" value="' + esc(S.ws.name) + '" style="flex:1;min-width:200px" maxlength="120"><button class="btn" type="submit">Renommer</button></form></div>' : '') +
+    (S.role !== 'owner' ? '<div style="margin-top:1rem"><button class="btn danger sm" id="leaveWs">Quitter cet espace</button></div>' : '');
+}
+
+/* ---------- Événements ---------- */
+function bindMain() {
+  const m = $('#main');
+  m.onclick = e => {
+    const t = e.target.closest('[data-act],[data-proj],[data-new-act],[data-new-proj],[data-edit-proj],[data-v2],[data-bm],[data-copy],[data-uninv],[data-rm]');
+    if (!t) return;
+    if (t.dataset.act) return activityModal(S.activities.find(a => a.id === t.dataset.act));
+    if (t.dataset.proj) return go('project', t.dataset.proj);
+    if (t.hasAttribute('data-new-act')) return activityModal(null, t.dataset.newAct || (S.view === 'project' ? S.projectId : ''));
+    if (t.hasAttribute('data-new-proj')) return projectModal();
+    if (t.dataset.editProj) return projectModal(projOf(t.dataset.editProj));
+    if (t.dataset.v2) return go(t.dataset.v2);
+    if (t.dataset.bm) { S.boardMode = t.dataset.bm; store.set('asap-board', S.boardMode); return renderMain(); }
+    if (t.dataset.copy) return copyInvite(t.dataset.copy);
+    if (t.dataset.uninv) return cancelInvite(t.dataset.uninv);
+    if (t.dataset.rm) return removeMember(t.dataset.rm);
+  };
+  // Filtres
+  const upd = () => { $('#actsOut').innerHTML = actsTable(filteredActs()); };
+  const fq = $('#fq'); if (fq) {
+    fq.oninput = () => { S.f.q = fq.value; upd(); };
+    $('#fp').onchange = e => { S.f.project = e.target.value; upd(); };
+    $('#fs').onchange = e => { S.f.status = e.target.value; upd(); };
+    $('#fr').onchange = e => { S.f.resp = e.target.value; upd(); };
+    $('#fl').onchange = e => { S.f.late = e.target.checked; upd(); };
+    $('#csv').onclick = exportCsv;
+  }
+  // Glisser-déposer
+  if (canEdit()) {
+    m.querySelectorAll('.acard[draggable]').forEach(c => c.ondragstart = e => { e.dataTransfer.setData('text/plain', c.dataset.act); e.dataTransfer.effectAllowed = 'move'; });
+    m.querySelectorAll('[data-col]').forEach(col => {
+      col.ondragover = e => { e.preventDefault(); col.classList.add('drop'); };
+      col.ondragleave = () => col.classList.remove('drop');
+      col.ondrop = async e => {
+        e.preventDefault(); col.classList.remove('drop');
+        const a = S.activities.find(x => x.id === e.dataTransfer.getData('text/plain'));
+        if (!a || a.status === col.dataset.col) return;
+        const patch = { status: col.dataset.col }; if (patch.status === 'termine') patch.progress = 100;
+        Object.assign(a, patch); renderMain();
+        const { error } = await sb.from('activities').update(patch).eq('id', a.id);
+        if (error) { toast(frErr(error), true); await loadData(); renderMain(); }
+      };
+    });
+  }
+  // Équipe
+  const inv = $('#invForm'); if (inv) inv.onsubmit = invite;
+  m.querySelectorAll('[data-role]').forEach(s => s.onchange = async () => {
+    const { error } = await sb.from('workspace_members').update({ role: s.value }).eq('workspace_id', S.ws.id).eq('user_id', s.dataset.role);
+    if (error) toast(frErr(error), true); else toast('Rôle mis à jour.');
+  });
+  const wr = $('#wsRename'); if (wr) wr.onsubmit = async e => {
+    e.preventDefault(); const n = e.target.name.value.trim(); if (n.length < 2) return;
+    const { error } = await sb.from('workspaces').update({ name: n }).eq('id', S.ws.id);
+    if (error) return toast(frErr(error), true);
+    S.ws.name = n; S.workspaces.find(w => w.id === S.ws.id).name = n; render(); toast('Espace renommé.');
+  };
+  const lv = $('#leaveWs'); if (lv) lv.onclick = async () => {
+    if (!confirm('Quitter l\'espace « ' + S.ws.name + ' » ? Vous n\'aurez plus accès à ses projets.')) return;
+    const { error } = await sb.from('workspace_members').delete().eq('workspace_id', S.ws.id).eq('user_id', S.user.id);
+    if (error) return toast(frErr(error), true);
+    store.set('asap-ws', null); loadWorkspaces();
+  };
+}
+
+/* =====================================================================
+   FENÊTRES : projet, activité
+   ===================================================================== */
+function modal(html, wide) {
+  const root = $('#modal-root');
+  root.innerHTML = '<div class="modal" role="dialog" aria-modal="true"><div class="mbox' + (wide ? ' wide' : '') + '"><button class="mclose" aria-label="Fermer">×</button>' + html + '</div></div>';
+  const close = () => { root.innerHTML = ''; document.removeEventListener('keydown', esc_); };
+  const esc_ = e => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', esc_);
+  root.querySelector('.modal').onclick = e => { if (e.target.classList.contains('modal') || e.target.classList.contains('mclose')) close(); };
+  const f = root.querySelector('input:not([type=hidden]),select,textarea'); if (f && window.innerWidth > 860) setTimeout(() => f.focus(), 30);
+  return { el: root.querySelector('.mbox'), close };
+}
+
+function projectModal(p) {
+  const ed = !!p; p = p || { name: '', description: '', start_date: '', end_date: '', status: 'actif', color: COLORS[S.projects.length % COLORS.length] };
+  const { el, close } = modal('<h3>' + (ed ? 'Modifier le projet' : 'Nouveau projet') + '</h3><form id="pf">' +
+    '<label class="f"><span>Nom du projet *</span><input class="i" name="name" required maxlength="160" value="' + esc(p.name) + '"></label>' +
+    '<label class="f"><span>Description</span><textarea class="i" name="description" maxlength="2000">' + esc(p.description) + '</textarea></label>' +
+    '<div class="row"><label class="f"><span>Début</span><input class="i" type="date" name="start_date" value="' + esc(p.start_date || '') + '"></label>' +
+    '<label class="f"><span>Fin prévue</span><input class="i" type="date" name="end_date" value="' + esc(p.end_date || '') + '"></label></div>' +
+    '<div class="row"><label class="f"><span>Statut</span><select class="i" name="status">' + Object.entries(PSTATUS).map(([k, l]) => '<option value="' + k + '"' + (p.status === k ? ' selected' : '') + '>' + l + '</option>').join('') + '</select></label>' +
+    '<label class="f"><span>Couleur</span><select class="i" name="color">' + COLORS.map((c, i) => '<option value="' + c + '"' + (p.color === c ? ' selected' : '') + '>' + ['Orange', 'Vert', 'Bleu', 'Ambre', 'Violet', 'Rose'][i] + '</option>').join('') + '</select></label></div>' +
+    '<p class="err" id="pfErr"></p><div class="mfoot">' + (ed && isAdmin() ? '<button type="button" class="btn danger" id="pDel">Supprimer</button>' : '') +
+    '<div class="r"><button type="button" class="btn" id="pCancel">Annuler</button><button class="btn primary" type="submit">' + (ed ? 'Enregistrer' : 'Créer le projet') + '</button></div></div></form>');
+  el.querySelector('#pCancel').onclick = close;
+  el.querySelector('#pf').onsubmit = async e => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(e.target)); d.name = d.name.trim();
+    if (d.name.length < 2) return el.querySelector('#pfErr').textContent = 'Le nom doit contenir au moins 2 caractères.';
+    if (d.start_date && d.end_date && d.end_date < d.start_date) return el.querySelector('#pfErr').textContent = 'La date de fin est avant la date de début.';
+    d.start_date = d.start_date || null; d.end_date = d.end_date || null;
+    const btn = e.target.querySelector('[type=submit]'); btn.disabled = true;
+    const r = ed ? await sb.from('projects').update(d).eq('id', p.id).select().single()
+                 : await sb.from('projects').insert(Object.assign(d, { workspace_id: S.ws.id })).select().single();
+    btn.disabled = false;
+    if (r.error) return el.querySelector('#pfErr').textContent = frErr(r.error);
+    if (ed) Object.assign(p, r.data); else S.projects.push(r.data);
+    close(); toast(ed ? 'Projet enregistré.' : 'Projet créé.');
+    if (!ed) go('project', r.data.id); else renderMain();
+  };
+  const del = el.querySelector('#pDel'); if (del) del.onclick = async () => {
+    if (!confirm('Supprimer le projet « ' + p.name + ' » et ses ' + actsOf(p.id).length + ' activités ? Cette action est définitive.')) return;
+    const { error } = await sb.from('projects').delete().eq('id', p.id);
+    if (error) return toast(frErr(error), true);
+    S.projects = S.projects.filter(x => x.id !== p.id); S.activities = S.activities.filter(a => a.project_id !== p.id);
+    close(); toast('Projet supprimé.'); go('projects');
+  };
+}
+
+function activityModal(a, projectId) {
+  if (!S.projects.length && !a) { toast('Créez d\'abord un projet.'); return projectModal(); }
+  const ed = !!a, ro = !canEdit();
+  a = a || { project_id: projectId || (S.f.project || S.projects[0].id), title: '', description: '', phase: '', responsible: '', start_date: '', due_date: '', status: 'a_faire', priority: 'normale', progress: 0 };
+  const dis = ro ? ' disabled' : '';
+  const html = '<h3>' + (ed ? esc(a.title) : 'Nouvelle activité') + '</h3><form id="af">' +
+    '<label class="f"><span>Intitulé *</span><input class="i" name="title" required maxlength="200" value="' + esc(a.title) + '"' + dis + '></label>' +
+    '<div class="row"><label class="f"><span>Projet</span><select class="i" name="project_id"' + dis + '>' + S.projects.map(p => '<option value="' + p.id + '"' + (a.project_id === p.id ? ' selected' : '') + '>' + esc(p.name) + '</option>').join('') + '</select></label>' +
+    '<label class="f"><span>Phase / lot</span><input class="i" name="phase" maxlength="80" list="phases" value="' + esc(a.phase) + '"' + dis + '><datalist id="phases">' + [...new Set(S.activities.map(x => x.phase).filter(Boolean))].map(x => '<option value="' + esc(x) + '">').join('') + '</datalist></label></div>' +
+    '<div class="row"><label class="f"><span>Responsable</span><input class="i" name="responsible" maxlength="120" list="resps" value="' + esc(a.responsible) + '"' + dis + '><datalist id="resps">' + [...new Set(responsibles().concat(S.members.map(m => m.display_name || m.email).filter(Boolean)))].map(x => '<option value="' + esc(x) + '">').join('') + '</datalist></label>' +
+    '<label class="f"><span>Priorité</span><select class="i" name="priority"' + dis + '>' + Object.entries(PRIO).map(([k, l]) => '<option value="' + k + '"' + (a.priority === k ? ' selected' : '') + '>' + l + '</option>').join('') + '</select></label></div>' +
+    '<div class="row"><label class="f"><span>Début</span><input class="i" type="date" name="start_date" value="' + esc(a.start_date || '') + '"' + dis + '></label>' +
+    '<label class="f"><span>Échéance</span><input class="i" type="date" name="due_date" value="' + esc(a.due_date || '') + '"' + dis + '></label></div>' +
+    '<div class="row"><label class="f"><span>Statut</span><select class="i" name="status"' + dis + '>' + Object.entries(STATUS).map(([k, l]) => '<option value="' + k + '"' + (a.status === k ? ' selected' : '') + '>' + l + '</option>').join('') + '</select></label>' +
+    '<label class="f"><span>Avancement</span><div class="range"><input type="range" name="progress" min="0" max="100" step="5" value="' + a.progress + '"' + dis + '><output>' + a.progress + '%</output></div></label></div>' +
+    '<label class="f"><span>Description</span><textarea class="i" name="description" maxlength="4000"' + dis + '>' + esc(a.description) + '</textarea></label>' +
+    '<p class="err" id="afErr"></p>' +
+    (ro ? '' : '<div class="mfoot">' + (ed ? '<button type="button" class="btn danger" id="aDel">Supprimer</button>' : '') + '<div class="r"><button type="button" class="btn" id="aCancel">Annuler</button><button class="btn primary" type="submit">' + (ed ? 'Enregistrer' : 'Ajouter') + '</button></div></div>') +
+    '</form>' +
+    (ed ? '<div class="sep"></div><h3 style="font-size:1rem;margin-bottom:.6rem">Comptes rendus d\'avancement</h3>' +
+      (ro ? '' : '<form id="uf"><textarea class="i" name="note" placeholder="Ce qui a été fait, difficultés, prochaines étapes…" maxlength="2000" style="min-height:70px"></textarea><div style="display:flex;justify-content:flex-end;margin-top:.5rem"><button class="btn sm" type="submit">Ajouter le compte rendu</button></div></form>') +
+      '<div class="timeline" id="tl"><div style="color:var(--muted);font-size:.85rem">Chargement…</div></div>' : '');
+  const { el, close } = modal(html, true);
+  const rng = el.querySelector('[name=progress]'), out = el.querySelector('output'), st = el.querySelector('[name=status]');
+  rng.oninput = () => { out.textContent = rng.value + '%'; if (rng.value === '100' && st.value !== 'termine') st.value = 'termine'; else if (+rng.value > 0 && st.value === 'a_faire') st.value = 'en_cours'; };
+  st.onchange = () => { if (st.value === 'termine') { rng.value = 100; out.textContent = '100%'; } };
+  if (!ro) {
+    el.querySelector('#aCancel').onclick = close;
+    el.querySelector('#af').onsubmit = async e => {
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(e.target)); d.title = d.title.trim(); d.progress = +d.progress;
+      if (!d.title) return el.querySelector('#afErr').textContent = 'Indiquez un intitulé.';
+      if (d.start_date && d.due_date && d.due_date < d.start_date) return el.querySelector('#afErr').textContent = 'L\'échéance est avant la date de début.';
+      d.start_date = d.start_date || null; d.due_date = d.due_date || null;
+      const btn = e.target.querySelector('[type=submit]'); btn.disabled = true;
+      const r = ed ? await sb.from('activities').update(d).eq('id', a.id).select().single()
+                   : await sb.from('activities').insert(Object.assign(d, { workspace_id: S.ws.id, position: S.activities.length })).select().single();
+      btn.disabled = false;
+      if (r.error) return el.querySelector('#afErr').textContent = frErr(r.error);
+      if (ed) Object.assign(a, r.data); else S.activities.push(r.data);
+      close(); toast(ed ? 'Activité enregistrée.' : 'Activité ajoutée.'); renderMain();
+    };
+    const del = el.querySelector('#aDel'); if (del) del.onclick = async () => {
+      if (!confirm('Supprimer cette activité et ses comptes rendus ?')) return;
+      const { error } = await sb.from('activities').delete().eq('id', a.id);
+      if (error) return toast(frErr(error), true);
+      S.activities = S.activities.filter(x => x.id !== a.id); close(); toast('Activité supprimée.'); renderMain();
+    };
+  }
+  if (ed) loadUpdates(a, el);
+}
+
+async function loadUpdates(a, el) {
+  const tl = el.querySelector('#tl');
+  const draw = list => tl.innerHTML = list.length ? list.map(u => '<div class="tl"><small>' + fdt(u.created_at) + ' · ' + esc(u.author_name || 'Membre') + (u.progress != null ? ' · ' + u.progress + '%' : '') + (u.status ? ' · ' + STATUS[u.status] : '') + '</small><p>' + esc(u.note) + '</p></div>').join('') : '<div style="color:var(--muted);font-size:.85rem">Aucun compte rendu pour l\'instant.</div>';
+  if (!S.online) return tl.innerHTML = '<div style="color:var(--muted);font-size:.85rem">Disponible une fois connecté.</div>';
+  const { data, error } = await sb.from('activity_updates').select('*').eq('activity_id', a.id).order('created_at', { ascending: false });
+  if (error) return tl.innerHTML = '<p class="err">' + esc(frErr(error)) + '</p>';
+  draw(data);
+  const uf = el.querySelector('#uf'); if (uf) uf.onsubmit = async e => {
+    e.preventDefault();
+    const note = uf.note.value.trim(); if (!note) return;
+    const form = el.querySelector('#af');
+    const prog = +form.progress.value, status = form.status.value;
+    const me = S.members.find(m => m.user_id === S.user.id);
+    const author = (S.user.user_metadata && S.user.user_metadata.full_name) || (me && me.display_name) || S.user.email;
+    const btn = uf.querySelector('button'); btn.disabled = true;
+    const r = await sb.from('activity_updates').insert({ activity_id: a.id, workspace_id: S.ws.id, note, progress: prog, status, author_name: author }).select().single();
+    if (!r.error && (prog !== a.progress || status !== a.status)) {
+      const u = await sb.from('activities').update({ progress: prog, status }).eq('id', a.id).select().single();
+      if (!u.error) Object.assign(a, u.data);
+    }
+    btn.disabled = false;
+    if (r.error) return toast(frErr(r.error), true);
+    uf.reset(); data.unshift(r.data); draw(data); toast('Compte rendu ajouté.'); renderMain();
+  };
+}
+
+function newWorkspaceModal() {
+  const { el, close } = modal('<h3>Nouvel espace</h3><form id="nw"><label class="f"><span>Nom de l\'entreprise / organisation</span><input class="i" name="name" required maxlength="120"></label><p class="err" id="nwErr"></p><div class="mfoot"><div class="r"><button type="button" class="btn" id="nwC">Annuler</button><button class="btn primary" type="submit">Créer</button></div></div></form>');
+  el.querySelector('#nwC').onclick = close;
+  el.querySelector('#nw').onsubmit = async e => {
+    e.preventDefault(); const n = e.target.name.value.trim();
+    if (n.length < 2) return el.querySelector('#nwErr').textContent = '2 caractères minimum.';
+    const { data, error } = await sb.rpc('create_workspace', { ws_name: n });
+    if (error) return el.querySelector('#nwErr').textContent = frErr(error);
+    close(); store.set('asap-ws', data); loadWorkspaces();
+  };
+}
+
+/* ---------- Équipe : actions ---------- */
+async function invite(e) {
+  e.preventDefault();
+  const email = e.target.email.value.trim().toLowerCase(), role = e.target.role.value;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return toast('Adresse e-mail invalide.', true);
+  if (S.members.some(m => (m.email || '').toLowerCase() === email)) return toast('Cette personne est déjà membre.', true);
+  const { data, error } = await sb.from('invitations').insert({ workspace_id: S.ws.id, email, role }).select().single();
+  if (error) return toast(frErr(error), true);
+  S.invitations.push(data); renderMain(); copyInvite(email);
+}
+function inviteText(email) {
+  const url = location.href.split('#')[0].split('?')[0];
+  return 'Bonjour,\n\nVous êtes invité(e) à suivre les projets de « ' + S.ws.name + ' » sur ASAP WORKPLAN.\n\n1. Ouvrez : ' + url + '\n2. Cliquez sur « Créer un compte » avec cette adresse : ' + email + '\n3. Vous pouvez installer l\'application sur votre ordinateur et votre téléphone.\n\nÀ bientôt !';
+}
+async function copyInvite(email) {
+  const txt = inviteText(email);
+  try { await navigator.clipboard.writeText(txt); toast('Invitation copiée : collez-la dans un e-mail ou WhatsApp.'); }
+  catch (e) { modal('<h3>Message d\'invitation</h3><textarea class="i" style="min-height:200px" readonly>' + esc(txt) + '</textarea><p style="color:var(--muted);font-size:.8rem;margin-top:.6rem">Copiez ce texte et envoyez-le à ' + esc(email) + '.</p>'); }
+}
+async function cancelInvite(id) {
+  const { error } = await sb.from('invitations').delete().eq('id', id);
+  if (error) return toast(frErr(error), true);
+  S.invitations = S.invitations.filter(i => i.id !== id); renderMain();
+}
+async function removeMember(uid) {
+  const m = S.members.find(x => x.user_id === uid);
+  if (!confirm('Retirer ' + (m.display_name || m.email) + ' de l\'espace ?')) return;
+  const { error } = await sb.from('workspace_members').delete().eq('workspace_id', S.ws.id).eq('user_id', uid);
+  if (error) return toast(frErr(error), true);
+  S.members = S.members.filter(x => x.user_id !== uid); renderMain(); toast('Membre retiré.');
+}
+
+/* ---------- Export ---------- */
+function exportCsv() {
+  const cols = [['Projet', a => (projOf(a.project_id) || {}).name], ['Phase', a => a.phase], ['Activité', a => a.title], ['Responsable', a => a.responsible], ['Statut', a => STATUS[a.status]], ['Avancement %', a => a.status === 'termine' ? 100 : a.progress], ['Priorité', a => PRIO[a.priority]], ['Début', a => a.start_date], ['Échéance', a => a.due_date], ['En retard', a => isLate(a) ? 'Oui' : 'Non'], ['Description', a => a.description]];
+  const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+  const csv = '﻿' + cols.map(c => q(c[0])).join(';') + '\n' + filteredActs().map(a => cols.map(c => q(c[1](a))).join(';')).join('\n');
+  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  const l = document.createElement('a'); l.href = url; l.download = 'suivi-' + S.ws.name.replace(/[^\w-]+/g, '_') + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+  document.body.appendChild(l); l.click(); l.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/* =====================================================================
+   INSTALLATION (PWA) & HORS CONNEXION
+   ===================================================================== */
+let deferredPrompt = null;
+const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; setupInstall(); });
+window.addEventListener('appinstalled', () => { deferredPrompt = null; setupInstall(); toast('Application installée !'); });
+function setupInstall() {
+  const b = $('#installBtn'); if (!b) return;
+  b.classList.toggle('hidden', !deferredPrompt || isStandalone());
+  b.onclick = async () => { if (!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; setupInstall(); };
+}
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+window.addEventListener('online', async () => { S.online = true; toast('Connexion rétablie.'); if (S.ws && sb) { try { const { data: { session } } = await sb.auth.getSession(); if (session) { S.user = session.user; await loadData(); subscribe(); render(); } } catch (e) {} } });
+window.addEventListener('offline', () => { S.online = false; S.cachedAt = Date.now(); if (S.ws) renderMain(); });
+
+if (sb) sb.auth.onAuthStateChange((event, session) => {
+  if (event === 'PASSWORD_RECOVERY') renderAuth('newpass');
+  else if (event === 'SIGNED_IN' && !S.user) { S.user = session.user; loadWorkspaces(); }
+  else if (event === 'SIGNED_OUT') { S.user = null; }
+});
+boot();
+</script>
+</body>
+</html>
