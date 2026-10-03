@@ -279,7 +279,7 @@ function toast(msg, isErr) {
 }
 function frErr(e) {
   const m = (e && (e.message || e.error_description)) || String(e);
-  if (/Invalid login credentials/i.test(m)) return 'E-mail ou mot de passe incorrect.';
+  if (/Invalid login credentials/i.test(m)) return 'E-mail ou mot de passe incorrect. Si vous avez oublié votre mot de passe, utilisez « Mot de passe oublié ? » ci-dessous.';
   if (/Email not confirmed/i.test(m)) return 'Confirmez d\'abord votre adresse e-mail (lien reçu par e-mail).';
   if (/User already registered/i.test(m)) return 'Un compte existe déjà avec cet e-mail. Connectez-vous.';
   if (/Password should be at least/i.test(m)) return 'Le mot de passe doit contenir au moins 8 caractères.';
@@ -303,6 +303,8 @@ const isAdmin = () => ['owner', 'admin'].includes(S.role) && S.online;
 
 /* ---------- Client Supabase ---------- */
 const CONFIGURED = !SUPABASE_URL.startsWith('__');
+let RECOVERY = /type=recovery/.test(location.hash);
+const URL_ERR = (location.hash.match(/error_description=([^&]+)/) || [])[1];
 const sb = CONFIGURED && window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
   auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
 }) : null;
@@ -358,7 +360,7 @@ function renderAuth(mode, msg) {
       } else if (mode === 'newpass') {
         const { error } = await sb.auth.updateUser({ password: fd.password });
         if (error) throw error;
-        toast('Mot de passe mis à jour.'); boot();
+        RECOVERY = false; toast('Mot de passe mis à jour.'); boot();
       }
     } catch (err) { show(frErr(err)); } finally { btn.disabled = false; }
   };
@@ -375,6 +377,9 @@ async function boot() {
   }
   if (!sb) { $('#app').innerHTML = '<div class="loading">Connexion impossible. Vérifiez votre réseau puis rechargez.</div>'; return; }
   const { data: { session } } = await sb.auth.getSession();
+  if (RECOVERY && session) { history.replaceState(null, '', location.pathname); return renderAuth('newpass'); }
+  if (URL_ERR) { history.replaceState(null, '', location.pathname); return renderAuth('login', { t: /expired|invalid/i.test(decodeURIComponent(URL_ERR)) ? 'Ce lien a expiré ou a déjà été utilisé. Connectez-vous, ou demandez un nouveau lien avec « Mot de passe oublié ».' : decodeURIComponent(URL_ERR.replace(/\+/g, ' ')) }); }
+  if (session && location.hash.includes('access_token')) history.replaceState(null, '', location.pathname);
   if (!session) {
     const cached = store.get('asap-cache', null);
     if (!navigator.onLine && cached) return useCache(cached);
@@ -923,8 +928,8 @@ window.addEventListener('online', async () => { S.online = true; toast('Connexio
 window.addEventListener('offline', () => { S.online = false; S.cachedAt = Date.now(); if (S.ws) renderMain(); });
 
 if (sb) sb.auth.onAuthStateChange((event, session) => {
-  if (event === 'PASSWORD_RECOVERY') renderAuth('newpass');
-  else if (event === 'SIGNED_IN' && !S.user) { S.user = session.user; loadWorkspaces(); }
+  if (event === 'PASSWORD_RECOVERY') { RECOVERY = true; renderAuth('newpass'); }
+  else if (event === 'SIGNED_IN' && !S.user && !RECOVERY) { S.user = session.user; loadWorkspaces(); }
   else if (event === 'SIGNED_OUT') { S.user = null; }
 });
 boot();
