@@ -6,6 +6,8 @@
 <title>ASAP WORKPLAN | Suivi</title>
 <meta name="description" content="Suivi des activités de vos projets : avancement, échéances, retards et comptes rendus, sur ordinateur et téléphone.">
 <meta name="theme-color" content="#0a0a0a">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://bfqloiprndsvcebffqgw.supabase.co wss://bfqloiprndsvcebffqgw.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -277,11 +279,12 @@ td .bar{width:80px;display:inline-block;vertical-align:middle;margin-right:.4rem
 <div id="app"><div class="loading"><div class="spin"></div>CHARGEMENT</div></div>
 <div id="modal-root"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="vendor/supabase-js-2.117.2.js"></script>
 <script>
 /* =====================================================================
    CONFIGURATION : renseignée lors du branchement de la base Supabase
    ===================================================================== */
+if (window.top !== window.self) { try { window.top.location = window.self.location; } catch (e) { document.documentElement.style.display = 'none'; } }
 const SUPABASE_URL = "https://bfqloiprndsvcebffqgw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_NLC5e7PMfwrDmvl2MhGwrA_u8NqglIh";
 const SITE_URL     = "../index.html";   // lien retour vers le site vitrine
