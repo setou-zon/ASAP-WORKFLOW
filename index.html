@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://formsubmit.co; base-uri 'self'; form-action 'self' mailto:; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://bfqloiprndsvcebffqgw.supabase.co https://challenges.cloudflare.com; base-uri 'self'; form-action 'self' mailto:; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>ASAP WORKPLAN | Digitalisez vos plans de travail</title>
 <meta name="description" content="ASAP WORKPLAN digitalise vos plans de travail dans les outils que vous utilisez déjà : Microsoft 365, SharePoint, Excel, Google Sheets, AppSheet. Accompagnement et formations.">
@@ -262,6 +262,30 @@
   .nav-app { color: var(--accent2) !important; border:1px solid rgba(0,229,160,0.35); padding:0.45rem 0.9rem !important; border-radius:2px; }
   @media (max-width: 768px) { .app-grid { grid-template-columns:1fr; gap:2.5rem; } .inst-row { grid-template-columns:1fr; gap:0.1rem; } .nav-links li a.nav-app { text-align:center; margin-top:0.4rem; } }
 
+  /* ===== CONFIDENTIALITÉ ===== */
+  .secu { background: #0b1324; color: #e2e8f0; position: relative; overflow: hidden; }
+  .secu::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 50% 60% at 85% 10%, rgba(10,138,98,0.25), transparent 70%), radial-gradient(ellipse 40% 50% at 5% 95%, rgba(232,70,15,0.12), transparent 70%); pointer-events:none; }
+  .secu > * { position: relative; }
+  .secu .section-title { color: #ffffff; }
+  .secu .zero-badge { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.4); color: #34d399; }
+  .secu-head { display:grid; grid-template-columns: 1.1fr 1fr; gap:4rem; align-items:end; margin-bottom:3.5rem; }
+  .secu-lead { color:#94a3b8; font-size:1rem; line-height:1.85; }
+  .secu-lead strong { color:#ffffff; }
+  .secu-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:1.2rem; }
+  .secu-card { background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:6px; padding:1.8rem; transition: border-color .3s, transform .3s; }
+  .secu-card:hover { border-color: rgba(52,211,153,0.45); transform: translateY(-4px); }
+  .secu-ic { width:46px; height:46px; border-radius:8px; background: rgba(52,211,153,0.12); display:flex; align-items:center; justify-content:center; margin-bottom:1.2rem; }
+  .secu-ic svg { width:24px; height:24px; stroke:#34d399; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+  .secu-card h3 { font-size:1.15rem; font-weight:700; color:#ffffff; margin-bottom:.6rem; }
+  .secu-card p { color:#94a3b8; font-size:.92rem; line-height:1.7; }
+  .secu-commit { margin-top:2.5rem; display:flex; gap:1.2rem; align-items:flex-start; padding:1.6rem 1.8rem; border:1px solid rgba(232,70,15,0.35); background: rgba(232,70,15,0.08); border-radius:6px; }
+  .secu-commit svg { width:28px; height:28px; stroke:#f0632e; fill:none; stroke-width:1.8; flex-shrink:0; }
+  .secu-commit p { color:#cbd5e1; line-height:1.75; }
+  .secu-commit strong { color:#ffffff; }
+  .ts-box { margin-top:1.2rem; min-height:65px; }
+  @media (max-width: 900px) { .secu-head { grid-template-columns:1fr; gap:1.5rem; } .secu-grid { grid-template-columns:1fr 1fr; } }
+  @media (max-width: 560px) { .secu-grid { grid-template-columns:1fr; } .secu-commit { flex-direction:column; } }
+
   /* ===== FORMATION SECTION ===== */
   .formation { background: var(--black); border-top: 1px solid rgba(15,23,42,0.05); }
 
@@ -513,16 +537,22 @@
 
   :focus-visible { outline:2px solid var(--accent2); outline-offset:2px; }
   @media (max-width: 768px) {
-    .nav-toggle { display:inline-flex; }
-    .nav-links { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:#ffffff; border-bottom:1px solid rgba(15,23,42,0.08); padding:0.5rem 1.5rem 1.2rem; z-index:101; box-shadow:0 20px 40px rgba(15,23,42,0.12); }
-    .nav-links.open { display:flex; }
-    .nav-links li a { display:block; padding:0.9rem 0; font-size:0.9rem; }
-    .nav-links li a.nav-cta { text-align:center; margin-top:0.6rem; padding:0.8rem 1.2rem !important; }
     .form-grid { grid-template-columns:1fr; }
     .contact-wrap { padding:1.8rem 1.3rem; }
     .cta-section { padding:5rem 1.5rem; }
     .hero-actions { flex-wrap:wrap; }
     footer { padding:2rem 1.5rem; }
+  }
+  .nav-links a { white-space: nowrap; }
+  .nav-links { gap: 1.6rem; }
+  @media (max-width: 1400px) {
+    .nav-toggle { display:inline-flex; }
+    .nav-links { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:#ffffff; border-bottom:1px solid rgba(15,23,42,0.08); padding:0.5rem 1.5rem 1.2rem; z-index:101; box-shadow:0 20px 40px rgba(15,23,42,0.12); }
+    .nav-links.open { display:flex; }
+    .nav-links li a { display:block; padding:0.9rem 0; font-size:0.9rem; }
+    .nav-links li a.nav-cta { text-align:center; margin-top:0.6rem; padding:0.8rem 1.2rem !important; }
+    .nav-links li a.nav-app { text-align:center; margin-top:0.4rem; }
+    nav { padding: 1rem 1.5rem; }
   }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation:none !important; transition:none !important; } .reveal { opacity:1; transform:none; } html { scroll-behavior:auto; } }
 </style>
@@ -537,6 +567,7 @@
     <li><a href="#features">Fonctionnalités</a></li>
     <li><a href="#how">Comment ça marche</a></li>
     <li><a href="#industries">Secteurs</a></li>
+    <li><a href="#confidentialite">Sécurité</a></li>
     <li><a href="#formation" style="color:var(--accent2);">Formation</a></li>
     <li><a href="app/index.html" class="nav-app">Espace client ↗</a></li>
     <li><a href="#contact" class="nav-cta">Démarrer →</a></li>
@@ -907,6 +938,7 @@
         <li><b>Comptes rendus</b> : l'équipe terrain met à jour l'avancement depuis son téléphone</li>
         <li><b>Équipe et rôles</b> : invitez vos collaborateurs, en modification ou en lecture seule</li>
         <li><b>Export Excel</b> et fonctionnement hors connexion</li>
+        <li><b>Données privées</b> : espace isolé par organisation, accès activé uniquement après validation</li>
       </ul>
       <div class="app-cta">
         <a href="app/index.html" class="btn-primary">Ouvrir l'application →</a>
@@ -930,6 +962,27 @@
       </div>
     </div>
   </div>
+</section>
+
+<!-- ====== CONFIDENTIALITÉ DES DONNÉES ====== -->
+<section class="secu" id="confidentialite">
+  <div class="secu-head reveal">
+    <div>
+      <div class="zero-badge">Confidentialité garantie</div>
+      <p class="section-label">// Sécurité & confidentialité</p>
+      <h2 class="section-title">Vos données restent <span style="color:var(--accent2);">les vôtres.</span><br>Personne d'autre n'y accède.</h2>
+    </div>
+    <p class="secu-lead">Vos plans de travail contiennent des informations sensibles : budgets, équipes, résultats. La plateforme ASAP WORKPLAN est conçue pour qu'<strong>aucune personne extérieure à votre organisation ne puisse y accéder</strong>, et pour que l'accès de chaque utilisateur soit contrôlé.</p>
+  </div>
+  <div class="secu-grid">
+    <div class="secu-card reveal"><div class="secu-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h3>Un espace isolé par organisation</h3><p>Les projets, activités et indicateurs de chaque organisation sont cloisonnés. Une autre organisation ne peut ni les voir, ni les modifier, ni même savoir qu'ils existent.</p></div>
+    <div class="secu-card reveal"><div class="secu-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><h3>Règles appliquées par le serveur</h3><p>Le cloisonnement est garanti par la base de données elle-même, ligne par ligne, et non par une simple interface. Même une requête technique directe est refusée.</p></div>
+    <div class="secu-card reveal"><div class="secu-ic"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Accès uniquement sur validation</h3><p>Chaque nouveau compte est vérifié et activé manuellement par ASAP WORKPLAN. Avant validation, un compte n'accède à aucune donnée. Un compte suspendu perd l'accès instantanément.</p></div>
+    <div class="secu-card reveal"><div class="secu-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Vous décidez qui voit quoi</h3><p>Vous invitez vous-même vos collaborateurs et choisissez leur rôle : administrateur, membre ou lecture seule. Vous pouvez retirer un accès à tout moment.</p></div>
+    <div class="secu-card reveal"><div class="secu-ic"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg></div><h3>Chiffrement et sauvegardes</h3><p>Toutes les connexions sont chiffrées (HTTPS). Les données sont chiffrées au repos, hébergées dans l'Union européenne et sauvegardées chaque jour.</p></div>
+    <div class="secu-card reveal"><div class="secu-ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3>Vos données vous appartiennent</h3><p>Aucune revente, aucun usage publicitaire. Vous exportez vos données quand vous le souhaitez, et nous les supprimons sur simple demande.</p></div>
+  </div>
+  <div class="secu-commit reveal"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><p><strong>Notre engagement :</strong> l'équipe ASAP WORKPLAN n'accède jamais au contenu de vos projets sans votre demande explicite, par exemple pour une assistance que vous sollicitez. Les formulaires de ce site sont protégés contre les robots et les envois abusifs.</p></div>
 </section>
 
 <section class="formation" id="formation">
@@ -1086,6 +1139,7 @@
         <div class="hp" aria-hidden="true"><label>Ne pas remplir<input name="site_web" tabindex="-1" autocomplete="off"></label></div>
         <label class="consent full"><input type="checkbox" name="consentement" required> <span>J'accepte qu'ASAP WORKPLAN utilise ces informations pour me recontacter. <a href="#" data-open="privacyModal">Politique de confidentialité</a></span></label>
       </div>
+      <div class="ts-box" data-ts></div>
       <div class="form-actions">
         <button type="submit" class="btn-primary">Envoyer ma demande →</button>
         <p class="form-status" role="status" aria-live="polite"></p>
@@ -1110,6 +1164,7 @@
     <li><a href="#features">Produit</a></li>
     <li><a href="#contact-form" data-sujet="Demande de devis">Tarifs</a></li>
     <li><a href="#formation">Formation</a></li>
+    <li><a href="#confidentialite">Confidentialité des données</a></li>
     <li><a href="app/index.html">Espace client</a></li>
     <li><a href="#contact-form">Contact</a></li>
     <li><a href="#" data-open="legalModal">Mentions légales</a></li>
@@ -1147,6 +1202,7 @@
         <div class="hp" aria-hidden="true"><label>Ne pas remplir<input name="site_web" tabindex="-1" autocomplete="off"></label></div>
         <label class="consent full"><input type="checkbox" name="consentement" required> <span>J'accepte d'être recontacté(e) au sujet de cette formation. <a href="#" data-open="privacyModal">Confidentialité</a></span></label>
       </div>
+      <div class="ts-box" data-ts></div>
       <div class="form-actions">
         <button type="submit" class="btn-primary">Confirmer l'inscription →</button>
         <p class="form-status" role="status" aria-live="polite"></p>
@@ -1162,6 +1218,7 @@
     <h3 id="privTitle">Politique de confidentialité</h3>
     <p class="legal"><strong>Données collectées :</strong> nom, e-mail, entreprise, téléphone, secteur et message, uniquement lorsque vous remplissez un formulaire.</p>
     <p class="legal"><strong>Finalité :</strong> vous recontacter au sujet de votre demande (essai, devis, formation). Aucune revente, aucun usage publicitaire tiers.</p>
+    <p class="legal"><strong>Application de suivi :</strong> les données de vos projets sont cloisonnées par organisation et accessibles uniquement aux membres que vous invitez. Chaque compte est activé manuellement par ASAP WORKPLAN. Données chiffrées, hébergées dans l'Union européenne, jamais revendues ni utilisées à des fins publicitaires.</p>
     <p class="legal"><strong>Durée de conservation :</strong> 3 ans maximum après le dernier contact.</p>
     <p class="legal"><strong>Vos droits :</strong> accès, rectification, suppression et opposition, conformément au RGPD. Pour les exercer, écrivez-nous via le formulaire de contact en choisissant « Autre ».</p>
   </div>
@@ -1181,17 +1238,14 @@
 
 <script>
 /* =========================================================
-   CONFIGURATION : à compléter si vous hébergez le site ailleurs
-   ---------------------------------------------------------
-   Sur claude.ai, les demandes sont enregistrées automatiquement
-   dans la base de la page (visible dans « Demandes reçues »).
-   Ailleurs (votre propre hébergement), renseignez :
-   - formEndpoint : URL d'un service de formulaire (ex. Formspree)
-   - email : adresse de secours (ouvre la messagerie du visiteur)
+   CONFIGURATION
+   Les formulaires sont envoyés à une fonction sécurisée (Supabase),
+   protégée par l'anti-robot Cloudflare Turnstile.
    ========================================================= */
 const CONFIG = {
-  formEndpoint: "https://formsubmit.co/ajax/azongo08@gmail.com",
-  email: "azongo08@gmail.com"
+  apiUrl: "https://bfqloiprndsvcebffqgw.supabase.co/functions/v1/site-contact",
+  apiKey: "sb_publishable_NLC5e7PMfwrDmvl2MhGwrA_u8NqglIh",
+  turnstileSiteKey: ""   // clé publique Cloudflare Turnstile
 };
 
 /* ---------- Apparition au scroll ---------- */
@@ -1269,37 +1323,48 @@ function getDb() {
   return dbPromise;
 }
 
-async function submitLead(data) {
-  data.createdAt = new Date().toISOString();
-  data.statut = 'nouveau';
-  data.page = location.href.split('#')[0];
+async function submitLead(data, token) {
   const db = await getDb();
-  if (db) {
+  if (db) {   // aperçu claude.ai uniquement
+    data.createdAt = new Date().toISOString(); data.statut = 'nouveau';
     const id = Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
     await db.collection('leads').doc(id).set(data);
     return 'db';
   }
-  if (CONFIG.formEndpoint) {
-    try {
-      const payload = Object.assign({}, data, {
-        _subject: '[ASAP WORKPLAN] ' + (data.type === 'inscription' ? 'Inscription : ' + data.cours : (data.sujet || 'Nouvelle demande')),
-        _template: 'table', _captcha: 'false', _replyto: data.email
-      });
-      const r = await fetch(CONFIG.formEndpoint, {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const j = await r.json().catch(() => ({}));
-      if (r.ok && String(j.success) !== 'false') return 'endpoint';
-    } catch (e) { /* on bascule sur l'e-mail ci-dessous */ }
-  }
-  if (CONFIG.email) {
-    const body = Object.entries(data).filter(([k]) => !['createdAt','statut','page'].includes(k)).map(([k, v]) => k + ' : ' + v).join('\n');
-    location.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('[ASAP WORKPLAN] ' + (data.sujet || data.type)) + '&body=' + encodeURIComponent(body);
-    return 'mail';
-  }
-  throw new Error('no-channel');
+  const r = await fetch(CONFIG.apiUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'apikey': CONFIG.apiKey },
+    body: JSON.stringify(Object.assign({}, data, { token: token || '' }))
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || !j.ok) throw new Error(j.error || 'envoi');
+  return 'api';
 }
+
+/* ---------- Anti-robot Cloudflare Turnstile ---------- */
+let tsLoading = null;
+function loadTurnstile() {
+  if (!CONFIG.turnstileSiteKey) return Promise.resolve(null);
+  if (window.turnstile) return Promise.resolve(window.turnstile);
+  if (!tsLoading) tsLoading = new Promise((res, rej) => {
+    window.__tsReady = () => res(window.turnstile);
+    const sc = document.createElement('script');
+    sc.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__tsReady';
+    sc.async = true; sc.onerror = () => { tsLoading = null; rej(new Error('turnstile')); };
+    document.head.appendChild(sc);
+  });
+  return tsLoading;
+}
+function mountTurnstile(form) {
+  const box = form.querySelector('[data-ts]');
+  if (!box || !CONFIG.turnstileSiteKey || box.dataset.done) return;
+  box.dataset.done = '1';
+  loadTurnstile().then(t => {
+    form._tsId = t.render(box, { sitekey: CONFIG.turnstileSiteKey, theme: 'light', language: 'fr',
+      callback: tok => { form._ts = tok; }, 'expired-callback': () => { form._ts = null; }, 'error-callback': () => { form._ts = null; } });
+  }).catch(() => { box.innerHTML = '<p class="form-status err">La vérification anti-robot ne se charge pas. Désactivez un éventuel bloqueur de publicité puis rechargez la page.</p>'; });
+}
+function resetTurnstile(form) { form._ts = null; try { if (form._tsId != null) window.turnstile.reset(form._tsId); } catch (e) {} }
 
 function validate(form) {
   let ok = true, first = null;
@@ -1327,23 +1392,24 @@ function wireForm(form, buildData, onSuccess) {
     status.className = 'form-status'; status.textContent = '';
     if (form.site_web && form.site_web.value) return; // anti-spam
     if (!validate(form)) { status.className = 'form-status err'; status.textContent = 'Merci de compléter les champs obligatoires (*).'; return; }
+    if (CONFIG.turnstileSiteKey && !form._ts && !window.claude) { status.className = 'form-status err'; status.textContent = 'Merci de valider la vérification anti-robot.'; return; }
     btn.disabled = true; const label = btn.textContent; btn.textContent = 'Envoi…';
     try {
-      const via = await submitLead(buildData(formData(form)));
+      await submitLead(buildData(formData(form)), form._ts);
       status.className = 'form-status ok';
-      status.textContent = via === 'mail' ? 'Votre messagerie s\'ouvre pour finaliser l\'envoi.' : 'Merci ! Votre demande est bien enregistrée. Nous vous recontactons très vite.';
+      status.textContent = 'Merci ! Votre demande est bien enregistrée. Nous vous recontactons très vite.';
       form.reset();
       onSuccess && onSuccess();
     } catch (err) {
       status.className = 'form-status err';
-      status.textContent = (err && err.message === 'no-channel')
-        ? 'L\'envoi en ligne n\'est pas encore activé sur cette version du site. Merci de réessayer prochainement.'
-        : 'L\'envoi n\'a pas abouti. Vérifiez votre connexion et réessayez.';
+      status.textContent = (err && err.message && err.message !== 'envoi' && err.message !== 'Failed to fetch')
+        ? err.message : 'L\'envoi n\'a pas abouti. Vérifiez votre connexion et réessayez.';
       console.error('[ASAP WORKPLAN] envoi impossible :', err);
     } finally {
-      btn.disabled = false; btn.textContent = label;
+      btn.disabled = false; btn.textContent = label; resetTurnstile(form);
     }
   });
+  mountTurnstile(form);
   form.querySelectorAll('input, select, textarea').forEach(el => el.addEventListener('input', () => el.removeAttribute('aria-invalid')));
 }
 

@@ -1,5 +1,5 @@
 /* ASAP WORKPLAN — Service worker : fonctionnement hors connexion */
-const CACHE = 'asap-suivi-v4';
+const CACHE = 'asap-suivi-v5';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png',
   './vendor/supabase-js-2.117.2.js'];
 
